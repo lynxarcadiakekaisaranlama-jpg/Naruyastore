@@ -93,26 +93,49 @@ button:hover{
   <h3 id="produkDipilih"></h3>
   <p id="hargaDipilih"></p>
 
-  <h4>Scan QR Dana</h4>
-
-  <!-- GANTI LINK QR KAMU -->
-  <img src="qrdana.jpg" width="260" style="display:block; margin:auto; border-radius:15px;">
+  <h4>Scan QRIS</h4>
+<img id="qris" width="260" style="display:block; margin:auto; border-radius:15px;">
 
   <div id="timer">Waktu: 05:00</div>
   <p id="status"></p>
 </div>
+
 
 <script>
 let waktu = 300;
 let hitung;
 
 function beli(nama,harga){
+
   document.getElementById("qrSection").style.display = "block";
   document.getElementById("produkDipilih").innerHTML = nama;
   document.getElementById("hargaDipilih").innerHTML = "Total: Rp " + harga;
-  waktu = 300;
   document.getElementById("status").innerHTML = "";
-  startTimer();
+
+  fetch("https://api.pakasir.com/create-transaction", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer API_KEY_KAMU"
+    },
+    body: JSON.stringify({
+      amount: harga,
+      reference: "INV-" + Date.now(),
+      customer_name: "Skyzo"
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+
+    // ambil qr dari pakasir
+    document.getElementById("qris").src = data.qr_url;
+
+    waktu = 300;
+    startTimer();
+  })
+  .catch(err => {
+    document.getElementById("status").innerHTML = "Gagal buat transaksi ❌";
+  });
 }
 
 function startTimer(){
@@ -134,12 +157,11 @@ function startTimer(){
       clearInterval(hitung);
       document.getElementById("timer").innerHTML = "Waktu Habis!";
       document.getElementById("status").innerHTML =
-        "QR Expired ❌ Silakan refresh untuk beli lagi.";
+        "QR Expired ❌ Silakan beli lagi.";
     }
 
   },1000);
 }
 </script>
-
 </body>
 </html>
