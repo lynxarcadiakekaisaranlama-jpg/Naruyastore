@@ -102,7 +102,7 @@ header{
 }
 
 /* BUTTON */
-button{
+button, select{
   padding:14px 20px;
   border:none;
   border-radius:15px;
@@ -118,6 +118,11 @@ button:hover{
   transform:scale(1.05);
 }
 
+select{
+  width:100%;
+  margin-bottom:12px;
+}
+
 /* HERO */
 .hero{
   text-align:center;
@@ -125,7 +130,7 @@ button:hover{
 }
 
 .hero h1{
-  font-size:32px;
+  font-size:30px;
   text-shadow:0 0 15px #00ffff;
 }
 
@@ -159,7 +164,6 @@ section{
   color:#00ffff;
   margin:10px 0;
   font-weight:bold;
-  font-size:18px;
 }
 
 /* PAYMENT */
@@ -183,6 +187,15 @@ input{
   border:none;
   background:rgba(255,255,255,0.1);
   color:white;
+}
+
+.payment-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.payment-buttons button{
+  flex:1;
 }
 </style>
 </head>
@@ -220,6 +233,8 @@ input{
     <h3>Social Media</h3>
     <button onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
     <button onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
+    <button onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
+    <button onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
   </div>
 </section>
 
@@ -245,12 +260,26 @@ input{
 
 <section id="payment" class="payment">
   <div class="card">
+
     <img src="roro.jpg">
     <div class="timer" id="timer">QR berlaku: 300 detik</div>
+
     <input type="text" id="kategori" readonly>
     <input type="text" id="nama" placeholder="Nama Pengirim">
-    <input type="text" id="total" readonly>
-    <button onclick="kirim()">Kirim Bukti</button>
+
+    <!-- PILIH MATA UANG DI BAWAH NAMA -->
+    <select id="currency">
+      <option value="IDR">IDR (Rupiah)</option>
+      <option value="USD">USD (Dollar)</option>
+    </select>
+
+    <input type="number" id="total" readonly>
+
+    <div class="payment-buttons">
+      <button onclick="kirim()">Kirim Bukti</button>
+      <button onclick="cekPembayaran()">Cek Pembayaran</button>
+    </div>
+
   </div>
 </section>
 
@@ -262,31 +291,31 @@ window.addEventListener("load", function(){
 });
 
 function hideAll(){
-  produk.style.display="none";
-  profile.style.display="none";
-  payment.style.display="none";
+  document.getElementById("produk").style.display="none";
+  document.getElementById("profile").style.display="none";
+  document.getElementById("payment").style.display="none";
 }
 
 function showProduk(){
   hideAll();
-  produk.style.display="block";
+  document.getElementById("produk").style.display="block";
 }
 
 function showProfile(){
   hideAll();
-  profile.style.display="block";
-}
-
-function formatRupiah(angka){
-  return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  document.getElementById("profile").style.display="block";
 }
 
 function beli(nama,harga){
   hideAll();
-  payment.style.display="block";
-  kategori.value = nama;
-  total.value = formatRupiah(harga);
+  document.getElementById("payment").style.display="block";
+  document.getElementById("kategori").value=nama;
+  document.getElementById("total").value=harga;
   startTimer();
+}
+
+function cekPembayaran(){
+  alert("Silakan hubungi admin untuk konfirmasi pembayaran.");
 }
 
 let waktu=300;
@@ -297,7 +326,7 @@ function startTimer(){
   clearInterval(interval);
   interval=setInterval(()=>{
     waktu--;
-    timer.innerText="QR berlaku: "+waktu+" detik";
+    document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";
     if(waktu<=0){
       clearInterval(interval);
       alert("QR kadaluarsa.");
@@ -306,15 +335,20 @@ function startTimer(){
 }
 
 function kirim(){
-  if(!nama.value){
+  let kategori=document.getElementById("kategori").value;
+  let nama=document.getElementById("nama").value;
+  let total=document.getElementById("total").value;
+  let currency=document.getElementById("currency").value;
+
+  if(!nama){
     alert("Isi nama dulu!");
     return;
   }
 
   let pesan="Halo Admin, saya sudah bayar.\n\n"+
-  "📦 "+kategori.value+"\n"+
-  "👤 "+nama.value+"\n"+
-  "💵 "+total.value;
+  "📦 "+kategori+"\n"+
+  "👤 "+nama+"\n"+
+  "💵 "+currency+" "+total;
 
   window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
 }
