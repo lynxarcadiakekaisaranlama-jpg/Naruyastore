@@ -1,70 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Naruya Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naruya official</title>
 
 <style>
-body{
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  color:white;
-  text-align:center;
+*{
   margin:0;
   padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
 }
 
 .container{
-  padding:20px;
+  background: rgba(0,0,40,0.7);
+  backdrop-filter: blur(15px);
+  padding:40px;
+  border-radius:25px;
+  width:95%;
+  max-width:550px;
+  text-align:center;
 }
 
 h1{
-  margin-top:20px;
   font-size:28px;
+  margin-bottom:25px;
 }
 
 .card{
-  background:#ffffff10;
+  background: rgba(255,255,255,0.08);
   padding:15px;
-  margin:15px auto;
   border-radius:15px;
-  width:250px;
-  backdrop-filter: blur(10px);
+  margin-bottom:15px;
 }
 
 button{
-  background:#00c6ff;
+  background:#00aaff;
   border:none;
   padding:10px 20px;
   border-radius:10px;
   cursor:pointer;
+  color:white;
   font-weight:bold;
 }
 
 button:hover{
-  background:#0072ff;
-  color:white;
+  background:#0077cc;
 }
 
 #qrSection{
   display:none;
-  margin-top:20px;
+  margin-top:25px;
 }
 
 #qris{
-  width:250px;
-  border-radius:15px;
+  width:350px;
+  max-width:100%;
+  border-radius:20px;
+  margin-top:15px;
 }
 
 #status{
   margin-top:15px;
-  font-weight:bold;
-}
-
-#timer{
-  margin-top:10px;
-  font-size:18px;
-  color:#00ffcc;
+  font-size:16px;
 }
 </style>
 </head>
@@ -73,87 +81,43 @@ button:hover{
 
 <div class="container">
 
-<h1>Naruya Store 💙</h1>
+<h1>Naruya Store</h1>
 
 <div class="card">
-<h3>Nokos Indonesia</h3>
-<p>Rp 4.000</p>
-<button onclick="beli('Nokos Indonesia',4000)">Beli</button>
+  <h3>Nokos Indonesia</h3>
+  <p>Rp 4.000</p>
+  <button onclick="beli('Nokos Indonesia',4000)">Beli</button>
 </div>
 
 <div class="card">
-<h3>Jasa Pasang Bot</h3>
-<p>Rp 10.000</p>
-<button onclick="beli('Jasa Pasang Bot',10000)">Beli</button>
+  <h3>Panel Pterodactyl</h3>
+  <p>Rp 10.000</p>
+  <button onclick="beli('Panel Pterodactyl',10000)">Beli</button>
+</div>
+
+<div class="card">
+  <h3>Jasa Pasang Bot</h3>
+  <p>Rp 5.000</p>
+  <button onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
 </div>
 
 <div id="qrSection">
-<h2 id="produkDipilih"></h2>
-<p id="hargaDipilih"></p>
+  <h2 id="produkDipilih"></h2>
+  <p id="hargaDipilih"></p>
 
-<img id="qris" src="roro.jpg">
+  <img id="qris" src="roro.jpg">
 
-<div id="timer"></div>
-<p id="status"></p>
-
-<button onclick="sudahBayar()">Saya Sudah Bayar</button>
+  <p id="status">Terimakasih telah membeli produk di Naruya official</p>
 </div>
 
 </div>
 
 <script>
-
-let waktu = 300;
-let hitung;
-
 function beli(nama, harga){
-
-clearInterval(hitung);
-waktu = 300;
-
-document.getElementById("qrSection").style.display = "block";
-document.getElementById("produkDipilih").innerHTML = nama;
-document.getElementById("hargaDipilih").innerHTML = "Total: Rp " + harga;
-document.getElementById("status").innerHTML = "Silahkan bayar ✅";
-
-document.getElementById("qris").src = "roro.jpg";
-
-startTimer();
+  document.getElementById("qrSection").style.display = "block";
+  document.getElementById("produkDipilih").innerHTML = nama;
+  document.getElementById("hargaDipilih").innerHTML = "Total: Rp " + harga;
 }
-
-function startTimer(){
-clearInterval(hitung);
-
-hitung = setInterval(() => {
-
-let menit = Math.floor(waktu / 60);
-let detik = waktu % 60;
-
-detik = detik < 10 ? "0" + detik : detik;
-
-document.getElementById("timer").innerHTML =
-"Sisa waktu: " + menit + ":" + detik;
-
-waktu--;
-
-if(waktu < 0){
-clearInterval(hitung);
-document.getElementById("status").innerHTML =
-"Waktu habis ❌ Silahkan ulangi pembelian.";
-}
-
-},1000);
-}
-
-function sudahBayar(){
-clearInterval(hitung);
-
-document.getElementById("status").innerHTML =
-"🎉 Terimakasih telah membeli produk di Naruya Store 💙";
-
-document.getElementById("timer").innerHTML = "";
-}
-
 </script>
 
 </body>
