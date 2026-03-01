@@ -9,96 +9,57 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background: url('anime.jpg') no-repeat center center;
+  background:url('anime.jpg') no-repeat center center;
   background-size:cover;
-  background-attachment: scroll; /* penting */
   color:white;
-  position:relative;
   overflow-x:hidden;
 }
 
-/* overlay gelap */
 body::before{
   content:"";
   position:fixed;
-  top:0;
-  left:0;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.55);
-  z-index:-1;
-}
-
-/* bintang diam */
-body::after{
-  content:"";
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(white 1px, transparent 1px);
-  background-size:60px 60px, 100px 100px;
-  background-position:0 0, 40px 40px;
-  opacity:0.07;
+  background:rgba(0,0,0,0.65);
   z-index:-1;
 }
 
 header{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   padding:20px;
-  backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(10px);
 }
 
 .logo{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
 }
 
 .logo img{
   width:55px;
   height:55px;
   border-radius:50%;
-  object-fit:cover;
   border:3px solid #00f7ff;
   box-shadow:0 0 15px #00f7ff;
 }
 
-.logo h1{
-  font-size:22px;
-  margin:0;
-}
-
 .open-btn{
   padding:10px 18px;
-  border-radius:12px;
   border:none;
-  cursor:pointer;
+  border-radius:12px;
   font-weight:bold;
+  cursor:pointer;
   color:white;
   background:linear-gradient(45deg,#00f7ff,#8f00ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.6);
-  transition:0.3s;
-}
-
-.open-btn:hover{
-  transform:scale(1.05);
 }
 
 .hero{
   text-align:center;
   padding:40px 20px;
-}
-
-.hero h2{
-  font-size:28px;
-  margin:10px 0;
 }
 
 .hero span{
@@ -111,31 +72,22 @@ header{
 }
 
 .card{
-  background: rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.5);
   padding:20px;
   border-radius:18px;
   margin-bottom:20px;
-  backdrop-filter: blur(10px);
-  border:1px solid rgba(255,255,255,0.1);
-  box-shadow:0 0 25px rgba(0,255,255,0.1);
+  backdrop-filter:blur(10px);
   transition:0.3s;
 }
 
 .card:hover{
   transform:translateY(-5px);
-  box-shadow:0 0 30px rgba(0,255,255,0.3);
-}
-
-.card h3{
-  margin:0;
-  font-size:20px;
 }
 
 .price{
   margin:10px 0;
   color:#00f7ff;
   font-weight:bold;
-  text-shadow:0 0 10px #00f7ff;
 }
 
 .buy{
@@ -146,24 +98,23 @@ header{
   cursor:pointer;
   color:white;
   background:linear-gradient(45deg,#8f00ff,#00f7ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.5);
-  transition:0.3s;
-}
-
-.buy:hover{
-  transform:scale(1.05);
 }
 
 .payment{
   display:none;
   padding:20px;
+  animation:fade 0.5s ease;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
 .payment img{
   width:100%;
   border-radius:15px;
   margin-bottom:15px;
-  box-shadow:0 0 20px rgba(0,255,255,0.4);
 }
 
 .timer{
@@ -178,17 +129,11 @@ input,select{
   margin-bottom:12px;
   border-radius:10px;
   border:none;
-  background: rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.6);
   color:white;
 }
 
-.btn-group{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.btn-kirim{
+.btn{
   padding:12px;
   border:none;
   border-radius:10px;
@@ -196,16 +141,6 @@ input,select{
   cursor:pointer;
   color:white;
   background:linear-gradient(45deg,#00f7ff,#8f00ff);
-}
-
-.btn-cek{
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-  color:white;
-  background:linear-gradient(45deg,#8f00ff,#00f7ff);
 }
 </style>
 </head>
@@ -221,7 +156,8 @@ input,select{
 </header>
 
 <section class="hero">
-  <h2>Naruya Store Official <br><span>Menyediakan berbagai kebutuhan digital terpercaya.</span></h2>
+  <h2>Naruya Store Official <br>
+  <span>Menyediakan berbagai kebutuhan digital terpercaya.</span></h2>
 </section>
 
 <section class="products" id="produk">
@@ -244,12 +180,6 @@ input,select{
     <button class="buy" onclick="beli('Panel Pterodactyl',7000)">Beli</button>
   </div>
 
-  <div class="card">
-    <h3>SC Bot Nokos</h3>
-    <div class="price">Rp 5.000</div>
-    <button class="buy" onclick="beli('SC Bot Nokos',5000)">Beli</button>
-  </div>
-
 </section>
 
 <section class="payment" id="payment">
@@ -262,22 +192,17 @@ input,select{
 
   <input type="text" id="kategori" readonly>
   <input type="text" id="nama" placeholder="Nama Pengirim">
-  <select id="matauang">
-    <option>IDR</option>
-    <option>USD</option>
-  </select>
   <input type="number" id="total" readonly>
 
-  <div class="btn-group">
-    <button class="btn-kirim" onclick="kirim()">Kirim Bukti</button>
-    <button class="btn-cek" onclick="cek()">Cek Pembayaran</button>
-  </div>
+  <button class="btn" onclick="kirim()">Kirim Bukti</button>
 
 </section>
 
 <script>
+
 function scrollToProduk(){
-  document.getElementById("produk").scrollIntoView({behavior:"smooth"});
+  document.getElementById("produk")
+  .scrollIntoView({behavior:"smooth"});
 }
 
 function beli(nama,harga){
@@ -285,7 +210,8 @@ function beli(nama,harga){
   document.getElementById("kategori").value=nama;
   document.getElementById("total").value=harga;
   startTimer();
-  document.getElementById("payment").scrollIntoView({behavior:"smooth"});
+  document.getElementById("payment")
+  .scrollIntoView({behavior:"smooth"});
 }
 
 let waktu=300;
@@ -294,20 +220,24 @@ let interval;
 function startTimer(){
   waktu=300;
   clearInterval(interval);
+
   interval=setInterval(function(){
     waktu--;
-    document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";
+    document.getElementById("timer")
+    .innerText="QR berlaku: "+waktu+" detik";
+
     if(waktu<=0){
       clearInterval(interval);
-      alert("QR kadaluarsa, refresh halaman.");
+      alert("QR kadaluarsa. Silakan beli ulang.");
+      document.getElementById("payment").style.display="none";
     }
-  },500);
+
+  },1000); // FIX jadi 1 detik
 }
 
 function kirim(){
   let kategori=document.getElementById("kategori").value;
   let nama=document.getElementById("nama").value;
-  let matauang=document.getElementById("matauang").value;
   let total=document.getElementById("total").value;
 
   if(!nama){
@@ -318,15 +248,12 @@ function kirim(){
   let pesan="Halo Admin, saya sudah bayar.\n\n"+
   "📦 "+kategori+"\n"+
   "👤 "+nama+"\n"+
-  "💰 "+matauang+"\n"+
-  "💵 "+total;
+  "💵 Rp "+total;
 
-  window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
+  window.location.href="https://t.me/Narayuizumi?text="+
+  encodeURIComponent(pesan);
 }
 
-function cek(){
-  alert("Pembayaran sedang diverifikasi admin.\nMohon tunggu ya.");
-}
 </script>
 
 </body>
