@@ -6,18 +6,22 @@
 <title>Naruya Store</title>
 
 <style>
-body{
+*{
   margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
   font-family:'Segoe UI',sans-serif;
   background: url('anime.jpg') no-repeat center center;
   background-size:cover;
   background-attachment: fixed;
   color:white;
-  position:relative;
   overflow-x:hidden;
 }
 
-/* overlay gelap */
+/* overlay */
 body::before{
   content:"";
   position:fixed;
@@ -25,34 +29,18 @@ body::before{
   left:0;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.55);
+  background:rgba(0,0,0,0.60);
   z-index:-1;
 }
 
-/* bintang */
-body::after{
-  content:"";
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(white 1px, transparent 1px);
-  background-size:60px 60px, 100px 100px;
-  background-position:0 0, 40px 40px;
-  opacity:0.07;
-  z-index:-1;
-}
-
+/* HEADER */
 header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:20px;
+  padding:18px;
   backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.45);
 }
 
 .logo{
@@ -65,25 +53,23 @@ header{
   width:55px;
   height:55px;
   border-radius:50%;
-  object-fit:cover;
   border:3px solid #00f7ff;
   box-shadow:0 0 15px #00f7ff;
 }
 
 .logo h1{
   font-size:22px;
-  margin:0;
 }
 
 .open-btn{
   padding:10px 18px;
-  border-radius:12px;
+  border-radius:14px;
   border:none;
   cursor:pointer;
   font-weight:bold;
   color:white;
   background:linear-gradient(45deg,#00f7ff,#8f00ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.6);
+  box-shadow:0 0 20px rgba(0,255,255,0.6);
   transition:0.3s;
 }
 
@@ -91,32 +77,34 @@ header{
   transform:scale(1.05);
 }
 
+/* HERO */
 .hero{
   text-align:center;
-  padding:40px 20px;
+  padding:50px 20px;
 }
 
 .hero h2{
   font-size:28px;
-  margin:10px 0;
+  margin-bottom:20px;
 }
 
 .hero span{
   color:#00f7ff;
-  text-shadow:0 0 10px #00f7ff;
+  text-shadow:0 0 15px #00f7ff;
 }
 
+/* LIHAT PRODUK BUTTON */
 .lihat-btn{
-  margin-top:25px;
-  padding:14px 35px;
+  margin-top:20px;
+  padding:16px 40px;
   font-size:16px;
   font-weight:bold;
   border:none;
-  border-radius:16px;
+  border-radius:18px;
   cursor:pointer;
   color:white;
   background:linear-gradient(45deg,#ff2e83,#a100ff);
-  box-shadow:0 8px 25px rgba(255,0,128,0.4);
+  box-shadow:0 10px 30px rgba(255,0,128,0.4);
   transition:0.3s;
 }
 
@@ -124,48 +112,48 @@ header{
   transform:scale(1.05);
 }
 
+/* PRODUCTS */
 .products{
   padding:20px;
   display:none;
 }
 
 .card{
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.55);
   padding:20px;
-  border-radius:18px;
+  border-radius:20px;
   margin-bottom:20px;
   backdrop-filter: blur(10px);
   border:1px solid rgba(255,255,255,0.1);
-  box-shadow:0 0 25px rgba(0,255,255,0.1);
+  box-shadow:0 0 25px rgba(0,255,255,0.15);
   transition:0.3s;
 }
 
 .card:hover{
   transform:translateY(-5px);
-  box-shadow:0 0 30px rgba(0,255,255,0.3);
+  box-shadow:0 0 35px rgba(0,255,255,0.3);
 }
 
 .card h3{
-  margin:0;
   font-size:20px;
 }
 
 .price{
-  margin:10px 0;
-  color:#00f7ff;
+  margin:12px 0;
   font-weight:bold;
+  color:#00f7ff;
   text-shadow:0 0 10px #00f7ff;
 }
 
 .buy{
-  padding:10px 18px;
+  padding:12px 22px;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   font-weight:bold;
   cursor:pointer;
   color:white;
   background:linear-gradient(45deg,#8f00ff,#00f7ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.5);
+  box-shadow:0 0 20px rgba(0,255,255,0.5);
   transition:0.3s;
 }
 
@@ -173,6 +161,7 @@ header{
   transform:scale(1.05);
 }
 
+/* PAYMENT */
 .payment{
   display:none;
   padding:20px;
@@ -182,20 +171,20 @@ header{
   width:100%;
   border-radius:15px;
   margin-bottom:15px;
-  box-shadow:0 0 20px rgba(0,255,255,0.4);
+  box-shadow:0 0 25px rgba(0,255,255,0.4);
 }
 
 .timer{
   color:#00f7ff;
   font-weight:bold;
-  margin-bottom:20px;
+  margin-bottom:15px;
 }
 
 input,select{
   width:100%;
   padding:12px;
   margin-bottom:12px;
-  border-radius:10px;
+  border-radius:12px;
   border:none;
   background: rgba(0,0,0,0.6);
   color:white;
@@ -207,23 +196,21 @@ input,select{
   gap:12px;
 }
 
-.btn-kirim{
+.btn-kirim,
+.btn-cek{
   padding:12px;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   font-weight:bold;
   cursor:pointer;
   color:white;
+}
+
+.btn-kirim{
   background:linear-gradient(45deg,#00f7ff,#8f00ff);
 }
 
 .btn-cek{
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-  color:white;
   background:linear-gradient(45deg,#8f00ff,#00f7ff);
 }
 </style>
@@ -240,7 +227,10 @@ input,select{
 </header>
 
 <section class="hero">
-  <h2>Naruya Store Official <br><span>Menyediakan berbagai kebutuhan digital terpercaya.</span></h2>
+  <h2>
+    Naruya Store Official <br>
+    <span>Menyediakan berbagai kebutuhan digital terpercaya.</span>
+  </h2>
   <button class="lihat-btn" onclick="toggleProduk()">Lihat Produk</button>
 </section>
 
@@ -298,11 +288,11 @@ input,select{
 <script>
 function toggleProduk(){
   let produk = document.getElementById("produk");
-  if(produk.style.display === "none" || produk.style.display === ""){
+  if(produk.style.display === "block"){
+    produk.style.display = "none";
+  }else{
     produk.style.display = "block";
     produk.scrollIntoView({behavior:"smooth"});
-  }else{
-    produk.style.display = "none";
   }
 }
 
