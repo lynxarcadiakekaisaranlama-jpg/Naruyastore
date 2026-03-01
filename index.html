@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ================= LOADING ================= */
+/* LOADING */
 #loader{
   position:fixed;
   width:100%;
@@ -55,7 +55,7 @@ body{
   text-shadow:0 0 15px #00ffff;
 }
 
-/* ================= VIDEO ================= */
+/* VIDEO */
 video{
   position:fixed;
   top:0;
@@ -74,11 +74,8 @@ video{
   z-index:-1;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   padding:15px 20px;
 }
 
@@ -100,10 +97,26 @@ header{
   text-shadow:0 0 10px #00ffff;
 }
 
+/* HERO */
+.hero{
+  text-align:center;
+  margin-top:80px;
+}
+
+.hero h1{
+  font-size:28px;
+  text-shadow:0 0 15px #00ffff;
+}
+
+.hero p{
+  margin-top:8px;
+  font-size:14px;
+  opacity:0.9;
+}
+
 /* BUTTON */
 button{
-  padding:12px 20px;
-  margin:5px 5px 5px 0;
+  padding:12px 25px;
   border:none;
   border-radius:8px;
   font-weight:bold;
@@ -118,13 +131,13 @@ button:hover{
   transform:scale(1.05);
 }
 
-/* ================= HERO ================= */
-.hero{
+/* CENTER BUTTON */
+.center-btn{
   text-align:center;
-  margin-top:90px;
+  margin-top:25px;
 }
 
-/* ================= SECTION ================= */
+/* SECTION */
 section{
   display:none;
   padding:25px;
@@ -171,7 +184,6 @@ input{
 
 <body>
 
-<!-- LOADING -->
 <div id="loader">
   <div class="loader-box">
     <img src="loading.jpg">
@@ -179,7 +191,6 @@ input{
   </div>
 </div>
 
-<!-- VIDEO BACKGROUND -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
@@ -190,18 +201,19 @@ input{
     <img src="logo.jpg">
     <h2>Naruya Store</h2>
   </div>
-  <div>
-    <button onclick="showProduk()">Lihat Produk</button>
-    <button onclick="showProfile()">Profile</button>
-  </div>
 </header>
 
 <div class="hero">
   <h1>Naruya Store Official</h1>
+  <p>Solusi Digital Terpercaya & Aman</p>
+
+  <div class="center-btn">
+    <button onclick="showProduk()">Lihat Produk</button>
+    <button onclick="showProfile()">Profile</button>
+  </div>
 </div>
 
 <section id="produk">
-
   <div class="card">
     <h3>Panel Pterodactyl</h3>
     <div class="price">Rp 7.000</div>
@@ -219,33 +231,16 @@ input{
     <div class="price">Rp 4.000</div>
     <button onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
-
 </section>
 
 <section id="profile">
   <div class="card">
     <h3>Social Media</h3>
-
-    <button onclick="window.open('https://wa.me/6287733976909')">
-      WhatsApp
-    </button>
-
-    <button onclick="window.open('https://instagram.com/izuku_tsuki')">
-      Instagram
-    </button>
-
-    <button onclick="window.open('https://tiktok.com/@narayu.kiyora')">
-      TikTok
-    </button>
-
-    <button onclick="window.open('https://t.me/Narayuizumi')">
-      Telegram
-    </button>
-
-    <button onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">
-      Saluran WhatsApp
-    </button>
-
+    <button onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
+    <button onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
+    <button onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
+    <button onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
+    <button onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">Saluran WhatsApp</button>
   </div>
 </section>
 
@@ -253,11 +248,9 @@ input{
   <div class="card">
     <img src="roro.jpg">
     <div class="timer" id="timer">QR berlaku: 300 detik</div>
-
     <input type="text" id="kategori" readonly>
     <input type="text" id="nama" placeholder="Nama Pengirim">
     <input type="number" id="total" readonly>
-
     <button onclick="kirim()">Kirim Bukti</button>
   </div>
 </section>
