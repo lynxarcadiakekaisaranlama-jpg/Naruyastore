@@ -39,14 +39,12 @@ body{
 .loader-box img{
   width:70px;
   height:70px;
-  border-radius:50%; /* BULAT */
+  border-radius:50%;
   border:3px solid #00ffff;
-  box-shadow:0 0 30px #00ffff;
-  animation:spin 2s linear infinite;
-}
-
-@keyframes spin{
-  100%{ transform:rotate(360deg); }
+  box-shadow:
+    0 0 10px #00ffff,
+    0 0 25px #00ffff,
+    0 0 40px #00ffff;
 }
 
 .loader-text{
@@ -185,7 +183,6 @@ input{
 
 <body>
 
-<!-- LOADING -->
 <div id="loader">
   <div class="loader-box">
     <img src="loading.jpg">
@@ -193,7 +190,6 @@ input{
   </div>
 </div>
 
-<!-- VIDEO -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
@@ -204,8 +200,6 @@ input{
     <img src="logo.jpg">
     <h2>Naruya Store</h2>
   </div>
-
-  <!-- LIHAT PRODUK DI ATAS -->
   <button onclick="showProduk()">Lihat Produk</button>
 </header>
 
@@ -213,7 +207,6 @@ input{
   <h1>Naruya Store Official</h1>
   <p>Solusi Digital Terpercaya & Aman</p>
 
-  <!-- PROFILE DI TENGAH -->
   <div class="profile-btn">
     <button onclick="showProfile()">Profile</button>
   </div>
