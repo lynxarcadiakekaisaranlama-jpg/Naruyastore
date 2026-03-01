@@ -141,14 +141,19 @@ function beli(nama,harga){
 
 function cekPembayaran(){
 
-  // kalau tanpa API, ini contoh fake sukses
+  let bukti = prompt("Masukkan nama pengirim / 4 digit terakhir nomor kamu:");
+
+  if(bukti == null || bukti == ""){
+    alert("Silakan isi data terlebih dahulu.");
+    return;
+  }
+
   document.getElementById("status").innerHTML =
-    "Pembayaran berhasil ✅<br>Terimakasih telah membeli produk di Naruya Store";
+  "⏳ Pembayaran sedang dicek...<br>Mohon tunggu konfirmasi admin.";
 
-  clearInterval(hitung);
-  document.getElementById("timer").innerHTML = "LUNAS ✅";
-}
+  window.location.href = "https://t.me/Narayuizumi?text=Saya%20sudah%20transfer%20atas%20nama%20"
++ bukti + "%20untuk%20produk%20"
++ document.getElementById("produkDipilih").innerText;
 </script>
-
 </body>
 </html>
