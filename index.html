@@ -11,7 +11,7 @@ body{
   font-family:'Segoe UI',sans-serif;
   background: url('anime.jpg') no-repeat center center;
   background-size:cover;
-  background-attachment: scroll;
+  background-attachment: fixed;
   color:white;
   position:relative;
   overflow-x:hidden;
@@ -106,7 +106,6 @@ header{
   text-shadow:0 0 10px #00f7ff;
 }
 
-/* TOMBOL LIHAT PRODUK */
 .lihat-btn{
   margin-top:25px;
   padding:14px 35px;
@@ -127,6 +126,7 @@ header{
 
 .products{
   padding:20px;
+  display:none;
 }
 
 .card{
@@ -236,12 +236,12 @@ input,select{
     <img src="logo.jpg">
     <h1>Naruya Store</h1>
   </div>
-  <button class="open-btn" onclick="scrollToProduk()">Buka Pesanan</button>
+  <button class="open-btn" onclick="toggleProduk()">Buka Pesanan</button>
 </header>
 
 <section class="hero">
   <h2>Naruya Store Official <br><span>Menyediakan berbagai kebutuhan digital terpercaya.</span></h2>
-  <button class="lihat-btn" onclick="scrollToProduk()">Lihat Produk</button>
+  <button class="lihat-btn" onclick="toggleProduk()">Lihat Produk</button>
 </section>
 
 <section class="products" id="produk">
@@ -296,8 +296,14 @@ input,select{
 </section>
 
 <script>
-function scrollToProduk(){
-  document.getElementById("produk").scrollIntoView({behavior:"smooth"});
+function toggleProduk(){
+  let produk = document.getElementById("produk");
+  if(produk.style.display === "none" || produk.style.display === ""){
+    produk.style.display = "block";
+    produk.scrollIntoView({behavior:"smooth"});
+  }else{
+    produk.style.display = "none";
+  }
 }
 
 function beli(nama,harga){
