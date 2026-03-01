@@ -16,9 +16,10 @@
 body{
   color:white;
   overflow-x:hidden;
+  background:black;
 }
 
-/* ================= LOADING SCREEN ================= */
+/* ================= LOADING ================= */
 #loader{
   position:fixed;
   width:100%;
@@ -34,25 +35,26 @@ body{
   display:flex;
   align-items:center;
   gap:15px;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.4);
   padding:20px 30px;
   border-radius:20px;
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
 }
 
 .loader-circle{
   width:18px;
   height:18px;
   border-radius:50%;
-  background:#00f7ff;
-  box-shadow:0 0 10px #00f7ff;
+  background:#00ffff;
+  box-shadow:0 0 15px #00ffff,0 0 30px #00ffff;
 }
 
 .loader-text{
-  color:#00f7ff;
+  color:#00ffff;
   font-size:18px;
   font-weight:bold;
   letter-spacing:2px;
+  text-shadow:0 0 10px #00ffff;
 }
 
 /* ================= VIDEO ================= */
@@ -70,7 +72,7 @@ video{
 /* ================= HEADER ================= */
 header{
   display:flex;
-  justify-content:space-between;
+  justify-content:center;
   align-items:center;
   padding:20px;
 }
@@ -78,14 +80,30 @@ header{
 .logo{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
 .logo img{
-  width:50px;
-  height:50px;
+  width:55px;
+  height:55px;
   border-radius:50%;
-  border:2px solid #00f7ff;
+  border:2px solid #00ffff;
+  box-shadow:0 0 15px #00ffff;
+}
+
+.logo h3{
+  text-shadow:0 0 10px #00ffff;
+}
+
+/* ================= HERO ================= */
+.hero{
+  text-align:center;
+  padding:60px 20px;
+}
+
+.hero h1{
+  font-size:28px;
+  text-shadow:0 0 15px #00ffff;
 }
 
 /* ================= BUTTON ================= */
@@ -96,24 +114,14 @@ button{
   font-weight:bold;
   cursor:pointer;
   color:white;
-  background:linear-gradient(45deg,#8f00ff,#00f7ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.6);
+  background:linear-gradient(45deg,#00ffff,#8f00ff);
+  box-shadow:0 0 15px #00ffff;
   transition:0.3s;
 }
 
 button:hover{
   transform:scale(1.05);
-  box-shadow:0 0 25px rgba(0,255,255,1);
-}
-
-/* ================= HERO ================= */
-.hero{
-  text-align:center;
-  padding:80px 20px;
-}
-
-.hero span{
-  color:#00f7ff;
+  box-shadow:0 0 25px #00ffff;
 }
 
 /* ================= SECTION ================= */
@@ -127,17 +135,19 @@ section{
 }
 
 .card{
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.3);
   padding:20px;
   border-radius:20px;
   margin-bottom:20px;
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(0,255,255,0.3);
 }
 
 .price{
-  color:#00f7ff;
+  color:#00ffff;
   margin:10px 0;
   font-weight:bold;
+  text-shadow:0 0 8px #00ffff;
 }
 
 .payment img{
@@ -147,9 +157,10 @@ section{
 }
 
 .timer{
-  color:#00f7ff;
+  color:#00ffff;
   margin-bottom:15px;
   font-weight:bold;
+  text-shadow:0 0 8px #00ffff;
 }
 
 input{
@@ -158,7 +169,7 @@ input{
   margin-bottom:12px;
   border-radius:12px;
   border:none;
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.4);
   color:white;
 }
 </style>
@@ -174,7 +185,7 @@ input{
   </div>
 </div>
 
-<!-- VIDEO -->
+<!-- VIDEO BACKGROUND -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
