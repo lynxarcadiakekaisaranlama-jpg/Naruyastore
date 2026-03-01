@@ -139,6 +139,30 @@ function beli(nama, harga){
     document.getElementById("status").innerHTML = "Server error ❌";
   });
 }
+function startTimer() {
+
+  clearInterval(hitung);
+
+  hitung = setInterval(() => {
+
+    let menit = Math.floor(waktu / 60);
+    let detik = waktu % 60;
+
+    detik = detik < 10 ? "0" + detik : detik;
+
+    document.getElementById("timer").innerHTML =
+      "Waktu: " + menit + ":" + detik;
+
+    if (waktu <= 0) {
+      clearInterval(hitung);
+      document.getElementById("status").innerHTML =
+        "Transaksi expired ❌";
+    }
+
+    waktu--;
+
+  }, 1000);
+}
 </script>
 </body>
 </html>
