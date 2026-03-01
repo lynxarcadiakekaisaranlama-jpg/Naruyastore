@@ -122,6 +122,8 @@ button:hover{
 
 <script>
 let currentRef = "";
+let waktu = 0;
+let timerInterval;
 
 function beli(nama,harga){
 
@@ -132,11 +134,30 @@ function beli(nama,harga){
 
   currentRef = "INV-" + Date.now();
 
-  // kalau cuma QR manual (tanpa API)
-  document.getElementById("qris").src = "roro.jpg"; // ganti sesuai nama file QR kamu
+  document.getElementById("qris").src = "roro.jpg";
 
   waktu = 300;
   startTimer();
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(function(){
+    if(waktu <= 0){
+      clearInterval(timerInterval);
+      document.getElementById("timer").innerHTML = "⛔ Waktu pembayaran habis";
+      return;
+    }
+
+    let menit = Math.floor(waktu / 60);
+    let detik = waktu % 60;
+
+    document.getElementById("timer").innerHTML =
+      "⏳ Sisa waktu: " + menit + "m " + detik + "s";
+
+    waktu--;
+  },1000);
 }
 
 function cekPembayaran(){
@@ -147,13 +168,5 @@ function cekPembayaran(){
     alert("Silakan isi data terlebih dahulu.");
     return;
   }
-
-  document.getElementById("status").innerHTML =
-  "⏳ Pembayaran sedang dicek...<br>Mohon tunggu konfirmasi admin.";
-
-  window.location.href = "https://t.me/Narayuizumi?text=Saya%20sudah%20transfer%20atas%20nama%20"
-+ bukti + "%20untuk%20produk%20"
-+ document.getElementById("produkDipilih").innerText;
-</script>
 </body>
 </html>
