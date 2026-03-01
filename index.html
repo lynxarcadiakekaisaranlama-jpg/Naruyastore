@@ -31,19 +31,16 @@ body{
   z-index:9999;
 }
 
-.loader-circle{
-  width:80px;
-  height:80px;
-  border:6px solid rgba(255,255,255,0.2);
-  border-top:6px solid #00f7ff;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
+#loader img{
+  width:180px;
   margin-bottom:20px;
+  animation:fade 1.5s infinite alternate;
+  border-radius:15px;
 }
 
-@keyframes spin{
-  0%{transform:rotate(0deg);}
-  100%{transform:rotate(360deg);}
+@keyframes fade{
+  from{opacity:0.6;}
+  to{opacity:1;}
 }
 
 #loader h2{
@@ -108,18 +105,10 @@ button:hover{
   padding:80px 20px;
 }
 
-.hero span{
-  color:#00f7ff;
-}
-
 /* ================= SECTION ================= */
 section{
   padding:30px 20px;
   display:none;
-}
-
-#produk{
-  display:block; /* langsung tampil */
 }
 
 .card{
@@ -128,6 +117,12 @@ section{
   border-radius:20px;
   margin-bottom:20px;
   backdrop-filter:blur(10px);
+}
+
+.price{
+  color:#00f7ff;
+  margin:10px 0;
+  font-weight:bold;
 }
 
 /* ================= PROFILE ================= */
@@ -159,12 +154,6 @@ section{
   box-shadow:0 0 15px rgba(0,255,255,0.6);
 }
 
-.price{
-  color:#00f7ff;
-  margin:10px 0;
-  font-weight:bold;
-}
-
 .payment img{
   width:100%;
   border-radius:15px;
@@ -193,11 +182,11 @@ input{
 
 <!-- LOADING -->
 <div id="loader">
-  <div class="loader-circle"></div>
+  <img src="loading.jpg">
   <h2>Loading Naruya Store...</h2>
 </div>
 
-<!-- VIDEO -->
+<!-- VIDEO BACKGROUND -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
@@ -211,11 +200,13 @@ input{
 </header>
 
 <div class="hero">
-  <h2>Naruya Store Official<br><span>Solusi Digital Terpercaya</span></h2>
+  <h2>Naruya Store Official<br>
+  <span style="color:#00f7ff;">Solusi Digital Terpercaya</span></h2>
   <br>
   <button onclick="showSection('profile')">Profile</button>
 </div>
 
+<!-- PROFILE -->
 <section id="profile">
   <div class="card profile">
     <img src="logo.jpg">
@@ -232,8 +223,8 @@ input{
   </div>
 </section>
 
+<!-- PRODUK -->
 <section id="produk">
-
   <div class="card">
     <h3>Panel Pterodactyl</h3>
     <div class="price">Rp 7.000</div>
@@ -251,9 +242,9 @@ input{
     <div class="price">Rp 4.000</div>
     <button onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
-
 </section>
 
+<!-- PAYMENT -->
 <section id="payment" class="payment">
   <div class="card">
     <img src="roro.jpg">
