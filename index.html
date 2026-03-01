@@ -116,35 +116,33 @@ function beli(nama, harga){
   document.getElementById("hargaDipilih").innerHTML = "Total: Rp " + harga;
 
   fetch("/api/create", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      amount: harga,
-      reference: "INV-" + Date.now(),
-      customer_name: "Skyzo"
-    })
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    amount: harga,
+    reference: "INV-" + Date.now(),
+    customer_name: "Skyzo"
   })
-  .then(res => res.json())
-  .then(data => {
+})
+.then(res => res.json())
+.then(data => {
 
-    if(!data.qr_url){
-      document.getElementById("status").innerHTML = "Gagal buat transaksi ❌";
-      return;
-    }
-
-    document.getElementById("qris").src = data.qr_url;
-
-    startTimer();
-
-  })
-  .catch(err => {
+  if(!data.qr_url){
     document.getElementById("status").innerHTML = "Gagal buat transaksi ❌";
-  });
-}
+    return;
+  }
+
+  document.getElementById("qris").src = data.qr_url;
+  document.getElementById("status").innerHTML = "Silahkan bayar ✅";
+
+  startTimer();
+
+})
+.catch(err => {
   document.getElementById("status").innerHTML = "Server error ❌";
-  });
+});
 function startTimer() {
 
   clearInterval(hitung);
