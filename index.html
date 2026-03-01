@@ -102,14 +102,21 @@ button:hover{
   <button onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
 </div>
 
-<div id="qrSection">
+<div id="qrSection" style="display:none; margin-top:20px;">
+
   <h2 id="produkDipilih"></h2>
   <p id="hargaDipilih"></p>
 
-  <img id="qris" src="roro.jpg">
+  <img id="qris" src="roro.jpg" width="200">
 
-  <p id="status">Terimakasih telah membeli produk di Naruya official</p>
-</div>
+  <br><br>
+
+  <button onclick="cekPembayaran()" class="cek-btn">
+    Cek Pembayaran
+  </button>
+
+  <div id="status" style="margin-top:15px;"></div>
+  <div id="timer" style="margin-top:10px;"></div>
 
 </div>
 
