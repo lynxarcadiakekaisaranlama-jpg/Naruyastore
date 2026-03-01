@@ -56,8 +56,8 @@ body{
   text-shadow:0 0 15px #00ffff;
 }
 
-/* VIDEO */
-video{
+/* VIDEO BACKGROUND */
+video.bg{
   position:fixed;
   top:0;
   left:0;
@@ -102,7 +102,7 @@ header{
   text-shadow:0 0 10px #00ffff;
 }
 
-/* BUTTON KOTAK FINAL */
+/* BUTTON */
 button{
   padding:14px 22px;
   border:none;
@@ -187,6 +187,14 @@ section{
   margin-bottom:15px;
 }
 
+/* VIDEO BOX DI PROFILE */
+.profile-video{
+  width:100%;
+  border-radius:15px;
+  margin-bottom:15px;
+  box-shadow:0 0 25px #00ffff;
+}
+
 /* PRODUCT */
 .card{
   background:rgba(0,0,0,0.6);
@@ -216,7 +224,6 @@ section{
   font-weight:bold;
 }
 
-/* INPUT & SELECT MIRIP */
 input, select{
   width:100%;
   padding:14px;
@@ -248,7 +255,7 @@ input, select{
   </div>
 </div>
 
-<video autoplay muted loop playsinline>
+<video class="bg" autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
@@ -278,6 +285,11 @@ input, select{
     <button class="social-btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
     <button class="social-btn" onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
     <button class="social-btn" onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">Saluran WhatsApp</button>
+
+    <!-- 🔥 TAMBAHAN VIDEO -->
+    <video src="video1.mp4" controls class="profile-video"></video>
+    <video src="video2.mp4" controls class="profile-video"></video>
+
   </div>
 </section>
 
