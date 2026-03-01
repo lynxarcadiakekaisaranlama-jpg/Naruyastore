@@ -9,28 +9,14 @@
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:url('anime.jpg') no-repeat center center fixed;
-  background-size:cover;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
   color:white;
-  position:relative;
   overflow-x:hidden;
+  position:relative;
 }
 
-/* overlay gelap biar teks kebaca */
+/* Efek bintang halus */
 body::before{
-  content:"";
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(10,15,30,0.75);
-  backdrop-filter:blur(3px);
-  z-index:-1;
-}
-
-/* efek bintang */
-body::after{
   content:"";
   position:fixed;
   top:0;
@@ -40,16 +26,16 @@ body::after{
   pointer-events:none;
   background-image:
     radial-gradient(white 1px, transparent 1px),
-    radial-gradient(#00f7ff 1px, transparent 1px),
-    radial-gradient(#8f00ff 1px, transparent 1px);
-  background-size:60px 60px, 100px 100px, 140px 140px;
-  opacity:0.15;
-  animation:starMove 20s linear infinite;
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 100px 100px, 150px 150px;
+  background-position: 0 0, 50px 50px;
+  opacity:0.08;
+  animation: starsMove 60s linear infinite;
 }
 
-@keyframes starMove{
-  from{background-position:0 0,0 0,0 0;}
-  to{background-position:200px 400px,300px 200px,400px 300px;}
+@keyframes starsMove{
+  from{transform:translateY(0);}
+  to{transform:translateY(-500px);}
 }
 
 header{
@@ -57,8 +43,8 @@ header{
   align-items:center;
   justify-content:space-between;
   padding:20px;
-  backdrop-filter:blur(10px);
-  background:rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.05);
 }
 
 .logo{
@@ -93,9 +79,7 @@ header{
   transition:0.3s;
 }
 
-.open-btn:hover{
-  transform:scale(1.05);
-}
+.open-btn:hover{transform:scale(1.05);}
 
 .hero{
   text-align:center;
@@ -112,16 +96,14 @@ header{
   text-shadow:0 0 10px #00f7ff;
 }
 
-.products{
-  padding:20px;
-}
+.products{padding:20px;}
 
 .card{
-  background:rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.05);
   padding:20px;
   border-radius:18px;
   margin-bottom:20px;
-  backdrop-filter:blur(10px);
+  backdrop-filter: blur(10px);
   border:1px solid rgba(255,255,255,0.1);
   box-shadow:0 0 25px rgba(0,255,255,0.1);
   transition:0.3s;
@@ -132,10 +114,7 @@ header{
   box-shadow:0 0 30px rgba(0,255,255,0.3);
 }
 
-.card h3{
-  margin:0;
-  font-size:20px;
-}
+.card h3{margin:0;font-size:20px;}
 
 .price{
   margin:10px 0;
@@ -156,9 +135,7 @@ header{
   transition:0.3s;
 }
 
-.buy:hover{
-  transform:scale(1.05);
-}
+.buy:hover{transform:scale(1.05);}
 
 .payment{
   display:none;
@@ -176,7 +153,6 @@ header{
   color:#00f7ff;
   font-weight:bold;
   margin-bottom:20px;
-  text-shadow:0 0 10px #00f7ff;
 }
 
 input,select{
@@ -185,9 +161,8 @@ input,select{
   margin-bottom:12px;
   border-radius:10px;
   border:none;
-  background:rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.08);
   color:white;
-  backdrop-filter:blur(8px);
 }
 
 .btn-group{
@@ -204,23 +179,13 @@ input,select{
   font-weight:bold;
   cursor:pointer;
   color:white;
+  background:linear-gradient(45deg,#00f7ff,#8f00ff);
+  box-shadow:0 0 15px rgba(0,255,255,0.5);
   transition:0.3s;
 }
 
-.btn-kirim{
-  background:linear-gradient(45deg,#00f7ff,#8f00ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.5);
-}
-
-.btn-cek{
-  background:linear-gradient(45deg,#8f00ff,#00f7ff);
-  box-shadow:0 0 15px rgba(143,0,255,0.5);
-}
-
 .btn-kirim:hover,
-.btn-cek:hover{
-  transform:scale(1.05);
-}
+.btn-cek:hover{transform:scale(1.05);}
 </style>
 </head>
 
@@ -267,9 +232,7 @@ input,select{
 </section>
 
 <section class="payment" id="payment">
-
   <img src="roro.jpg">
-
   <div class="timer" id="timer">QR berlaku: 300 detik</div>
 
   <h3>Form Konfirmasi</h3>
@@ -286,7 +249,6 @@ input,select{
     <button class="btn-kirim" onclick="kirim()">Kirim Bukti</button>
     <button class="btn-cek" onclick="cek()">Cek Pembayaran</button>
   </div>
-
 </section>
 
 <script>
