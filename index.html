@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Naruya Store</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+  text-align:center;
+  margin:0;
+  padding:0;
+}
+
+.container{
+  padding:20px;
+}
+
+h1{
+  margin-top:20px;
+  font-size:28px;
+}
+
+.card{
+  background:#ffffff10;
+  padding:15px;
+  margin:15px auto;
+  border-radius:15px;
+  width:250px;
+  backdrop-filter: blur(10px);
+}
+
+button{
+  background:#00c6ff;
+  border:none;
+  padding:10px 20px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover{
+  background:#0072ff;
+  color:white;
+}
+
+#qrSection{
+  display:none;
+  margin-top:20px;
+}
+
+#qris{
+  width:250px;
+  border-radius:15px;
+}
+
+#status{
+  margin-top:15px;
+  font-weight:bold;
+}
+
+#timer{
+  margin-top:10px;
+  font-size:18px;
+  color:#00ffcc;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Naruya Store 💙</h1>
+
+<div class="card">
+<h3>Nokos Indonesia</h3>
+<p>Rp 4.000</p>
+<button onclick="beli('Nokos Indonesia',4000)">Beli</button>
+</div>
+
+<div class="card">
+<h3>Jasa Pasang Bot</h3>
+<p>Rp 10.000</p>
+<button onclick="beli('Jasa Pasang Bot',10000)">Beli</button>
+</div>
+
+<div id="qrSection">
+<h2 id="produkDipilih"></h2>
+<p id="hargaDipilih"></p>
+
+<img id="qris" src="roro.jpg">
+
+<div id="timer"></div>
+<p id="status"></p>
+
+<button onclick="sudahBayar()">Saya Sudah Bayar</button>
+</div>
+
+</div>
+
+<script>
+
+let waktu = 300;
+let hitung;
+
+function beli(nama, harga){
+
+clearInterval(hitung);
+waktu = 300;
+
+document.getElementById("qrSection").style.display = "block";
+document.getElementById("produkDipilih").innerHTML = nama;
+document.getElementById("hargaDipilih").innerHTML = "Total: Rp " + harga;
+document.getElementById("status").innerHTML = "Silahkan bayar ✅";
+
+document.getElementById("qris").src = "roro.jpg";
+
+startTimer();
+}
+
+function startTimer(){
+clearInterval(hitung);
+
+hitung = setInterval(() => {
+
+let menit = Math.floor(waktu / 60);
+let detik = waktu % 60;
+
+detik = detik < 10 ? "0" + detik : detik;
+
+document.getElementById("timer").innerHTML =
+"Sisa waktu: " + menit + ":" + detik;
+
+waktu--;
+
+if(waktu < 0){
+clearInterval(hitung);
+document.getElementById("status").innerHTML =
+"Waktu habis ❌ Silahkan ulangi pembelian.";
+}
+
+},1000);
+}
+
+function sudahBayar(){
+clearInterval(hitung);
+
+document.getElementById("status").innerHTML =
+"🎉 Terimakasih telah membeli produk di Naruya Store 💙";
+
+document.getElementById("timer").innerHTML = "";
+}
+
+</script>
+
+</body>
+</html>
