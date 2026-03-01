@@ -18,33 +18,12 @@ body{
   overflow-x:hidden;
 }
 
-/* ================= VIDEO BACKGROUND ================= */
-video{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
-}
-
-/* Blur overlay ringan (BUKAN hitam) */
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  backdrop-filter:blur(3px);
-  background:rgba(0,255,255,0.05);
-  z-index:-1;
-}
-
-/* ================= LOADING NEON ================= */
+/* ================= LOADING ================= */
 #loader{
   position:fixed;
   width:100%;
   height:100%;
-  background:radial-gradient(circle,#00ffff22,#8f00ff22);
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -55,37 +34,44 @@ video{
   display:flex;
   align-items:center;
   gap:15px;
-  padding:25px 40px;
-  border-radius:30px;
-  border:2px solid #00ffff;
-  box-shadow:
-    0 0 20px #00ffff,
-    0 0 40px #00ffff,
-    0 0 80px #00ffff;
+  padding:20px 40px;
+  border-radius:15px;
   background:rgba(0,255,255,0.08);
   backdrop-filter:blur(10px);
+  box-shadow:0 0 40px #00ffff;
 }
 
-.loader-circle{
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  background:#00ffff;
-  box-shadow:
-    0 0 15px #00ffff,
-    0 0 30px #00ffff,
-    0 0 60px #00ffff;
+.loader-box img{
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  box-shadow:0 0 20px #00ffff;
 }
 
 .loader-text{
   font-size:20px;
   font-weight:bold;
-  letter-spacing:2px;
   color:#00ffff;
-  text-shadow:
-    0 0 10px #00ffff,
-    0 0 25px #00ffff,
-    0 0 50px #00ffff;
+  text-shadow:0 0 15px #00ffff;
+}
+
+/* ================= VIDEO ================= */
+video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  z-index:-1;
 }
 
 /* ================= HEADER ================= */
@@ -93,7 +79,7 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px;
+  padding:15px 20px;
 }
 
 .logo{
@@ -103,56 +89,39 @@ header{
 }
 
 .logo img{
-  width:50px;
-  height:50px;
+  width:45px;
+  height:45px;
   border-radius:50%;
   border:2px solid #00ffff;
-  box-shadow:0 0 15px #00ffff;
+  box-shadow:0 0 20px #00ffff;
 }
 
 .logo h2{
   text-shadow:0 0 10px #00ffff;
 }
 
-.top-btn{
-  padding:10px 20px;
+/* BUTTON */
+button{
+  padding:12px 20px;
+  margin:5px 5px 5px 0;
   border:none;
-  border-radius:20px;
+  border-radius:8px;
   font-weight:bold;
   cursor:pointer;
   color:white;
-  background:linear-gradient(45deg,#00ffff,#8f00ff);
+  background:linear-gradient(45deg,#8f00ff,#00ffff);
   box-shadow:0 0 20px #00ffff;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
 }
 
 /* ================= HERO ================= */
 .hero{
   text-align:center;
-  margin-top:100px;
-}
-
-.hero h1{
-  font-size:30px;
-  margin-bottom:10px;
-}
-
-.hero span{
-  color:#00ffff;
-  font-size:26px;
-  font-weight:bold;
-  text-shadow:0 0 20px #00ffff;
-}
-
-.hero button{
-  margin-top:30px;
-  padding:14px 30px;
-  border:none;
-  border-radius:25px;
-  font-weight:bold;
-  cursor:pointer;
-  color:white;
-  background:linear-gradient(45deg,#00ffff,#8f00ff);
-  box-shadow:0 0 25px #00ffff;
+  margin-top:90px;
 }
 
 /* ================= SECTION ================= */
@@ -162,40 +131,29 @@ section{
 }
 
 .card{
-  background:rgba(0,255,255,0.08);
+  background:rgba(0,0,0,0.6);
   padding:20px;
-  border-radius:20px;
+  border-radius:15px;
   margin-bottom:20px;
-  backdrop-filter:blur(8px);
-  border:1px solid #00ffff55;
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(0,255,255,0.4);
 }
 
 .price{
   color:#00ffff;
-  font-weight:bold;
   margin:10px 0;
-}
-
-.card button{
-  padding:10px 20px;
-  border:none;
-  border-radius:15px;
   font-weight:bold;
-  cursor:pointer;
-  color:white;
-  background:linear-gradient(45deg,#00ffff,#8f00ff);
-  box-shadow:0 0 20px #00ffff;
 }
 
 .payment img{
   width:100%;
-  border-radius:15px;
+  border-radius:12px;
   margin-bottom:15px;
 }
 
 .timer{
   color:#00ffff;
-  margin-bottom:15px;
+  margin-bottom:10px;
   font-weight:bold;
 }
 
@@ -203,7 +161,7 @@ input{
   width:100%;
   padding:12px;
   margin-bottom:12px;
-  border-radius:12px;
+  border-radius:8px;
   border:none;
   background:rgba(255,255,255,0.1);
   color:white;
@@ -216,36 +174,34 @@ input{
 <!-- LOADING -->
 <div id="loader">
   <div class="loader-box">
-    <div class="loader-circle"></div>
-    <div class="loader-text">Loading Naruya Store</div>
+    <img src="loading.jpg">
+    <div class="loader-text">Loading Naruya Store...</div>
   </div>
 </div>
 
-<!-- VIDEO -->
+<!-- VIDEO BACKGROUND -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
-
 <div class="overlay"></div>
 
-<!-- HEADER -->
 <header>
   <div class="logo">
     <img src="logo.jpg">
     <h2>Naruya Store</h2>
   </div>
-  <button class="top-btn" onclick="showProduk()">Lihat Produk</button>
+  <div>
+    <button onclick="showProduk()">Lihat Produk</button>
+    <button onclick="showProfile()">Profile</button>
+  </div>
 </header>
 
-<!-- HERO -->
 <div class="hero">
   <h1>Naruya Store Official</h1>
-  <span>Solusi Digital Terpercaya</span><br>
-  <button onclick="showProfile()">Profile</button>
 </div>
 
-<!-- PRODUK -->
 <section id="produk">
+
   <div class="card">
     <h3>Panel Pterodactyl</h3>
     <div class="price">Rp 7.000</div>
@@ -263,31 +219,45 @@ input{
     <div class="price">Rp 4.000</div>
     <button onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
+
 </section>
 
-<!-- PROFILE -->
 <section id="profile">
   <div class="card">
-    <h3>Contact & Social Media</h3>
-    <p>WhatsApp: 6287733976909</p>
-    <p>Instagram: izuku_tsuki</p>
-    <p>Tiktok: narayu.kiyora</p>
-    <p>Telegram: Narayuizumi</p>
-    <br>
-    <button onclick="window.location.href='https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R'">
+    <h3>Social Media</h3>
+
+    <button onclick="window.open('https://wa.me/6287733976909')">
+      WhatsApp
+    </button>
+
+    <button onclick="window.open('https://instagram.com/izuku_tsuki')">
+      Instagram
+    </button>
+
+    <button onclick="window.open('https://tiktok.com/@narayu.kiyora')">
+      TikTok
+    </button>
+
+    <button onclick="window.open('https://t.me/Narayuizumi')">
+      Telegram
+    </button>
+
+    <button onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">
       Saluran WhatsApp
     </button>
+
   </div>
 </section>
 
-<!-- PAYMENT -->
 <section id="payment" class="payment">
   <div class="card">
     <img src="roro.jpg">
     <div class="timer" id="timer">QR berlaku: 300 detik</div>
+
     <input type="text" id="kategori" readonly>
     <input type="text" id="nama" placeholder="Nama Pengirim">
     <input type="number" id="total" readonly>
+
     <button onclick="kirim()">Kirim Bukti</button>
   </div>
 </section>
@@ -299,6 +269,12 @@ window.addEventListener("load", function(){
   },2000);
 });
 
+function hideAll(){
+  document.getElementById("produk").style.display="none";
+  document.getElementById("profile").style.display="none";
+  document.getElementById("payment").style.display="none";
+}
+
 function showProduk(){
   hideAll();
   document.getElementById("produk").style.display="block";
@@ -307,12 +283,6 @@ function showProduk(){
 function showProfile(){
   hideAll();
   document.getElementById("profile").style.display="block";
-}
-
-function hideAll(){
-  document.getElementById("produk").style.display="none";
-  document.getElementById("profile").style.display="none";
-  document.getElementById("payment").style.display="none";
 }
 
 function beli(nama,harga){
