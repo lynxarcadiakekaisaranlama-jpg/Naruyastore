@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* VIDEO BACKGROUND FIX */
+/* VIDEO BACKGROUND FULL BERSIH */
 video{
   position:fixed;
   top:0;
@@ -26,18 +26,8 @@ video{
   width:100%;
   height:100%;
   object-fit:cover;
-  z-index:-2;
-  pointer-events:none;
-}
-
-/* OVERLAY */
-body::after{
-  content:"";
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.65);
   z-index:-1;
+  pointer-events:none;
 }
 
 /* HEADER */
@@ -46,8 +36,6 @@ header{
   justify-content:space-between;
   align-items:center;
   padding:20px;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(8px);
 }
 
 .logo{
@@ -72,19 +60,19 @@ button{
   cursor:pointer;
   color:white;
   background:linear-gradient(45deg,#8f00ff,#00f7ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.5);
+  box-shadow:0 0 15px rgba(0,255,255,0.6);
   transition:0.3s;
 }
 
 button:hover{
   transform:scale(1.05);
-  box-shadow:0 0 25px rgba(0,255,255,0.8);
+  box-shadow:0 0 25px rgba(0,255,255,1);
 }
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:70px 20px;
+  padding:80px 20px;
 }
 
 .hero span{
@@ -98,7 +86,7 @@ section{
 }
 
 .card{
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.4);
   padding:20px;
   border-radius:20px;
   margin-bottom:20px;
@@ -131,7 +119,7 @@ section{
   color:white;
   font-weight:bold;
   background:linear-gradient(45deg,#8f00ff,#00f7ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.5);
+  box-shadow:0 0 15px rgba(0,255,255,0.6);
 }
 
 /* PRODUCTS */
@@ -151,15 +139,16 @@ section{
 .timer{
   color:#00f7ff;
   margin-bottom:15px;
+  font-weight:bold;
 }
 
 input{
   width:100%;
-  padding:10px;
-  margin-bottom:10px;
-  border-radius:10px;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:12px;
   border:none;
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.5);
   color:white;
 }
 </style>
@@ -202,7 +191,7 @@ input{
   </div>
 </section>
 
-<!-- PRODUK (TERSEMBUNYI DULU) -->
+<!-- PRODUK -->
 <section id="produk">
 
   <div class="card">
