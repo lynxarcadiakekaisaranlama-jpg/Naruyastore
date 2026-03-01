@@ -16,10 +16,9 @@
 body{
   color:white;
   overflow-x:hidden;
-  background:black;
 }
 
-/* VIDEO BACKGROUND */
+/* VIDEO BACKGROUND FULL */
 video{
   position:fixed;
   top:0;
@@ -27,43 +26,20 @@ video{
   width:100%;
   height:100%;
   object-fit:cover;
-  z-index:-3;
+  z-index:-2;
   pointer-events:none;
 }
 
-/* DARK OVERLAY */
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.55);
-  z-index:-2;
-}
-
-/* SALJU REALISTIS */
-.snow-container{
+/* OVERLAY GELAP HALUS */
+body::after{
+  content:"";
   position:fixed;
   top:0;
   left:0;
   width:100%;
   height:100%;
-  pointer-events:none;
+  background:rgba(0,0,0,0.55);
   z-index:-1;
-  overflow:hidden;
-}
-
-.snowflake{
-  position:absolute;
-  top:-10px;
-  color:white;
-  user-select:none;
-  animation: fall linear infinite;
-}
-
-@keyframes fall{
-  to{
-    transform:translateY(110vh);
-  }
 }
 
 /* HEADER */
@@ -108,7 +84,7 @@ button:hover{
 /* HERO */
 .hero{
   text-align:center;
-  padding:80px 20px;
+  padding:90px 20px;
 }
 
 .hero span{
@@ -184,7 +160,7 @@ input{
   margin-bottom:12px;
   border-radius:12px;
   border:none;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.5);
   color:white;
 }
 </style>
@@ -195,9 +171,6 @@ input{
 <video autoplay muted loop>
   <source src="anime.mp4" type="video/mp4">
 </video>
-
-<div class="overlay"></div>
-<div class="snow-container"></div>
 
 <header>
   <div class="logo">
@@ -232,6 +205,7 @@ input{
 
 <!-- PRODUK -->
 <section id="produk">
+
   <div class="card">
     <h3>Panel Pterodactyl</h3>
     <div class="price">Rp 7.000</div>
@@ -249,6 +223,7 @@ input{
     <div class="price">Rp 4.000</div>
     <button onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
+
 </section>
 
 <!-- PAYMENT -->
@@ -268,28 +243,12 @@ input{
 </section>
 
 <script>
-/* SALJU GENERATOR */
-const snowContainer = document.querySelector(".snow-container");
-
-for(let i=0;i<70;i++){
-  let snow = document.createElement("div");
-  snow.classList.add("snowflake");
-  snow.style.left = Math.random()*100 + "vw";
-  snow.style.animationDuration = (5 + Math.random()*5) + "s";
-  snow.style.opacity = Math.random();
-  snow.style.fontSize = (10 + Math.random()*15) + "px";
-  snow.innerHTML = "❄";
-  snowContainer.appendChild(snow);
-}
-
-/* NAVIGATION */
 function showSection(id){
   document.querySelectorAll("section").forEach(sec=>sec.style.display="none");
   document.getElementById(id).style.display="block";
   window.scrollTo(0,0);
 }
 
-/* BELI */
 function beli(nama,harga){
   showSection('payment');
   document.getElementById("kategori").value=nama;
