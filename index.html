@@ -107,10 +107,13 @@ let hitung;
 
 function beli(nama, harga){
 
+  clearInterval(hitung);   // stop timer lama
+  waktu = 300;             // reset 5 menit
+  document.getElementById("status").innerHTML = "";
+
   document.getElementById("qrSection").style.display = "block";
   document.getElementById("produkDipilih").innerHTML = nama;
   document.getElementById("hargaDipilih").innerHTML = "Total: Rp " + harga;
-  document.getElementById("status").innerHTML = "";
 
   fetch("/api/create", {
     method: "POST",
@@ -126,17 +129,21 @@ function beli(nama, harga){
   .then(res => res.json())
   .then(data => {
 
-    if(data.qr_url){
-      document.getElementById("qris").src = data.qr_url;
-      waktu = 300;
-      startTimer();
-    } else {
+    if(!data.qr_url){
       document.getElementById("status").innerHTML = "Gagal buat transaksi ❌";
+      return;
     }
+
+    document.getElementById("qris").src = data.qr_url;
+
+    startTimer();
 
   })
   .catch(err => {
-    document.getElementById("status").innerHTML = "Server error ❌";
+    document.getElementById("status").innerHTML = "Gagal buat transaksi ❌";
+  });
+}
+  document.getElementById("status").innerHTML = "Server error ❌";
   });
 }
 function startTimer() {
