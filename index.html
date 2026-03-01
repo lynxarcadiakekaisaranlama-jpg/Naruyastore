@@ -102,7 +102,7 @@ header{
 }
 
 /* BUTTON */
-button, select{
+button{
   padding:14px 20px;
   border:none;
   border-radius:15px;
@@ -118,10 +118,6 @@ button:hover{
   transform:scale(1.05);
 }
 
-select{
-  width:50%;
-}
-
 /* HERO */
 .hero{
   text-align:center;
@@ -129,7 +125,7 @@ select{
 }
 
 .hero h1{
-  font-size:30px;
+  font-size:32px;
   text-shadow:0 0 15px #00ffff;
 }
 
@@ -163,17 +159,10 @@ section{
   color:#00ffff;
   margin:10px 0;
   font-weight:bold;
+  font-size:18px;
 }
 
 /* PAYMENT */
-.payment-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:15px;
-}
-
 .payment img{
   width:100%;
   border-radius:15px;
@@ -231,53 +220,37 @@ input{
     <h3>Social Media</h3>
     <button onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
     <button onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
-    <button onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
-    <button onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
-    <button onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">Saluran WhatsApp</button>
   </div>
 </section>
 
 <section id="produk">
   <div class="card">
     <h3>Panel Pterodactyl</h3>
-    <div class="price">Rp 7.000 / $0.50</div>
+    <div class="price">Rp 7.000</div>
     <button onclick="beli('Panel Pterodactyl',7000)">Beli</button>
   </div>
 
   <div class="card">
     <h3>Jasa Pasang Bot</h3>
-    <div class="price">Rp 5.000 / $0.35</div>
+    <div class="price">Rp 5.000</div>
     <button onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
   </div>
 
   <div class="card">
     <h3>Nokos Indo</h3>
-    <div class="price">Rp 4.000 / $0.25</div>
+    <div class="price">Rp 4.000</div>
     <button onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
 </section>
 
 <section id="payment" class="payment">
   <div class="card">
-
-    <div class="payment-top">
-      <select id="currency">
-        <option value="IDR">IDR</option>
-        <option value="USD">USD</option>
-      </select>
-      <button onclick="cekPembayaran()">Cek Pembayaran</button>
-    </div>
-
     <img src="roro.jpg">
-
     <div class="timer" id="timer">QR berlaku: 300 detik</div>
-
     <input type="text" id="kategori" readonly>
     <input type="text" id="nama" placeholder="Nama Pengirim">
-    <input type="number" id="total" readonly>
-
+    <input type="text" id="total" readonly>
     <button onclick="kirim()">Kirim Bukti</button>
-
   </div>
 </section>
 
@@ -289,31 +262,31 @@ window.addEventListener("load", function(){
 });
 
 function hideAll(){
-  document.getElementById("produk").style.display="none";
-  document.getElementById("profile").style.display="none";
-  document.getElementById("payment").style.display="none";
+  produk.style.display="none";
+  profile.style.display="none";
+  payment.style.display="none";
 }
 
 function showProduk(){
   hideAll();
-  document.getElementById("produk").style.display="block";
+  produk.style.display="block";
 }
 
 function showProfile(){
   hideAll();
-  document.getElementById("profile").style.display="block";
+  profile.style.display="block";
+}
+
+function formatRupiah(angka){
+  return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
 function beli(nama,harga){
   hideAll();
-  document.getElementById("payment").style.display="block";
-  document.getElementById("kategori").value=nama;
-  document.getElementById("total").value=harga;
+  payment.style.display="block";
+  kategori.value = nama;
+  total.value = formatRupiah(harga);
   startTimer();
-}
-
-function cekPembayaran(){
-  alert("Silakan kirim bukti pembayaran ke admin.");
 }
 
 let waktu=300;
@@ -324,7 +297,7 @@ function startTimer(){
   clearInterval(interval);
   interval=setInterval(()=>{
     waktu--;
-    document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";
+    timer.innerText="QR berlaku: "+waktu+" detik";
     if(waktu<=0){
       clearInterval(interval);
       alert("QR kadaluarsa.");
@@ -333,20 +306,15 @@ function startTimer(){
 }
 
 function kirim(){
-  let kategori=document.getElementById("kategori").value;
-  let nama=document.getElementById("nama").value;
-  let total=document.getElementById("total").value;
-  let currency=document.getElementById("currency").value;
-
-  if(!nama){
+  if(!nama.value){
     alert("Isi nama dulu!");
     return;
   }
 
   let pesan="Halo Admin, saya sudah bayar.\n\n"+
-  "📦 "+kategori+"\n"+
-  "👤 "+nama+"\n"+
-  "💵 "+currency+" "+total;
+  "📦 "+kategori.value+"\n"+
+  "👤 "+nama.value+"\n"+
+  "💵 "+total.value;
 
   window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
 }
