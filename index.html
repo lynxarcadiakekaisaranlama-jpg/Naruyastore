@@ -144,6 +144,31 @@ button:active{
   margin-top:20px;
 }
 
+/* VIDEO PREVIEW DI BAWAH PROFILE */
+.video-wrapper{
+  margin-top:30px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+.video-box{
+  width:90%;
+  max-width:400px;
+  height:200px;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 0 30px #00ffff;
+}
+
+.video-box video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  pointer-events:none;
+}
+
 /* SECTION */
 section{
   display:none;
@@ -185,14 +210,6 @@ section{
 .social-btn{
   width:100%;
   margin-bottom:15px;
-}
-
-/* VIDEO BOX DI PROFILE */
-.profile-video{
-  width:100%;
-  border-radius:15px;
-  margin-bottom:15px;
-  box-shadow:0 0 25px #00ffff;
 }
 
 /* PRODUCT */
@@ -272,6 +289,16 @@ input, select{
   <h1>Naruya Store Official</h1>
   <p>Solusi Digital Terpercaya & Aman</p>
   <button onclick="toggleProfile()">Profile</button>
+
+  <!-- VIDEO DI BAWAH TOMBOL PROFILE -->
+  <div class="video-wrapper">
+    <div class="video-box">
+      <video src="video1.mp4" autoplay muted loop playsinline></video>
+    </div>
+    <div class="video-box">
+      <video src="video2.mp4" autoplay muted loop playsinline></video>
+    </div>
+  </div>
 </div>
 
 <section id="profile">
@@ -285,11 +312,6 @@ input, select{
     <button class="social-btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
     <button class="social-btn" onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
     <button class="social-btn" onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">Saluran WhatsApp</button>
-
-    <!-- 🔥 TAMBAHAN VIDEO -->
-    <video src="video1.mp4" controls class="profile-video"></video>
-    <video src="video2.mp4" controls class="profile-video"></video>
-
   </div>
 </section>
 
