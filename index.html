@@ -8,9 +8,17 @@
 <style>
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  background:#0b0f1f;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  background-size:400% 400%;
+  animation: bgMove 15s ease infinite;
   color:white;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 header{
@@ -18,6 +26,8 @@ header{
   align-items:center;
   justify-content:space-between;
   padding:20px;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.05);
 }
 
 .logo{
@@ -31,7 +41,8 @@ header{
   height:55px;
   border-radius:50%;
   object-fit:cover;
-  border:3px solid #00e0ff;
+  border:3px solid #00f7ff;
+  box-shadow:0 0 15px #00f7ff;
 }
 
 .logo h1{
@@ -46,12 +57,18 @@ header{
   cursor:pointer;
   font-weight:bold;
   color:white;
-  background:linear-gradient(45deg,#7b2ff7,#00c6ff);
+  background:linear-gradient(45deg,#00f7ff,#8f00ff);
+  box-shadow:0 0 15px rgba(0,255,255,0.6);
+  transition:0.3s;
+}
+
+.open-btn:hover{
+  transform:scale(1.05);
 }
 
 .hero{
   text-align:center;
-  padding:30px 20px;
+  padding:40px 20px;
 }
 
 .hero h2{
@@ -60,7 +77,8 @@ header{
 }
 
 .hero span{
-  color:#00e0ff;
+  color:#00f7ff;
+  text-shadow:0 0 10px #00f7ff;
 }
 
 .products{
@@ -68,11 +86,19 @@ header{
 }
 
 .card{
-  background:#12182d;
+  background: rgba(255,255,255,0.05);
   padding:20px;
   border-radius:18px;
   margin-bottom:20px;
-  box-shadow:0 0 20px rgba(0,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 0 25px rgba(0,255,255,0.1);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 30px rgba(0,255,255,0.3);
 }
 
 .card h3{
@@ -82,8 +108,9 @@ header{
 
 .price{
   margin:10px 0;
-  color:#00e0ff;
+  color:#00f7ff;
   font-weight:bold;
+  text-shadow:0 0 10px #00f7ff;
 }
 
 .buy{
@@ -93,7 +120,13 @@ header{
   font-weight:bold;
   cursor:pointer;
   color:white;
-  background:linear-gradient(45deg,#7b2ff7,#00c6ff);
+  background:linear-gradient(45deg,#8f00ff,#00f7ff);
+  box-shadow:0 0 15px rgba(0,255,255,0.5);
+  transition:0.3s;
+}
+
+.buy:hover{
+  transform:scale(1.05);
 }
 
 .payment{
@@ -105,12 +138,14 @@ header{
   width:100%;
   border-radius:15px;
   margin-bottom:15px;
+  box-shadow:0 0 20px rgba(0,255,255,0.4);
 }
 
 .timer{
-  color:#00e0ff;
+  color:#00f7ff;
   font-weight:bold;
   margin-bottom:20px;
+  text-shadow:0 0 10px #00f7ff;
 }
 
 input,select{
@@ -119,8 +154,9 @@ input,select{
   margin-bottom:12px;
   border-radius:10px;
   border:none;
-  background:#1c233d;
+  background: rgba(255,255,255,0.08);
   color:white;
+  backdrop-filter: blur(8px);
 }
 
 .btn-group{
@@ -136,7 +172,9 @@ input,select{
   font-weight:bold;
   cursor:pointer;
   color:white;
-  background:linear-gradient(45deg,#7b2ff7,#00c6ff);
+  background:linear-gradient(45deg,#00f7ff,#8f00ff);
+  box-shadow:0 0 15px rgba(0,255,255,0.5);
+  transition:0.3s;
 }
 
 .btn-cek{
@@ -146,9 +184,17 @@ input,select{
   font-weight:bold;
   cursor:pointer;
   color:white;
-  background:linear-gradient(45deg,#00c6ff,#7b2ff7);
+  background:linear-gradient(45deg,#8f00ff,#00f7ff);
+  box-shadow:0 0 15px rgba(143,0,255,0.5);
+  transition:0.3s;
+}
+
+.btn-kirim:hover,
+.btn-cek:hover{
+  transform:scale(1.05);
 }
 </style>
+
 </head>
 
 <body>
