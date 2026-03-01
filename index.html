@@ -27,12 +27,21 @@ video{
   width:100%;
   height:100%;
   object-fit:cover;
-  z-index:-2;
+  z-index:-3;
   pointer-events:none;
 }
 
-/* SALJU JATUH */
-.snow{
+/* DARK OVERLAY */
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.55);
+  z-index:-2;
+}
+
+/* SALJU REALISTIS */
+.snow-container{
   position:fixed;
   top:0;
   left:0;
@@ -40,21 +49,20 @@ video{
   height:100%;
   pointer-events:none;
   z-index:-1;
-  background-image:
-    radial-gradient(white 2px, transparent 2px),
-    radial-gradient(white 3px, transparent 3px),
-    radial-gradient(white 1.5px, transparent 1.5px);
-  background-size:150px 150px, 200px 200px, 100px 100px;
-  animation:snowFall 10s linear infinite;
-  opacity:0.8;
+  overflow:hidden;
 }
 
-@keyframes snowFall{
-  from{
-    background-position:0 -200px, 50px -300px, 100px -150px;
-  }
+.snowflake{
+  position:absolute;
+  top:-10px;
+  color:white;
+  user-select:none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall{
   to{
-    background-position:0 100vh, 50px 100vh, 100px 100vh;
+    transform:translateY(110vh);
   }
 }
 
@@ -79,7 +87,7 @@ header{
   border:2px solid #00f7ff;
 }
 
-/* SEMUA TOMBOL */
+/* SEMUA TOMBOL SAMA */
 button{
   padding:12px 22px;
   border:none;
@@ -114,7 +122,7 @@ section{
 }
 
 .card{
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.5);
   padding:20px;
   border-radius:20px;
   margin-bottom:20px;
@@ -176,7 +184,7 @@ input{
   margin-bottom:12px;
   border-radius:12px;
   border:none;
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.6);
   color:white;
 }
 </style>
@@ -188,7 +196,8 @@ input{
   <source src="anime.mp4" type="video/mp4">
 </video>
 
-<div class="snow"></div>
+<div class="overlay"></div>
+<div class="snow-container"></div>
 
 <header>
   <div class="logo">
@@ -223,7 +232,6 @@ input{
 
 <!-- PRODUK -->
 <section id="produk">
-
   <div class="card">
     <h3>Panel Pterodactyl</h3>
     <div class="price">Rp 7.000</div>
@@ -241,7 +249,6 @@ input{
     <div class="price">Rp 4.000</div>
     <button onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
-
 </section>
 
 <!-- PAYMENT -->
@@ -261,12 +268,28 @@ input{
 </section>
 
 <script>
+/* SALJU GENERATOR */
+const snowContainer = document.querySelector(".snow-container");
+
+for(let i=0;i<70;i++){
+  let snow = document.createElement("div");
+  snow.classList.add("snowflake");
+  snow.style.left = Math.random()*100 + "vw";
+  snow.style.animationDuration = (5 + Math.random()*5) + "s";
+  snow.style.opacity = Math.random();
+  snow.style.fontSize = (10 + Math.random()*15) + "px";
+  snow.innerHTML = "❄";
+  snowContainer.appendChild(snow);
+}
+
+/* NAVIGATION */
 function showSection(id){
   document.querySelectorAll("section").forEach(sec=>sec.style.display="none");
   document.getElementById(id).style.display="block";
   window.scrollTo(0,0);
 }
 
+/* BELI */
 function beli(nama,harga){
   showSection('payment');
   document.getElementById("kategori").value=nama;
