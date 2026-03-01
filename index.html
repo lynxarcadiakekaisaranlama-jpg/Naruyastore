@@ -23,28 +23,35 @@ body{
   position:fixed;
   width:100%;
   height:100%;
-  background:black;
+  background:url("loading.jpg") center/cover no-repeat;
   display:flex;
   justify-content:center;
   align-items:center;
-  flex-direction:column;
   z-index:9999;
 }
 
-#loader img{
-  width:180px;
-  margin-bottom:20px;
-  animation:fade 1.5s infinite alternate;
-  border-radius:15px;
+.loader-box{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  background:rgba(0,0,0,0.6);
+  padding:20px 30px;
+  border-radius:20px;
+  backdrop-filter:blur(8px);
 }
 
-@keyframes fade{
-  from{opacity:0.6;}
-  to{opacity:1;}
+.loader-circle{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#00f7ff;
+  box-shadow:0 0 10px #00f7ff;
 }
 
-#loader h2{
+.loader-text{
   color:#00f7ff;
+  font-size:18px;
+  font-weight:bold;
   letter-spacing:2px;
 }
 
@@ -105,10 +112,18 @@ button:hover{
   padding:80px 20px;
 }
 
+.hero span{
+  color:#00f7ff;
+}
+
 /* ================= SECTION ================= */
 section{
   padding:30px 20px;
   display:none;
+}
+
+#produk{
+  display:block;
 }
 
 .card{
@@ -123,35 +138,6 @@ section{
   color:#00f7ff;
   margin:10px 0;
   font-weight:bold;
-}
-
-/* ================= PROFILE ================= */
-.profile{
-  text-align:center;
-}
-
-.profile img{
-  width:90px;
-  height:90px;
-  border-radius:50%;
-  margin-bottom:10px;
-}
-
-.social{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin-top:15px;
-}
-
-.social a{
-  text-decoration:none;
-  padding:12px;
-  border-radius:12px;
-  color:white;
-  font-weight:bold;
-  background:linear-gradient(45deg,#8f00ff,#00f7ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.6);
 }
 
 .payment img{
@@ -182,11 +168,13 @@ input{
 
 <!-- LOADING -->
 <div id="loader">
-  <img src="loading.jpg">
-  <h2>Loading Naruya Store...</h2>
+  <div class="loader-box">
+    <div class="loader-circle"></div>
+    <div class="loader-text">Loading Naruya Store...</div>
+  </div>
 </div>
 
-<!-- VIDEO BACKGROUND -->
+<!-- VIDEO -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
@@ -196,35 +184,10 @@ input{
     <img src="logo.jpg">
     <h3>Naruya Store</h3>
   </div>
-  <button onclick="showSection('produk')">Lihat Produk</button>
 </header>
 
-<div class="hero">
-  <h2>Naruya Store Official<br>
-  <span style="color:#00f7ff;">Solusi Digital Terpercaya</span></h2>
-  <br>
-  <button onclick="showSection('profile')">Profile</button>
-</div>
-
-<!-- PROFILE -->
-<section id="profile">
-  <div class="card profile">
-    <img src="logo.jpg">
-    <h3>Naruya Store</h3>
-    <p>Store digital terpercaya.</p>
-
-    <div class="social">
-      <a href="https://wa.me/6287733976909" target="_blank">WhatsApp</a>
-      <a href="https://t.me/Narayuizumi" target="_blank">Telegram</a>
-      <a href="https://instagram.com/izuku_tsuki" target="_blank">Instagram</a>
-      <a href="https://tiktok.com/@narayu.kiyora" target="_blank">TikTok</a>
-      <a href="https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R" target="_blank">Saluran WhatsApp</a>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUK -->
 <section id="produk">
+
   <div class="card">
     <h3>Panel Pterodactyl</h3>
     <div class="price">Rp 7.000</div>
@@ -242,9 +205,9 @@ input{
     <div class="price">Rp 4.000</div>
     <button onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
+
 </section>
 
-<!-- PAYMENT -->
 <section id="payment" class="payment">
   <div class="card">
     <img src="roro.jpg">
@@ -255,28 +218,21 @@ input{
     <input type="number" id="total" readonly>
 
     <button onclick="kirim()">Kirim Bukti</button>
-    <br><br>
-    <button onclick="showSection('produk')">Kembali</button>
   </div>
 </section>
 
 <script>
 
-/* LOADING HILANG 2 DETIK */
+/* LOADER HILANG 2 DETIK */
 window.addEventListener("load", function(){
   setTimeout(()=>{
     document.getElementById("loader").style.display="none";
   },2000);
 });
 
-function showSection(id){
-  document.querySelectorAll("section").forEach(sec=>sec.style.display="none");
-  document.getElementById(id).style.display="block";
-  window.scrollTo(0,0);
-}
-
 function beli(nama,harga){
-  showSection('payment');
+  document.getElementById("produk").style.display="none";
+  document.getElementById("payment").style.display="block";
   document.getElementById("kategori").value=nama;
   document.getElementById("total").value=harga;
   startTimer();
