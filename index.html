@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,154 +8,168 @@
 <style>
 body{
   margin:0;
-  font-family:Arial;
-  background:#0f0f1a;
+  font-family: Arial, sans-serif;
+  background:#0b0b1a;
   color:white;
-  text-align:center;
 }
 
-.container{
-  max-width:500px;
-  margin:30px auto;
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 20px;
+}
+
+.profile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.profile img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #00f7ff;
+}
+
+.open-btn{
+  padding:10px 15px;
+  border-radius:10px;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(45deg,#7b00ff,#00f7ff);
+  color:white;
+}
+
+.hero{
+  text-align:center;
+  padding:30px 20px;
+}
+
+.hero h1{
+  font-size:28px;
+  margin:10px 0;
+}
+
+.hero span{
+  color:#00f7ff;
+}
+
+.hero p{
+  opacity:0.8;
+}
+
+.hero button{
+  margin-top:15px;
+  padding:12px 20px;
+  border:none;
+  border-radius:12px;
+  font-weight:bold;
+  background:linear-gradient(45deg,#7b00ff,#00f7ff);
+  color:white;
+  cursor:pointer;
+}
+
+.products{
   padding:20px;
 }
 
 .card{
-  background:#1a1a2e;
-  padding:15px;
-  margin-bottom:15px;
-  border-radius:12px;
+  background:#11112a;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:15px;
+  box-shadow:0 0 20px rgba(0,247,255,0.15);
 }
 
-button{
-  padding:10px;
+.card h2{
+  margin:0 0 10px;
+}
+
+.price{
+  color:#00f7ff;
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+.card button{
+  padding:10px 20px;
   border:none;
-  border-radius:8px;
-  cursor:pointer;
+  border-radius:10px;
   font-weight:bold;
-}
-
-.buy{
-  background:#ff003c;
+  background:#7b00ff;
   color:white;
+  cursor:pointer;
 }
 
-.action{
-  margin-top:10px;
-  background:#222;
-  color:white;
-  border:1px solid #ff003c;
-}
-
-#qrSection{
-  display:none;
-  margin-top:20px;
-}
-
-#statusBox{
-  display:none;
-  margin-top:15px;
-  padding:10px;
-  border-radius:8px;
-  background:#1a1a2e;
-  border:1px solid #ff003c;
+.card button:hover{
+  opacity:0.8;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<header>
+  <div class="profile">
+    <img src="https://i.imgur.com/4Z7bKQm.jpeg">
+    <h2>Naruya Store</h2>
+  </div>
 
-<h2>Naruya Store</h2>
+  <button class="open-btn" onclick="scrollToProduk()">Buka Pesanan</button>
+</header>
 
-<div class="card">
-  <h3>Jasa Pasang Bot</h3>
-  <p>Rp 5.000</p>
-  <button class="buy" onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
-</div>
+<section class="hero">
+  <p style="border:1px solid #00f7ff;padding:8px;border-radius:20px;display:inline-block;">
+    Premium Digital Products & Services
+  </p>
 
-<div class="card">
-  <h3>Nokos Indo</h3>
-  <p>Rp 4.000</p>
-  <button class="buy" onclick="beli('Nokos Indo',4000)">Beli</button>
-</div>
+  <h1>Solusi Digital Store <br><span>Terbaik untuk Anda</span></h1>
+  <p>Layanan bot, nokos, dan panel murah & terpercaya.</p>
 
-<div class="card">
-  <h3>Panel Pterodactyl</h3>
-  <p>Rp 7.000</p>
-  <button class="buy" onclick="beli('Panel Pterodactyl',7000)">Beli</button>
-</div>
+  <button onclick="scrollToProduk()">Lihat Produk</button>
+</section>
 
-<div class="card">
-  <h3>SC Bot Nokos</h3>
-  <p>Rp 5.000</p>
-  <button class="buy" onclick="beli('SC Bot Nokos',5000)">Beli</button>
-</div>
+<section class="products" id="produk">
 
-<div id="qrSection">
-  <h3 id="produk"></h3>
-  <p id="harga"></p>
+  <div class="card">
+    <h2>Jasa Pasang Bot</h2>
+    <div class="price">Rp 5.000</div>
+    <button onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
+  </div>
 
-  <img src="roro.jpg" width="250">
+  <div class="card">
+    <h2>Nokos Indo</h2>
+    <div class="price">Rp 4.000</div>
+    <button onclick="beli('Nokos Indo',4000)">Beli</button>
+  </div>
 
-  <br><br>
+  <div class="card">
+    <h2>Panel Pterodactyl</h2>
+    <div class="price">Rp 7.000</div>
+    <button onclick="beli('Panel Pterodactyl',7000)">Beli</button>
+  </div>
 
-  <button class="action" onclick="kirimBukti()">Kirim Bukti</button>
-  <button class="action" onclick="cekStatus()">Cek Pembayaran</button>
+  <div class="card">
+    <h2>SC Bot Nokos</h2>
+    <div class="price">Rp 5.000</div>
+    <button onclick="beli('SC Bot Nokos',5000)">Beli</button>
+  </div>
 
-  <div id="statusBox"></div>
-</div>
-
-</div>
+</section>
 
 <script>
-let statusPembayaran = "belum";
+function scrollToProduk(){
+  document.getElementById("produk").scrollIntoView({behavior:"smooth"});
+}
 
 function beli(nama,harga){
-  document.getElementById("qrSection").style.display="block";
-  document.getElementById("produk").innerText=nama;
-  document.getElementById("harga").innerText="Total: Rp "+harga;
-  document.getElementById("statusBox").style.display="none";
-}
-
-function kirimBukti(){
-
-  let namaProduk = document.getElementById("produk").innerText;
-
-  if(!namaProduk){
-    alert("Pilih produk dulu!");
-    return;
-  }
-
-  statusPembayaran="menunggu";
-
-  document.getElementById("statusBox").style.display="block";
-  document.getElementById("statusBox").innerHTML=
-  "⏳ Pembayaran sedang diverifikasi admin...";
-
-  let pesan="Halo Admin, saya sudah bayar untuk "+namaProduk;
-
-  window.open(
-  "https://t.me/Narayuizumi?text="+encodeURIComponent(pesan),
-  "_blank"
-  );
-}
-
-function cekStatus(){
-
-  let box=document.getElementById("statusBox");
-
-  if(statusPembayaran==="belum"){
-    alert("Kamu belum kirim bukti pembayaran!");
-    return;
-  }
-
-  if(statusPembayaran==="menunggu"){
-    box.style.display="block";
-    box.innerHTML="⏳ Masih menunggu verifikasi admin...";
-  }
-
+  localStorage.setItem("produk",nama);
+  localStorage.setItem("harga",harga);
+  window.location.href="payment.html";
 }
 </script>
 
