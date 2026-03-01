@@ -34,6 +34,12 @@ body{
   display:flex;
   align-items:center;
   gap:15px;
+  padding:20px 30px;
+  border-radius:20px;
+  border:2px solid #00ffff;
+  box-shadow:
+    0 0 20px #00ffff,
+    0 0 40px #00ffff;
 }
 
 .loader-box img{
@@ -43,8 +49,22 @@ body{
   border:3px solid #00ffff;
   box-shadow:
     0 0 10px #00ffff,
-    0 0 25px #00ffff,
-    0 0 40px #00ffff;
+    0 0 25px #00ffff;
+}
+
+/* SPINNER */
+.spinner{
+  width:22px;
+  height:22px;
+  border:3px solid rgba(0,255,255,0.3);
+  border-top:3px solid #00ffff;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
 }
 
 .loader-text{
@@ -186,7 +206,10 @@ input{
 <div id="loader">
   <div class="loader-box">
     <img src="loading.jpg">
-    <div class="loader-text">Loading Naruya Store...</div>
+    <div>
+      <div class="loader-text">Loading Naruya Store...</div>
+      <div class="spinner"></div>
+    </div>
   </div>
 </div>
 
