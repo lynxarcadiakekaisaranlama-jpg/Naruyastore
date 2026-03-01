@@ -8,17 +8,48 @@
 <style>
 body{
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  background-size:400% 400%;
-  animation: bgMove 15s ease infinite;
+  font-family:'Segoe UI',sans-serif;
+  background:url('anime.jpg') no-repeat center center fixed;
+  background-size:cover;
   color:white;
+  position:relative;
+  overflow-x:hidden;
 }
 
-@keyframes bgMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+/* overlay gelap biar teks kebaca */
+body::before{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(10,15,30,0.75);
+  backdrop-filter:blur(3px);
+  z-index:-1;
+}
+
+/* efek bintang */
+body::after{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(#00f7ff 1px, transparent 1px),
+    radial-gradient(#8f00ff 1px, transparent 1px);
+  background-size:60px 60px, 100px 100px, 140px 140px;
+  opacity:0.15;
+  animation:starMove 20s linear infinite;
+}
+
+@keyframes starMove{
+  from{background-position:0 0,0 0,0 0;}
+  to{background-position:200px 400px,300px 200px,400px 300px;}
 }
 
 header{
@@ -26,8 +57,8 @@ header{
   align-items:center;
   justify-content:space-between;
   padding:20px;
-  backdrop-filter: blur(10px);
-  background: rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.05);
 }
 
 .logo{
@@ -86,11 +117,11 @@ header{
 }
 
 .card{
-  background: rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.05);
   padding:20px;
   border-radius:18px;
   margin-bottom:20px;
-  backdrop-filter: blur(10px);
+  backdrop-filter:blur(10px);
   border:1px solid rgba(255,255,255,0.1);
   box-shadow:0 0 25px rgba(0,255,255,0.1);
   transition:0.3s;
@@ -154,9 +185,9 @@ input,select{
   margin-bottom:12px;
   border-radius:10px;
   border:none;
-  background: rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.08);
   color:white;
-  backdrop-filter: blur(8px);
+  backdrop-filter:blur(8px);
 }
 
 .btn-group{
@@ -165,18 +196,7 @@ input,select{
   gap:12px;
 }
 
-.btn-kirim{
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-  color:white;
-  background:linear-gradient(45deg,#00f7ff,#8f00ff);
-  box-shadow:0 0 15px rgba(0,255,255,0.5);
-  transition:0.3s;
-}
-
+.btn-kirim,
 .btn-cek{
   padding:12px;
   border:none;
@@ -184,9 +204,17 @@ input,select{
   font-weight:bold;
   cursor:pointer;
   color:white;
+  transition:0.3s;
+}
+
+.btn-kirim{
+  background:linear-gradient(45deg,#00f7ff,#8f00ff);
+  box-shadow:0 0 15px rgba(0,255,255,0.5);
+}
+
+.btn-cek{
   background:linear-gradient(45deg,#8f00ff,#00f7ff);
   box-shadow:0 0 15px rgba(143,0,255,0.5);
-  transition:0.3s;
 }
 
 .btn-kirim:hover,
@@ -194,7 +222,6 @@ input,select{
   transform:scale(1.05);
 }
 </style>
-
 </head>
 
 <body>
