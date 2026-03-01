@@ -16,10 +16,9 @@
 body{
   color:white;
   overflow-x:hidden;
-  background:black;
 }
 
-/* ================= LOADING ================= */
+/* ================= LOADING FULL NEON ================= */
 #loader{
   position:fixed;
   width:100%;
@@ -35,26 +34,33 @@ body{
   display:flex;
   align-items:center;
   gap:15px;
-  background:rgba(0,0,0,0.4);
-  padding:20px 30px;
-  border-radius:20px;
-  backdrop-filter:blur(10px);
+  padding:20px 40px;
+  border-radius:25px;
+  background:rgba(0,255,255,0.1);
+  backdrop-filter:blur(8px);
+  box-shadow:0 0 40px #00ffff;
 }
 
 .loader-circle{
-  width:18px;
-  height:18px;
+  width:16px;
+  height:16px;
   border-radius:50%;
   background:#00ffff;
-  box-shadow:0 0 15px #00ffff,0 0 30px #00ffff;
+  box-shadow:
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 40px #00ffff;
 }
 
 .loader-text{
-  color:#00ffff;
-  font-size:18px;
+  font-size:20px;
   font-weight:bold;
   letter-spacing:2px;
-  text-shadow:0 0 10px #00ffff;
+  color:#00ffff;
+  text-shadow:
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 40px #00ffff;
 }
 
 /* ================= VIDEO ================= */
@@ -73,7 +79,6 @@ video{
 header{
   display:flex;
   justify-content:center;
-  align-items:center;
   padding:20px;
 }
 
@@ -88,40 +93,11 @@ header{
   height:55px;
   border-radius:50%;
   border:2px solid #00ffff;
-  box-shadow:0 0 15px #00ffff;
+  box-shadow:0 0 20px #00ffff;
 }
 
 .logo h3{
-  text-shadow:0 0 10px #00ffff;
-}
-
-/* ================= HERO ================= */
-.hero{
-  text-align:center;
-  padding:60px 20px;
-}
-
-.hero h1{
-  font-size:28px;
   text-shadow:0 0 15px #00ffff;
-}
-
-/* ================= BUTTON ================= */
-button{
-  padding:12px 22px;
-  border:none;
-  border-radius:14px;
-  font-weight:bold;
-  cursor:pointer;
-  color:white;
-  background:linear-gradient(45deg,#00ffff,#8f00ff);
-  box-shadow:0 0 15px #00ffff;
-  transition:0.3s;
-}
-
-button:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 25px #00ffff;
 }
 
 /* ================= SECTION ================= */
@@ -135,19 +111,36 @@ section{
 }
 
 .card{
-  background:rgba(0,0,0,0.3);
+  background:rgba(0,0,0,0.4);
   padding:20px;
   border-radius:20px;
   margin-bottom:20px;
   backdrop-filter:blur(12px);
-  border:1px solid rgba(0,255,255,0.3);
+  border:1px solid rgba(0,255,255,0.4);
 }
 
 .price{
   color:#00ffff;
   margin:10px 0;
   font-weight:bold;
-  text-shadow:0 0 8px #00ffff;
+  text-shadow:0 0 10px #00ffff;
+}
+
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:14px;
+  font-weight:bold;
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(45deg,#00ffff,#8f00ff);
+  box-shadow:0 0 20px #00ffff;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 35px #00ffff;
 }
 
 .payment img{
@@ -160,7 +153,7 @@ section{
   color:#00ffff;
   margin-bottom:15px;
   font-weight:bold;
-  text-shadow:0 0 8px #00ffff;
+  text-shadow:0 0 10px #00ffff;
 }
 
 input{
@@ -169,7 +162,7 @@ input{
   margin-bottom:12px;
   border-radius:12px;
   border:none;
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.5);
   color:white;
 }
 </style>
@@ -185,7 +178,7 @@ input{
   </div>
 </div>
 
-<!-- VIDEO BACKGROUND -->
+<!-- VIDEO -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
@@ -233,8 +226,6 @@ input{
 </section>
 
 <script>
-
-/* LOADER HILANG 2 DETIK */
 window.addEventListener("load", function(){
   setTimeout(()=>{
     document.getElementById("loader").style.display="none";
