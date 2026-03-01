@@ -37,9 +37,7 @@ body{
   padding:20px 30px;
   border-radius:20px;
   border:2px solid #00ffff;
-  box-shadow:
-    0 0 20px #00ffff,
-    0 0 40px #00ffff;
+  box-shadow:0 0 25px #00ffff;
 }
 
 .loader-box img{
@@ -49,22 +47,9 @@ body{
   border:3px solid #00ffff;
   box-shadow:
     0 0 10px #00ffff,
-    0 0 25px #00ffff;
-}
-
-/* SPINNER */
-.spinner{
-  width:22px;
-  height:22px;
-  border:3px solid rgba(0,255,255,0.3);
-  border-top:3px solid #00ffff;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-  0%{transform:rotate(0deg);}
-  100%{transform:rotate(360deg);}
+    0 0 25px #00ffff,
+    0 0 40px #00ffff;
+  object-fit:cover;
 }
 
 .loader-text{
@@ -89,7 +74,7 @@ video{
   position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.6);
   z-index:-1;
 }
 
@@ -113,6 +98,7 @@ header{
   border-radius:50%;
   border:2px solid #00ffff;
   box-shadow:0 0 20px #00ffff;
+  object-fit:cover;
 }
 
 .logo h2{
@@ -121,9 +107,9 @@ header{
 
 /* BUTTON */
 button{
-  padding:12px 25px;
+  padding:14px 25px;
   border:none;
-  border-radius:8px;
+  border-radius:15px;
   font-weight:bold;
   cursor:pointer;
   color:white;
@@ -139,17 +125,18 @@ button:hover{
 /* HERO */
 .hero{
   text-align:center;
-  margin-top:80px;
+  margin-top:70px;
 }
 
 .hero h1{
-  font-size:28px;
+  font-size:30px;
   text-shadow:0 0 15px #00ffff;
 }
 
 .hero p{
   margin-top:8px;
   font-size:14px;
+  opacity:0.9;
 }
 
 .profile-btn{
@@ -159,13 +146,53 @@ button:hover{
 /* SECTION */
 section{
   display:none;
-  padding:25px;
+  padding:40px 20px;
 }
 
+/* PROFILE CARD */
+.profile-card{
+  max-width:380px;
+  margin:auto;
+  background:rgba(0,0,0,0.6);
+  padding:30px 25px;
+  border-radius:25px;
+  backdrop-filter:blur(15px);
+  border:1px solid rgba(0,255,255,0.4);
+  box-shadow:0 0 30px rgba(0,255,255,0.3);
+  text-align:center;
+}
+
+.profile-card img{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  margin-bottom:15px;
+  border:3px solid #00ffff;
+  box-shadow:0 0 25px #00ffff;
+  object-fit:cover;
+}
+
+.profile-card h3{
+  font-size:24px;
+  margin-bottom:5px;
+}
+
+.profile-card p{
+  font-size:14px;
+  opacity:0.8;
+  margin-bottom:25px;
+}
+
+.profile-card button{
+  width:100%;
+  margin-bottom:15px;
+}
+
+/* PRODUK */
 .card{
   background:rgba(0,0,0,0.6);
   padding:20px;
-  border-radius:15px;
+  border-radius:20px;
   margin-bottom:20px;
   backdrop-filter:blur(10px);
   border:1px solid rgba(0,255,255,0.4);
@@ -177,9 +204,10 @@ section{
   font-weight:bold;
 }
 
+/* PAYMENT */
 .payment img{
   width:100%;
-  border-radius:12px;
+  border-radius:15px;
   margin-bottom:15px;
 }
 
@@ -193,7 +221,7 @@ input{
   width:100%;
   padding:12px;
   margin-bottom:12px;
-  border-radius:8px;
+  border-radius:10px;
   border:none;
   background:rgba(255,255,255,0.1);
   color:white;
@@ -206,10 +234,7 @@ input{
 <div id="loader">
   <div class="loader-box">
     <img src="loading.jpg">
-    <div>
-      <div class="loader-text">Loading Naruya Store...</div>
-      <div class="spinner"></div>
-    </div>
+    <div class="loader-text">Loading Naruya Store...</div>
   </div>
 </div>
 
@@ -229,11 +254,24 @@ input{
 <div class="hero">
   <h1>Naruya Store Official</h1>
   <p>Solusi Digital Terpercaya & Aman</p>
-
   <div class="profile-btn">
     <button onclick="showProfile()">Profile</button>
   </div>
 </div>
+
+<section id="profile">
+  <div class="profile-card">
+    <img src="logo.jpg">
+    <h3>Naruya Store</h3>
+    <p>Store digital terpercaya.</p>
+
+    <button onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
+    <button onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
+    <button onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
+    <button onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
+    <button onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">Saluran WhatsApp</button>
+  </div>
+</section>
 
 <section id="produk">
   <div class="card">
@@ -252,17 +290,6 @@ input{
     <h3>Nokos Indo</h3>
     <div class="price">Rp 4.000</div>
     <button onclick="beli('Nokos Indo',4000)">Beli</button>
-  </div>
-</section>
-
-<section id="profile">
-  <div class="card">
-    <h3>Social Media</h3>
-    <button onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
-    <button onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
-    <button onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
-    <button onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
-    <button onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">Saluran WhatsApp</button>
   </div>
 </section>
 
