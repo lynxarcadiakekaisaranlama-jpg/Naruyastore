@@ -8,105 +8,87 @@
 <style>
 body{
   margin:0;
-  font-family: Arial, sans-serif;
-  background:#0b0b1a;
+  font-family:Arial, sans-serif;
+  background:#0b0f1a;
   color:white;
 }
 
 header{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  padding:15px 20px;
+  align-items:center;
+  padding:20px;
 }
 
-.profile{
+.profile-box{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
-.profile img{
-  width:45px;
-  height:45px;
+.profile-box img{
+  width:55px;
+  height:55px;
   border-radius:50%;
   object-fit:cover;
   border:2px solid #00f7ff;
+  box-shadow:0 0 15px #00f7ff;
 }
 
-.open-btn{
-  padding:10px 15px;
-  border-radius:10px;
-  border:none;
-  font-weight:bold;
-  cursor:pointer;
+.btn{
+  padding:10px 18px;
   background:linear-gradient(45deg,#7b00ff,#00f7ff);
   color:white;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
 }
 
 .hero{
   text-align:center;
-  padding:30px 20px;
-}
-
-.hero h1{
-  font-size:28px;
-  margin:10px 0;
-}
-
-.hero span{
-  color:#00f7ff;
-}
-
-.hero p{
-  opacity:0.8;
-}
-
-.hero button{
-  margin-top:15px;
-  padding:12px 20px;
-  border:none;
-  border-radius:12px;
-  font-weight:bold;
-  background:linear-gradient(45deg,#7b00ff,#00f7ff);
-  color:white;
-  cursor:pointer;
-}
-
-.products{
-  padding:20px;
+  padding:40px 20px;
 }
 
 .card{
-  background:#11112a;
-  padding:20px;
-  margin-bottom:20px;
+  background:#111827;
+  margin:20px;
+  padding:25px;
   border-radius:15px;
-  box-shadow:0 0 20px rgba(0,247,255,0.15);
-}
-
-.card h2{
-  margin:0 0 10px;
+  box-shadow:0 0 20px rgba(0,247,255,0.2);
 }
 
 .price{
   color:#00f7ff;
-  font-size:18px;
-  margin-bottom:10px;
+  font-size:20px;
+  margin:10px 0;
 }
 
-.card button{
-  padding:10px 20px;
+input, select{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
   border:none;
-  border-radius:10px;
-  font-weight:bold;
-  background:#7b00ff;
-  color:white;
-  cursor:pointer;
 }
 
-.card button:hover{
-  opacity:0.8;
+.qr-box{
+  text-align:center;
+}
+
+#timer{
+  color:#00f7ff;
+  margin-top:10px;
+  font-weight:bold;
+}
+
+.verify{
+  display:none;
+  text-align:center;
+  padding:20px;
+  color:#00f7ff;
+  font-weight:bold;
 }
 </style>
 </head>
@@ -114,62 +96,125 @@ header{
 <body>
 
 <header>
-  <div class="profile">
-    <img src="https://i.imgur.com/4Z7bKQm.jpeg">
+  <div class="profile-box">
+    <img src="profile.jpg">
     <h2>Naruya Store</h2>
   </div>
-
-  <button class="open-btn" onclick="scrollToProduk()">Buka Pesanan</button>
+  <a href="#store" class="btn">Buka Pesanan</a>
 </header>
 
 <section class="hero">
-  <p style="border:1px solid #00f7ff;padding:8px;border-radius:20px;display:inline-block;">
-    Premium Digital Products & Services
-  </p>
-
-  <h1>Solusi Digital Store <br><span>Terbaik untuk Anda</span></h1>
+  <h1>Solusi Digital Store</h1>
   <p>Layanan bot, nokos, dan panel murah & terpercaya.</p>
-
-  <button onclick="scrollToProduk()">Lihat Produk</button>
+  <a href="#store" class="btn">Lihat Produk</a>
 </section>
 
-<section class="products" id="produk">
-
+<section id="store">
   <div class="card">
     <h2>Jasa Pasang Bot</h2>
     <div class="price">Rp 5.000</div>
-    <button onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
+    <button class="btn" onclick="pilihProduk('Jasa Pasang Bot','5000')">Beli</button>
   </div>
 
   <div class="card">
     <h2>Nokos Indo</h2>
     <div class="price">Rp 4.000</div>
-    <button onclick="beli('Nokos Indo',4000)">Beli</button>
+    <button class="btn" onclick="pilihProduk('Nokos Indo','4000')">Beli</button>
   </div>
 
   <div class="card">
     <h2>Panel Pterodactyl</h2>
     <div class="price">Rp 7.000</div>
-    <button onclick="beli('Panel Pterodactyl',7000)">Beli</button>
+    <button class="btn" onclick="pilihProduk('Panel Pterodactyl','7000')">Beli</button>
   </div>
 
   <div class="card">
     <h2>SC Bot Nokos</h2>
     <div class="price">Rp 5.000</div>
-    <button onclick="beli('SC Bot Nokos',5000)">Beli</button>
+    <button class="btn" onclick="pilihProduk('SC Bot Nokos','5000')">Beli</button>
+  </div>
+</section>
+
+<section id="payment" class="card" style="display:none;">
+  <h2>Payment QRIS</h2>
+
+  <div class="qr-box">
+    <img src="qris.jpg" width="200">
+    <div id="timer"></div>
+  </div>
+
+  <h3>Form Konfirmasi</h3>
+
+  <form onsubmit="kirimBukti(event)">
+    <input type="text" id="kategori" placeholder="Kategori Produk" readonly>
+    <input type="text" id="nama" placeholder="Nama Pengirim">
+    <input type="text" id="matauang" value="IDR" readonly>
+    <input type="text" id="total" placeholder="Total" readonly>
+    <button class="btn" type="submit">Kirim Bukti</button>
+  </form>
+
+  <button class="btn" onclick="cekPembayaran()">Cek Pembayaran</button>
+
+  <div class="verify" id="verifikasi">
+    Sedang memverifikasi pembayaran...
   </div>
 
 </section>
 
 <script>
-function scrollToProduk(){
-  document.getElementById("produk").scrollIntoView({behavior:"smooth"});
+let waktu = 300;
+
+function startTimer(){
+  let timer = setInterval(function(){
+    if(waktu <= 0){
+      clearInterval(timer);
+      document.getElementById("timer").innerHTML = "QR expired";
+      return;
+    }
+    document.getElementById("timer").innerHTML = 
+      "QR berlaku: " + waktu + " detik";
+    waktu--;
+  },1000);
 }
 
-function beli(nama,harga){
-  localStorage.setItem("produk",nama);
-  localStorage.setItem("harga",harga);
-  window.location.href="payment.html";
+function pilihProduk(nama, harga){
+  document.getElementById("payment").style.display="block";
+  document.getElementById("kategori").value=nama;
+  document.getElementById("total").value=harga;
+  window.location="#payment";
+  waktu=300;
+  startTimer();
+}
+
+function kirimBukti(e){
+  e.preventDefault();
+
+  let kategori = document.getElementById("kategori").value;
+  let nama = document.getElementById("nama").value;
+  let matauang = document.getElementById("matauang").value;
+  let total = document.getElementById("total").value;
+
+  if(!kategori || !nama || !matauang || !total){
+    alert("Lengkapi semua data dulu!");
+    return;
+  }
+
+  let pesan = 
+  "Halo Admin, saya sudah bayar.\n\n" +
+  "📦 Kategori: " + kategori + "\n" +
+  "👤 Nama: " + nama + "\n" +
+  "💰 Mata Uang: " + matauang + "\n" +
+  "💵 Total: " + total;
+
+  window.location.href = 
+  "https://t.me/Narayuizumi?text=" + encodeURIComponent(pesan);
+}
+
+function cekPembayaran(){
+  document.getElementById("verifikasi").style.display="block";
+  setTimeout(function(){
+    alert("Pembayaran sedang diproses admin.");
+  },3000);
 }
 </script>
 
