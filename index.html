@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* VIDEO BACKGROUND */
+/* VIDEO BACKGROUND FIX */
 video{
   position:fixed;
   top:0;
@@ -27,15 +27,16 @@ video{
   height:100%;
   object-fit:cover;
   z-index:-2;
+  pointer-events:none;
 }
 
-/* DARK OVERLAY */
+/* OVERLAY */
 body::after{
   content:"";
   position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.65);
   z-index:-1;
 }
 
@@ -45,8 +46,8 @@ header{
   justify-content:space-between;
   align-items:center;
   padding:20px;
-  background:rgba(0,0,0,0.5);
-  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(8px);
 }
 
 .logo{
@@ -62,24 +63,28 @@ header{
   border:2px solid #00f7ff;
 }
 
-.btn{
-  padding:10px 20px;
+/* SEMUA TOMBOL SAMA */
+button{
+  padding:12px 22px;
   border:none;
-  border-radius:12px;
+  border-radius:14px;
   font-weight:bold;
   cursor:pointer;
   color:white;
-  background:linear-gradient(45deg,#ff2e83,#a100ff);
+  background:linear-gradient(45deg,#8f00ff,#00f7ff);
+  box-shadow:0 0 15px rgba(0,255,255,0.5);
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(0,255,255,0.8);
 }
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:60px 20px;
-}
-
-.hero h2{
-  font-size:28px;
+  padding:70px 20px;
 }
 
 .hero span{
@@ -121,11 +126,12 @@ section{
 
 .social a{
   text-decoration:none;
-  padding:10px;
+  padding:12px;
   border-radius:12px;
   color:white;
   font-weight:bold;
-  background:linear-gradient(45deg,#00f7ff,#8f00ff);
+  background:linear-gradient(45deg,#8f00ff,#00f7ff);
+  box-shadow:0 0 15px rgba(0,255,255,0.5);
 }
 
 /* PRODUCTS */
@@ -133,15 +139,6 @@ section{
   color:#00f7ff;
   margin:10px 0;
   font-weight:bold;
-}
-
-.buy{
-  padding:8px 15px;
-  border:none;
-  border-radius:10px;
-  background:linear-gradient(45deg,#8f00ff,#00f7ff);
-  color:white;
-  cursor:pointer;
 }
 
 /* PAYMENT */
@@ -165,18 +162,11 @@ input{
   background:rgba(0,0,0,0.7);
   color:white;
 }
-
-.btn-group{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
 </style>
 </head>
 
 <body>
 
-<!-- VIDEO -->
 <video autoplay muted loop>
   <source src="anime.mp4" type="video/mp4">
 </video>
@@ -186,13 +176,13 @@ input{
     <img src="logo.jpg">
     <h3>Naruya Store</h3>
   </div>
-  <button class="btn" onclick="showSection('produk')">Lihat Produk</button>
+  <button onclick="showSection('produk')">Lihat Produk</button>
 </header>
 
 <div class="hero">
   <h2>Naruya Store Official<br><span>Solusi Digital Terpercaya</span></h2>
   <br>
-  <button class="btn" onclick="showSection('profile')">Profile</button>
+  <button onclick="showSection('profile')">Profile</button>
 </div>
 
 <!-- PROFILE -->
@@ -212,31 +202,25 @@ input{
   </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- PRODUK (TERSEMBUNYI DULU) -->
 <section id="produk">
 
   <div class="card">
     <h3>Panel Pterodactyl</h3>
     <div class="price">Rp 7.000</div>
-    <button class="buy" onclick="beli('Panel Pterodactyl',7000)">Beli</button>
+    <button onclick="beli('Panel Pterodactyl',7000)">Beli</button>
   </div>
 
   <div class="card">
     <h3>Jasa Pasang Bot</h3>
     <div class="price">Rp 5.000</div>
-    <button class="buy" onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
+    <button onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
   </div>
 
   <div class="card">
     <h3>Nokos Indo</h3>
     <div class="price">Rp 4.000</div>
-    <button class="buy" onclick="beli('Nokos Indo',4000)">Beli</button>
-  </div>
-
-  <div class="card">
-    <h3>SC Bot Nokos</h3>
-    <div class="price">Rp 5.000</div>
-    <button class="buy" onclick="beli('SC Bot Nokos',5000)">Beli</button>
+    <button onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
 
 </section>
@@ -251,10 +235,9 @@ input{
     <input type="text" id="nama" placeholder="Nama Pengirim">
     <input type="number" id="total" readonly>
 
-    <div class="btn-group">
-      <button class="btn" onclick="kirim()">Kirim Bukti</button>
-      <button class="btn" onclick="showSection('produk')">Kembali</button>
-    </div>
+    <button onclick="kirim()">Kirim Bukti</button>
+    <br><br>
+    <button onclick="showSection('produk')">Kembali</button>
   </div>
 </section>
 
@@ -262,7 +245,7 @@ input{
 function showSection(id){
   document.querySelectorAll("section").forEach(sec=>sec.style.display="none");
   document.getElementById(id).style.display="block";
-  window.scrollTo({top:0,behavior:"smooth"});
+  window.scrollTo(0,0);
 }
 
 function beli(nama,harga){
