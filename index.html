@@ -34,22 +34,23 @@ body{
   display:flex;
   align-items:center;
   gap:15px;
-  padding:20px 40px;
-  border-radius:15px;
-  background:rgba(0,255,255,0.08);
-  backdrop-filter:blur(10px);
-  box-shadow:0 0 40px #00ffff;
 }
 
 .loader-box img{
-  width:40px;
-  height:40px;
-  border-radius:8px;
-  box-shadow:0 0 20px #00ffff;
+  width:70px;
+  height:70px;
+  border-radius:50%; /* BULAT */
+  border:3px solid #00ffff;
+  box-shadow:0 0 30px #00ffff;
+  animation:spin 2s linear infinite;
+}
+
+@keyframes spin{
+  100%{ transform:rotate(360deg); }
 }
 
 .loader-text{
-  font-size:20px;
+  font-size:22px;
   font-weight:bold;
   color:#00ffff;
   text-shadow:0 0 15px #00ffff;
@@ -76,6 +77,9 @@ video{
 
 /* HEADER */
 header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   padding:15px 20px;
 }
 
@@ -97,23 +101,6 @@ header{
   text-shadow:0 0 10px #00ffff;
 }
 
-/* HERO */
-.hero{
-  text-align:center;
-  margin-top:80px;
-}
-
-.hero h1{
-  font-size:28px;
-  text-shadow:0 0 15px #00ffff;
-}
-
-.hero p{
-  margin-top:8px;
-  font-size:14px;
-  opacity:0.9;
-}
-
 /* BUTTON */
 button{
   padding:12px 25px;
@@ -131,9 +118,23 @@ button:hover{
   transform:scale(1.05);
 }
 
-/* CENTER BUTTON */
-.center-btn{
+/* HERO */
+.hero{
   text-align:center;
+  margin-top:80px;
+}
+
+.hero h1{
+  font-size:28px;
+  text-shadow:0 0 15px #00ffff;
+}
+
+.hero p{
+  margin-top:8px;
+  font-size:14px;
+}
+
+.profile-btn{
   margin-top:25px;
 }
 
@@ -184,6 +185,7 @@ input{
 
 <body>
 
+<!-- LOADING -->
 <div id="loader">
   <div class="loader-box">
     <img src="loading.jpg">
@@ -191,6 +193,7 @@ input{
   </div>
 </div>
 
+<!-- VIDEO -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
@@ -201,14 +204,17 @@ input{
     <img src="logo.jpg">
     <h2>Naruya Store</h2>
   </div>
+
+  <!-- LIHAT PRODUK DI ATAS -->
+  <button onclick="showProduk()">Lihat Produk</button>
 </header>
 
 <div class="hero">
   <h1>Naruya Store Official</h1>
   <p>Solusi Digital Terpercaya & Aman</p>
 
-  <div class="center-btn">
-    <button onclick="showProduk()">Lihat Produk</button>
+  <!-- PROFILE DI TENGAH -->
+  <div class="profile-btn">
     <button onclick="showProfile()">Profile</button>
   </div>
 </div>
