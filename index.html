@@ -56,7 +56,7 @@ body{
   text-shadow:0 0 15px #00ffff;
 }
 
-/* VIDEO */
+/* VIDEO BACKGROUND */
 video{
   position:fixed;
   top:0;
@@ -65,13 +65,14 @@ video{
   height:100%;
   object-fit:cover;
   z-index:-2;
+  filter:brightness(1.2); /* bikin lebih terang */
 }
 
 .overlay{
   position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.65);
+  background:rgba(0,0,0,0.25); /* lebih terang */
   z-index:-1;
 }
 
@@ -151,7 +152,7 @@ section{
 }
 
 .card{
-  background:rgba(0,0,0,0.65);
+  background:rgba(0,0,0,0.55);
   padding:25px;
   border-radius:25px;
   margin-bottom:25px;
@@ -185,7 +186,7 @@ input{
   margin-bottom:12px;
   border-radius:12px;
   border:none;
-  background:rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.15);
   color:white;
 }
 
@@ -202,6 +203,7 @@ input{
 
 <body>
 
+<!-- LOADING -->
 <div id="loader">
   <div class="loader-box">
     <img src="loading.jpg">
@@ -209,6 +211,7 @@ input{
   </div>
 </div>
 
+<!-- VIDEO -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
@@ -260,14 +263,12 @@ input{
 
 <section id="payment" class="payment">
   <div class="card">
-
     <img src="roro.jpg">
     <div class="timer" id="timer">QR berlaku: 300 detik</div>
 
     <input type="text" id="kategori" readonly>
     <input type="text" id="nama" placeholder="Nama Pengirim">
 
-    <!-- PILIH MATA UANG DI BAWAH NAMA -->
     <select id="currency">
       <option value="IDR">IDR (Rupiah)</option>
       <option value="USD">USD (Dollar)</option>
@@ -279,7 +280,6 @@ input{
       <button onclick="kirim()">Kirim Bukti</button>
       <button onclick="cekPembayaran()">Cek Pembayaran</button>
     </div>
-
   </div>
 </section>
 
