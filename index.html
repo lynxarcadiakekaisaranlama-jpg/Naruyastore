@@ -105,7 +105,7 @@ button:hover{
 let waktu = 300;
 let hitung;
 
-function beli(nama,harga){
+function beli(nama, harga){
 
   document.getElementById("qrSection").style.display = "block";
   document.getElementById("produkDipilih").innerHTML = nama;
@@ -113,55 +113,34 @@ function beli(nama,harga){
   document.getElementById("status").innerHTML = "";
 
   fetch("/api/create", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    amount: harga,
-    reference: "INV-" + Date.now(),
-    customer_name: "Skyzo"
-  })
-})
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      amount: harga,
+      reference: "INV-" + Date.now(),
+      customer_name: "Skyzo"
     })
   })
   .then(res => res.json())
   .then(data => {
 
-    // ambil qr dari pakasir
+    if(!data || data.error){
+      document.getElementById("status").innerHTML =
+        "Gagal buat transaksi ❌";
+      return;
+    }
+
     document.getElementById("qris").src = data.qr_url;
 
     waktu = 300;
     startTimer();
   })
   .catch(err => {
-    document.getElementById("status").innerHTML = "Gagal buat transaksi ❌";
-  });
-}
-
-function startTimer(){
-  clearInterval(hitung);
-  hitung = setInterval(function(){
-    let menit = Math.floor(waktu / 60);
-    let detik = waktu % 60;
-
-    if(detik < 10){
-      detik = "0" + detik;
-    }
-
-    document.getElementById("timer").innerHTML =
-      "Waktu: " + menit + ":" + detik;
-
-    waktu--;
-
-    if(waktu < 0){
-      clearInterval(hitung);
-      document.getElementById("timer").innerHTML = "Waktu Habis!";
-      document.getElementById("status").innerHTML =
-        "QR Expired ❌ Silakan beli lagi.";
-    }
-
-  },1000);
+    document.getElementById("status").innerHTML =
+      "Server error ❌";
+  })
 }
 </script>
 </body>
