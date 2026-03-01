@@ -126,21 +126,18 @@ function beli(nama, harga){
   .then(res => res.json())
   .then(data => {
 
-    if(!data || data.error){
-      document.getElementById("status").innerHTML =
-        "Gagal buat transaksi ❌";
-      return;
+    if(data.qr_url){
+      document.getElementById("qris").src = data.qr_url;
+      waktu = 300;
+      startTimer();
+    } else {
+      document.getElementById("status").innerHTML = "Gagal buat transaksi ❌";
     }
 
-    document.getElementById("qris").src = data.qr_url;
-
-    waktu = 300;
-    startTimer();
   })
   .catch(err => {
-    document.getElementById("status").innerHTML =
-      "Server error ❌";
-  })
+    document.getElementById("status").innerHTML = "Server error ❌";
+  });
 }
 </script>
 </body>
