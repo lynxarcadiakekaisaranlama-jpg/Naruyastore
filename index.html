@@ -114,10 +114,32 @@ button:hover{
 </div>
 
 <script>
-function beli(nama, harga){
+let currentRef = "";
+
+function beli(nama,harga){
+
   document.getElementById("qrSection").style.display = "block";
   document.getElementById("produkDipilih").innerHTML = nama;
   document.getElementById("hargaDipilih").innerHTML = "Total: Rp " + harga;
+  document.getElementById("status").innerHTML = "";
+
+  currentRef = "INV-" + Date.now();
+
+  // kalau cuma QR manual (tanpa API)
+  document.getElementById("qris").src = "qris.jpg"; // ganti sesuai nama file QR kamu
+
+  waktu = 300;
+  startTimer();
+}
+
+function cekPembayaran(){
+
+  // kalau tanpa API, ini contoh fake sukses
+  document.getElementById("status").innerHTML =
+    "Pembayaran berhasil ✅<br>Terimakasih telah membeli produk di Naruya Store";
+
+  clearInterval(hitung);
+  document.getElementById("timer").innerHTML = "LUNAS ✅";
 }
 </script>
 
