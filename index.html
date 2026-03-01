@@ -35,7 +35,7 @@ body{
   align-items:center;
   gap:15px;
   padding:25px 35px;
-  border-radius:25px;
+  border-radius:20px;
   border:2px solid #00ffff;
   box-shadow:0 0 40px #00ffff;
 }
@@ -50,7 +50,7 @@ body{
 }
 
 .loader-text{
-  font-size:22px;
+  font-size:20px;
   font-weight:bold;
   color:#00ffff;
   text-shadow:0 0 15px #00ffff;
@@ -102,21 +102,26 @@ header{
   text-shadow:0 0 10px #00ffff;
 }
 
-/* BUTTON GLOBAL */
+/* BUTTON KOTAK FINAL */
 button{
-  padding:15px 20px;
+  padding:14px 22px;
   border:none;
-  border-radius:20px;
+  border-radius:10px;
   font-weight:bold;
   cursor:pointer;
   color:white;
   background:linear-gradient(90deg,#8f00ff,#00ffff);
   box-shadow:0 0 25px #00ffff;
-  transition:0.3s;
+  transition:all 0.2s ease;
 }
 
 button:hover{
-  transform:scale(1.05);
+  transform:translateY(-2px);
+  opacity:0.95;
+}
+
+button:active{
+  transform:scale(0.97);
 }
 
 /* HERO */
@@ -137,9 +142,6 @@ button:hover{
 
 .hero button{
   margin-top:20px;
-  padding:18px 40px;
-  border-radius:25px;
-  font-size:18px;
 }
 
 /* SECTION */
@@ -148,11 +150,11 @@ section{
   padding:30px 20px;
 }
 
-/* PROFILE CARD */
+/* PROFILE */
 .profile-card{
   background:rgba(0,0,0,0.7);
   padding:40px 25px;
-  border-radius:35px;
+  border-radius:25px;
   margin:20px;
   text-align:center;
   border:2px solid #00ffff;
@@ -171,28 +173,25 @@ section{
 }
 
 .profile-card h2{
-  margin-top:25px;
-  font-size:28px;
+  margin-top:20px;
+  font-size:26px;
 }
 
 .profile-card p{
-  margin:10px 0 30px;
+  margin:10px 0 25px;
   opacity:0.8;
 }
 
 .social-btn{
   width:100%;
-  padding:18px;
-  margin-bottom:20px;
-  border-radius:40px;
-  font-size:18px;
+  margin-bottom:15px;
 }
 
 /* PRODUCT */
 .card{
   background:rgba(0,0,0,0.6);
   padding:25px;
-  border-radius:25px;
+  border-radius:20px;
   margin-bottom:25px;
   border:1px solid rgba(0,255,255,0.4);
   box-shadow:0 0 25px rgba(0,255,255,0.3);
@@ -217,23 +216,23 @@ section{
   font-weight:bold;
 }
 
-/* Input Nama Pengirim & Currency mirip */
+/* INPUT & SELECT MIRIP */
 input, select{
   width:100%;
   padding:14px;
   margin-bottom:15px;
-  border-radius:15px;
+  border-radius:10px;
   border:none;
   background:rgba(255,255,255,0.15);
   color:white;
-  box-shadow:0 0 20px #00ffff;
+  box-shadow:0 0 15px #00ffff;
 }
 
-/* Payment Buttons */
 .payment-buttons{
   display:flex;
   gap:10px;
 }
+
 .payment-buttons button{
   flex:1;
 }
@@ -331,31 +330,30 @@ window.addEventListener("load", function(){
   },2000);
 });
 
-// Toggle sections
 function toggleProfile(){
-  const p = document.getElementById("profile");
-  if(p.style.display === "block"){
-    p.style.display = "none";
-  } else {
+  const p=document.getElementById("profile");
+  if(p.style.display==="block"){
+    p.style.display="none";
+  }else{
     hideAll();
-    p.style.display = "block";
+    p.style.display="block";
   }
 }
 
 function toggleProduk(){
-  const pr = document.getElementById("produk");
-  if(pr.style.display === "block"){
-    pr.style.display = "none";
-  } else {
+  const pr=document.getElementById("produk");
+  if(pr.style.display==="block"){
+    pr.style.display="none";
+  }else{
     hideAll();
-    pr.style.display = "block";
+    pr.style.display="block";
   }
 }
 
 function hideAll(){
-  document.getElementById("profile").style.display = "none";
-  document.getElementById("produk").style.display = "none";
-  document.getElementById("payment").style.display = "none";
+  document.getElementById("profile").style.display="none";
+  document.getElementById("produk").style.display="none";
+  document.getElementById("payment").style.display="none";
 }
 
 function beli(nama,harga){
