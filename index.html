@@ -112,16 +112,17 @@ function beli(nama,harga){
   document.getElementById("hargaDipilih").innerHTML = "Total: Rp " + harga;
   document.getElementById("status").innerHTML = "";
 
-  fetch("https://api.pakasir.com/create-transaction", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer API_KEY_KAMU"
-    },
-    body: JSON.stringify({
-      amount: harga,
-      reference: "INV-" + Date.now(),
-      customer_name: "Skyzo"
+  fetch("/api/create", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    amount: harga,
+    reference: "INV-" + Date.now(),
+    customer_name: "Skyzo"
+  })
+})
     })
   })
   .then(res => res.json())
