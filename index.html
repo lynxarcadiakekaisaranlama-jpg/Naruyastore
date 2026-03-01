@@ -29,13 +29,63 @@ video{
   z-index:-2;
 }
 
-/* overlay biar teks jelas */
+/* Blur overlay ringan (BUKAN hitam) */
 .overlay{
   position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.45);
+  backdrop-filter:blur(3px);
+  background:rgba(0,255,255,0.05);
   z-index:-1;
+}
+
+/* ================= LOADING NEON ================= */
+#loader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:radial-gradient(circle,#00ffff22,#8f00ff22);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.loader-box{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:25px 40px;
+  border-radius:30px;
+  border:2px solid #00ffff;
+  box-shadow:
+    0 0 20px #00ffff,
+    0 0 40px #00ffff,
+    0 0 80px #00ffff;
+  background:rgba(0,255,255,0.08);
+  backdrop-filter:blur(10px);
+}
+
+.loader-circle{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#00ffff;
+  box-shadow:
+    0 0 15px #00ffff,
+    0 0 30px #00ffff,
+    0 0 60px #00ffff;
+}
+
+.loader-text{
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:2px;
+  color:#00ffff;
+  text-shadow:
+    0 0 10px #00ffff,
+    0 0 25px #00ffff,
+    0 0 50px #00ffff;
 }
 
 /* ================= HEADER ================= */
@@ -43,7 +93,7 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:15px 20px;
+  padding:20px;
 }
 
 .logo{
@@ -56,42 +106,40 @@ header{
   width:50px;
   height:50px;
   border-radius:50%;
-  border:3px solid #00ffff;
-  box-shadow:0 0 20px #00ffff;
+  border:2px solid #00ffff;
+  box-shadow:0 0 15px #00ffff;
 }
 
 .logo h2{
-  font-size:18px;
   text-shadow:0 0 10px #00ffff;
 }
 
 .top-btn{
-  padding:10px 18px;
+  padding:10px 20px;
   border:none;
   border-radius:20px;
   font-weight:bold;
-  color:white;
   cursor:pointer;
-  background:linear-gradient(45deg,#8f00ff,#00ffff);
+  color:white;
+  background:linear-gradient(45deg,#00ffff,#8f00ff);
   box-shadow:0 0 20px #00ffff;
 }
 
 /* ================= HERO ================= */
 .hero{
   text-align:center;
-  margin-top:80px;
-  padding:20px;
+  margin-top:100px;
 }
 
 .hero h1{
-  font-size:28px;
+  font-size:30px;
   margin-bottom:10px;
 }
 
 .hero span{
+  color:#00ffff;
   font-size:26px;
   font-weight:bold;
-  color:#00ffff;
   text-shadow:0 0 20px #00ffff;
 }
 
@@ -101,10 +149,9 @@ header{
   border:none;
   border-radius:25px;
   font-weight:bold;
-  font-size:16px;
   cursor:pointer;
   color:white;
-  background:linear-gradient(45deg,#8f00ff,#00ffff);
+  background:linear-gradient(45deg,#00ffff,#8f00ff);
   box-shadow:0 0 25px #00ffff;
 }
 
@@ -115,19 +162,18 @@ section{
 }
 
 .card{
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,255,255,0.08);
   padding:20px;
   border-radius:20px;
   margin-bottom:20px;
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(0,255,255,0.4);
+  backdrop-filter:blur(8px);
+  border:1px solid #00ffff55;
 }
 
 .price{
   color:#00ffff;
-  margin:10px 0;
   font-weight:bold;
-  text-shadow:0 0 10px #00ffff;
+  margin:10px 0;
 }
 
 .card button{
@@ -137,7 +183,7 @@ section{
   font-weight:bold;
   cursor:pointer;
   color:white;
-  background:linear-gradient(45deg,#8f00ff,#00ffff);
+  background:linear-gradient(45deg,#00ffff,#8f00ff);
   box-shadow:0 0 20px #00ffff;
 }
 
@@ -167,10 +213,19 @@ input{
 
 <body>
 
+<!-- LOADING -->
+<div id="loader">
+  <div class="loader-box">
+    <div class="loader-circle"></div>
+    <div class="loader-text">Loading Naruya Store</div>
+  </div>
+</div>
+
 <!-- VIDEO -->
 <video autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
+
 <div class="overlay"></div>
 
 <!-- HEADER -->
@@ -191,7 +246,6 @@ input{
 
 <!-- PRODUK -->
 <section id="produk">
-
   <div class="card">
     <h3>Panel Pterodactyl</h3>
     <div class="price">Rp 7.000</div>
@@ -209,7 +263,6 @@ input{
     <div class="price">Rp 4.000</div>
     <button onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
-
 </section>
 
 <!-- PROFILE -->
@@ -232,16 +285,20 @@ input{
   <div class="card">
     <img src="roro.jpg">
     <div class="timer" id="timer">QR berlaku: 300 detik</div>
-
     <input type="text" id="kategori" readonly>
     <input type="text" id="nama" placeholder="Nama Pengirim">
     <input type="number" id="total" readonly>
-
     <button onclick="kirim()">Kirim Bukti</button>
   </div>
 </section>
 
 <script>
+window.addEventListener("load", function(){
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+  },2000);
+});
+
 function showProduk(){
   hideAll();
   document.getElementById("produk").style.display="block";
