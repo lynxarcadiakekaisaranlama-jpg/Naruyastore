@@ -28,12 +28,11 @@ video{position:fixed;width:100%;height:100%;object-fit:cover;z-index:-2;filter:b
 /* HEADER */
 header{
   position:fixed;top:0;left:0;width:100%;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:18px 20px;background:rgba(15,15,30,0.6);backdrop-filter:blur(6px);z-index:999;
+  display:flex;align-items:center;padding:18px 20px;background:rgba(15,15,30,0.6);backdrop-filter:blur(6px);z-index:999;
 }
-.menu-btn{font-size:28px;cursor:pointer;}
-.header-title{font-size:20px;font-weight:bold;color:#00f7ff;opacity:0;transition:0.5s ease;}
-.header-title.show{opacity:1;}
+.menu-btn{font-size:28px;cursor:pointer;display:flex;align-items:center;}
+.menu-text{margin-right:10px;color:#00f7ff;font-weight:bold;}
+.header-title{display:none;}
 
 /* SIDEBAR MENU */
 #sidebar{
@@ -92,8 +91,9 @@ header{
 </div>
 
 <header>
-  <div class="menu-btn" onclick="openMenu()">☰</div>
-  <div class="header-title" id="headerTitle">Naruya Store</div>
+  <div class="menu-btn" onclick="openMenu()">
+    <span class="menu-text">NARUYA STORE</span>☰
+  </div>
 </header>
 
 <div id="sidebar">
@@ -147,13 +147,16 @@ header{
 <script>
 window.onload = function(){
   setTimeout(()=>{ document.getElementById("loader").style.display="none"; },2000);
-  const title = document.getElementById("headerTitle");
-  setTimeout(()=>{ title.classList.add("show"); },2200);
-  setTimeout(()=>{ title.classList.remove("show"); },5200);
 }
 
-function openMenu(){document.getElementById("sidebar").style.left="0";}
-function closeMenu(){document.getElementById("sidebar").style.left="-250px";}
+function openMenu(){
+  document.getElementById("sidebar").style.left="0";
+  document.querySelector('.menu-btn').innerHTML = '<span class="menu-text">NARUYA STORE</span>✕';
+}
+function closeMenu(){
+  document.getElementById("sidebar").style.left="-250px";
+  document.querySelector('.menu-btn').innerHTML = '<span class="menu-text">NARUYA STORE</span>☰';
+}
 function toggleProfile(){let p=document.getElementById("profile");p.style.display=p.style.display==="block"?"none":"block";}
 function openLink(url){window.open(url);}
 function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
