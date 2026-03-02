@@ -16,7 +16,6 @@
 body{
   color:white;
   overflow-x:hidden;
-  background:#0f0c29;
 }
 
 /* LOADER */
@@ -42,9 +41,9 @@ body{
 }
 
 .loader-box img{
-  width:80px;
-  height:80px;
-  border-radius:12px;
+  width:90px;
+  height:90px;
+  border-radius:50%; /* BULAT */
   border:3px solid #00ffff;
   box-shadow:0 0 25px #00ffff;
   object-fit:cover;
@@ -57,7 +56,7 @@ body{
   text-shadow:0 0 15px #00ffff;
 }
 
-/* BACKGROUND VIDEO */
+/* VIDEO */
 video.bg{
   position:fixed;
   top:0;
@@ -73,7 +72,7 @@ video.bg{
   position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.35);
   z-index:-1;
 }
 
@@ -94,7 +93,7 @@ header{
 .logo img{
   width:45px;
   height:45px;
-  border-radius:10px;
+  border-radius:50%;
   border:2px solid #00ffff;
   box-shadow:0 0 20px #00ffff;
 }
@@ -103,37 +102,37 @@ header{
   font-weight:bold;
 }
 
-.logo span{
-  color:#00ffff;
+.logo h2 span{
+  color:#00ffff; /* warna beda untuk STORE */
   text-shadow:0 0 10px #00ffff;
 }
 
-/* BUTTON NEON */
+/* BUTTON */
 button{
   padding:14px 22px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
   font-weight:bold;
   cursor:pointer;
   color:white;
   background:linear-gradient(90deg,#8f00ff,#00ffff);
-  box-shadow:0 0 20px #00ffff, 0 0 40px #8f00ff;
-  transition:0.2s ease-in-out;
+  box-shadow:0 0 25px #00ffff;
+  transition:all 0.2s ease;
 }
 
 button:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 30px #00ffff, 0 0 60px #8f00ff;
+  transform:translateY(-2px);
+  opacity:0.95;
 }
 
 button:active{
-  transform:scale(0.95);
+  transform:scale(0.97);
 }
 
 /* HERO */
 .hero{
   text-align:center;
-  margin-top:70px;
+  margin-top:60px;
 }
 
 .hero h1{
@@ -147,77 +146,43 @@ button:active{
   line-height:1.6;
 }
 
-.hero-buttons{
-  margin-top:20px;
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-  align-items:center;
-}
-
 /* SECTION */
 section{
   display:none;
   padding:30px 20px;
 }
 
+/* CARD BOX (KOTAK) */
+.card, .profile-card{
+  background:rgba(0,0,0,0.6);
+  padding:25px;
+  border-radius:12px; /* KOTAK */
+  margin-bottom:25px;
+  border:1px solid rgba(0,255,255,0.4);
+  box-shadow:0 0 25px rgba(0,255,255,0.5);
+}
+
 /* PROFILE */
-.profile-card{
-  background:rgba(0,0,0,0.7);
-  padding:40px 25px;
-  border-radius:15px;
-  margin:20px;
-  text-align:center;
-  border:2px solid #00ffff;
-  box-shadow:0 0 50px rgba(0,255,255,0.7);
-  backdrop-filter:blur(15px);
-}
-
 .profile-img{
-  width:150px;
-  height:150px;
-  border-radius:15px;
+  width:120px;
+  height:120px;
+  border-radius:50%;
   margin:auto;
-  border:5px solid #00ffff;
-  box-shadow:0 0 40px #00ffff;
+  display:block;
+  border:4px solid #00ffff;
+  box-shadow:0 0 25px #00ffff;
   object-fit:cover;
-}
-
-.profile-card h2{
-  margin-top:20px;
-  font-size:26px;
-}
-
-.profile-card p{
-  margin:10px 0 25px;
-  opacity:0.8;
 }
 
 .social-btn{
   width:100%;
-  margin-bottom:15px;
-}
-
-/* PRODUCT */
-.card{
-  background:rgba(0,0,0,0.6);
-  padding:25px;
-  border-radius:15px;
-  margin-bottom:25px;
-  border:1px solid #00ffff;
-  box-shadow:0 0 25px rgba(0,255,255,0.3);
-}
-
-.price{
-  color:#00ffff;
-  margin:10px 0;
-  font-weight:bold;
+  margin-top:12px;
 }
 
 /* PAYMENT */
 .payment img{
   width:100%;
-  border-radius:15px;
+  border-radius:10px;
   margin-bottom:15px;
 }
 
@@ -268,7 +233,7 @@ input, select{
     <img src="logo.jpg">
     <h2>Naruya <span>Store</span></h2>
   </div>
-  <button onclick="toggleProduk()">Buka Pesanan</button>
+  <button onclick="togglePayment()">Buka Pesanan</button>
 </header>
 
 <div class="hero">
@@ -277,11 +242,9 @@ input, select{
     Platform digital terpercaya untuk kebutuhan Anda.<br>
     Cepat diproses, aman digunakan, kualitas terjamin.
   </p>
-
-  <div class="hero-buttons">
-    <button onclick="toggleProfile()">Profile</button>
-    <button onclick="toggleProduk()">Lihat Produk</button>
-  </div>
+  <button onclick="toggleProfile()">Profile</button>
+  <br><br>
+  <button onclick="toggleProduk()">Lihat Produk</button>
 </div>
 
 <section id="profile">
@@ -345,30 +308,28 @@ window.addEventListener("load", function(){
   },2000);
 });
 
-function toggleProfile(){
-  const p=document.getElementById("profile");
-  if(p.style.display==="block"){
-    p.style.display="none";
-  }else{
-    hideAll();
-    p.style.display="block";
-  }
-}
-
-function toggleProduk(){
-  const pr=document.getElementById("produk");
-  if(pr.style.display==="block"){
-    pr.style.display="none";
-  }else{
-    hideAll();
-    pr.style.display="block";
-  }
-}
-
 function hideAll(){
   document.getElementById("profile").style.display="none";
   document.getElementById("produk").style.display="none";
   document.getElementById("payment").style.display="none";
+}
+
+function toggleProfile(){
+  const x=document.getElementById("profile");
+  if(x.style.display==="block"){ x.style.display="none"; }
+  else{ hideAll(); x.style.display="block"; }
+}
+
+function toggleProduk(){
+  const x=document.getElementById("produk");
+  if(x.style.display==="block"){ x.style.display="none"; }
+  else{ hideAll(); x.style.display="block"; }
+}
+
+function togglePayment(){
+  const x=document.getElementById("payment");
+  if(x.style.display==="block"){ x.style.display="none"; }
+  else{ hideAll(); x.style.display="block"; }
 }
 
 function beli(nama,harga){
@@ -380,10 +341,7 @@ function beli(nama,harga){
 }
 
 function cekPembayaran(){
-  alert("Sistem sedang memverifikasi pembayaran Anda. Mohon tunggu beberapa saat.");
-  setTimeout(()=>{
-    alert("Pembayaran belum terdeteksi atau masih dalam proses pengecekan.");
-  },2000);
+  alert("Sistem sedang memverifikasi pembayaran Anda.");
 }
 
 let waktu=300;
@@ -408,10 +366,7 @@ function kirim(){
   let total=document.getElementById("total").value;
   let currency=document.getElementById("currency").value;
 
-  if(!nama){
-    alert("Isi nama dulu!");
-    return;
-  }
+  if(!nama){ alert("Isi nama dulu!"); return; }
 
   let pesan="Halo Admin, saya sudah bayar.\n\n"+
   "📦 "+kategori+"\n"+
