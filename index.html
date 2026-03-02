@@ -308,6 +308,10 @@ input, select{
 
     <input type="text" id="kategori" readonly>
     <input type="text" id="nama" placeholder="Nama Pengirim">
+    <select id="currency">
+      <option value="IDR">IDR (Rupiah)</option>
+      <option value="USD">USD (Dollar)</option>
+    </select>
     <input type="number" id="total" readonly>
 
     <div class="payment-buttons">
@@ -326,25 +330,43 @@ window.addEventListener("load", function(){
 
 function toggleProfile(){
   const p=document.getElementById("profile");
-  p.style.display = p.style.display==="block"?"none":"block";
-  document.getElementById("produk").style.display="none";
-  document.getElementById("payment").style.display="none";
+  if(p.style.display==="block"){
+    p.style.display="none";
+  }else{
+    hideAll();
+    p.style.display="block";
+  }
 }
 
 function toggleProduk(){
   const pr=document.getElementById("produk");
-  pr.style.display = pr.style.display==="block"?"none":"block";
+  if(pr.style.display==="block"){
+    pr.style.display="none";
+  }else{
+    hideAll();
+    pr.style.display="block";
+  }
+}
+
+function hideAll(){
   document.getElementById("profile").style.display="none";
+  document.getElementById("produk").style.display="none";
   document.getElementById("payment").style.display="none";
 }
 
 function beli(nama,harga){
+  hideAll();
   document.getElementById("payment").style.display="block";
-  document.getElementById("produk").style.display="none";
-  document.getElementById("profile").style.display="none";
   document.getElementById("kategori").value=nama;
   document.getElementById("total").value=harga;
   startTimer();
+}
+
+function cekPembayaran(){
+  alert("Sistem sedang memverifikasi pembayaran Anda. Mohon tunggu beberapa saat.");
+  setTimeout(()=>{
+    alert("Pembayaran belum terdeteksi atau masih dalam proses pengecekan.");
+  },2000);
 }
 
 let waktu=300;
@@ -356,7 +378,10 @@ function startTimer(){
   interval=setInterval(()=>{
     waktu--;
     document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";
-    if(waktu<=0){ clearInterval(interval); }
+    if(waktu<=0){
+      clearInterval(interval);
+      alert("QR kadaluarsa.");
+    }
   },1000);
 }
 
@@ -364,13 +389,17 @@ function kirim(){
   let kategori=document.getElementById("kategori").value;
   let nama=document.getElementById("nama").value;
   let total=document.getElementById("total").value;
+  let currency=document.getElementById("currency").value;
 
-  if(!nama){ return; }
+  if(!nama){
+    alert("Isi nama dulu!");
+    return;
+  }
 
   let pesan="Halo Admin, saya sudah bayar.\n\n"+
   "📦 "+kategori+"\n"+
   "👤 "+nama+"\n"+
-  "💵 Rp "+total;
+  "💵 "+currency+" "+total;
 
   window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
 }
