@@ -233,16 +233,6 @@ input, select{
 .payment-buttons button{
   flex:1;
 }
-
-/* MUSIC BUTTON */
-.music-control{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  padding:12px 18px;
-  border-radius:50px;
-  font-size:14px;
-}
 </style>
 </head>
 
@@ -338,8 +328,6 @@ input, select{
   </div>
 </section>
 
-<button class="music-control" onclick="toggleMusic()">🔊 Music</button>
-
 <script>
 window.addEventListener("load", function(){
   setTimeout(()=>{
@@ -347,15 +335,6 @@ window.addEventListener("load", function(){
     document.getElementById("bgMusic").play().catch(()=>{});
   },2000);
 });
-
-function toggleMusic(){
-  const music=document.getElementById("bgMusic");
-  if(music.paused){
-    music.play();
-  }else{
-    music.pause();
-  }
-}
 
 function toggleProfile(){
   const p=document.getElementById("profile");
