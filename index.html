@@ -113,7 +113,7 @@
             display: none;
         }
 
-        /* SIDEBAR MENU */
+        /* SIDEBAR */
         #sidebar {
             position: fixed;
             top: 0;
@@ -184,10 +184,10 @@
         /* PROFILE SECTION */
         #profile {
             display: none;
-            text-align: center;
-            padding: 20px;
             max-width: 500px;
             margin: 0 auto;
+            padding: 20px;
+            text-align: center;
         }
 
         .profile-card {
@@ -216,9 +216,9 @@
 
         /* PRODUCTS SECTION */
         .products {
-            padding: 20px;
             max-width: 500px;
             margin: 0 auto;
+            padding: 20px;
         }
 
         .card {
@@ -237,13 +237,13 @@
             margin: 10px 0;
         }
 
-        /* PAYMENT SECTION - FOTO QRIS KITA */
+        /* PAYMENT SECTION - FOTO QRIS RORO.JPG */
         #payment {
             display: none;
-            text-align: center;
-            padding: 30px 20px;
             max-width: 500px;
             margin: 0 auto;
+            padding: 30px 20px;
+            text-align: center;
         }
 
         #payment img {
@@ -305,8 +305,9 @@
         <button class="btn" onclick="toggleProfile()">Profile</button>
     </section>
 
-    <section id="profile">
+    <section id="profile" style="display: none;">
         <div class="profile-card">
+            <h2>Profile Kami</h2>
             <button class="social-btn" onclick="openLink('https://wa.me/6287733976909')">WhatsApp</button>
             <button class="social-btn" onclick="openLink('https://t.me/Narayuizumi')">Telegram</button>
             <button class="social-btn" onclick="openLink('https://instagram.com/izuku_tsuki')">Instagram</button>
@@ -328,30 +329,31 @@
         </div>
     </section>
 
-    <section id="payment">
+    <section id="payment" style="display: none;">
         <h2>Scan QRIS Kita</h2>
-        <img src="roro.jpg" alt="Kode QRIS Pembayaran">
+        <img src="roro.jpg" alt="QRIS Pembayaran">
         <button class="btn" onclick="kirim()">Konfirmasi</button>
     </section>
 
     <button id="up" onclick="window.scrollTo({top: 0, behavior:'smooth'})">⬆</button>
 
     <script>
-        // Inisialisasi elemen
+        // Inisialisasi Elemen
         const loader = document.getElementById('loader');
         const openMenu = document.getElementById('openMenu');
         const closeMenu = document.getElementById('closeMenu');
         const sidebar = document.getElementById('sidebar');
         const menuTitle = document.getElementById('menuTitle');
+        const profileSection = document.getElementById('profile');
 
-        // Inisialisasi saat halaman dimuat
+        // Inisialisasi Saat Halaman Dimuat
         window.onload = function() {
-            // Sembunyikan loader setelah 2 detik
+            // Sembunyikan Loader
             setTimeout(() => {
                 loader.style.display = 'none';
             }, 2000);
 
-            // Tampilkan nama toko setelah 2,2 detik, sembunyikan setelah 5,2 detik
+            // Tampilkan Nama Toko
             setTimeout(() => {
                 menuTitle.classList.add('show');
             }, 2200);
@@ -360,37 +362,35 @@
             }, 5200);
         }
 
-        // Buka sidebar
-        openMenu.addEventListener('click', function() {
+        // Buka & Tutup Sidebar
+        openMenu.addEventListener('click', () => {
             sidebar.style.left = '0';
             openMenu.style.display = 'none';
             closeMenu.style.display = 'block';
         });
 
-        // Tutup sidebar
-        closeMenu.addEventListener('click', function() {
+        closeMenu.addEventListener('click', () => {
             sidebar.style.left = '-250px';
             closeMenu.style.display = 'none';
             openMenu.style.display = 'flex';
         });
 
-        // Tampilkan/sembunyikan Profile
+        // Tampilkan/Sembunyikan Profile
         function toggleProfile() {
-            const profile = document.getElementById('profile');
-            if (profile.style.display === 'block') {
-                profile.style.display = 'none';
+            if (profileSection.style.display === 'block') {
+                profileSection.style.display = 'none';
             } else {
-                profile.style.display = 'block';
-                profile.scrollIntoView({ behavior:'smooth', block: 'center' });
+                profileSection.style.display = 'block';
+                profileSection.scrollIntoView({ behavior:'smooth', block: 'center' });
             }
         }
 
-        // Buka tautan sosial media
+        // Buka Tautan
         function openLink(url) {
             window.open(url);
         }
 
-        // Gulir ke bagian tertentu
+        // Gulir ke Bagian Tertentu
         function scrollToSection(id) {
             const section = document.getElementById(id);
             section.scrollIntoView({ behavior:'smooth', block: 'center' });
@@ -399,19 +399,20 @@
             openMenu.style.display = 'flex';
         }
 
-        // Pilih produk dan tampilkan pembayaran
+        // Proses Pembelian
         function beli(nama, harga) {
             window.selectedProduct = nama;
             window.productPrice = harga;
-            const payment = document.getElementById('payment');
-            payment.style.display = 'block';
-            payment.scrollIntoView({ behavior:'smooth', block: 'center' });
+            const paymentSection = document.getElementById('payment');
+            paymentSection.style.display = 'block';
+            paymentSection.scrollIntoView({ behavior:'smooth', block: 'center' });
         }
 
-        // Kirim konfirmasi pembayaran
+        // Kirim Konfirmasi
         function kirim() {
             const namaPembeli = prompt('Masukkan Nama:');
             if (!namaPembeli) return alert('Isi nama dulu!');
+            
             const pesan = `Halo Admin, saya sudah bayar.\n\n📦 Produk: ${window.selectedProduct}\n👤 Nama: ${namaPembeli}\n💰 Mata Uang: IDR\n💵 Total: Rp ${window.productPrice}`;
             window.location.href = `https://t.me/Narayuizumi?text=${encodeURIComponent(pesan)}`;
         }
