@@ -4,32 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naruya Store</title>
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#0b0f1a;color:white;overflow-x:hidden;position:relative;scroll-behavior:smooth;}
-
-/* BACKGROUND GLOW */
-body::before{
-  content:"";
-  position:fixed;
-  width:600px;
-  height:600px;
-  background:radial-gradient(circle,#00e0ff40,transparent 70%);
-  top:-200px;
-  right:-200px;
-  z-index:-1;
-}
-body::after{
-  content:"";
-  position:fixed;
-  width:500px;
-  height:500px;
-  background:radial-gradient(circle,#ff00c840,transparent 70%);
-  bottom:-200px;
-  left:-200px;
-  z-index:-1;
-}
 
 /* HEADER */
 header{
@@ -49,12 +26,8 @@ header{
   height:45px;
   border-radius:12px;
 }
-.logo h2{
-  font-weight:600;
-}
-.logo span{
-  color:#00e0ff;
-}
+.logo h2{font-weight:600;}
+.logo span{color:#00e0ff;}
 .order-badge{
   background:linear-gradient(90deg,#00e0ff,#ff00c8);
   padding:8px 15px;
@@ -64,119 +37,54 @@ header{
   font-weight:600;
   transition:0.3s;
 }
-.order-badge:hover{
-  opacity:0.8;
-}
+.order-badge:hover{opacity:0.8;}
 
 /* HERO */
-.hero{
-  text-align:center;
-  margin-top:60px;
-  padding:0 20px;
-}
-.hero h1{
-  font-size:28px;
-  font-weight:600;
-}
-.hero p{
-  margin-top:10px;
-  opacity:0.7;
-  line-height:1.6;
-}
-.btn{
-  margin-top:15px;
-  padding:14px;
-  width:100%;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.1);
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  color:white;
-  cursor:pointer;
-  font-weight:600;
-  transition:0.3s;
-}
-.btn:hover{
-  background:linear-gradient(90deg,#00e0ff,#ff00c8);
-}
+.hero{text-align:center;margin-top:60px;padding:0 20px;}
+.hero h1{font-size:28px;font-weight:600;}
+.hero p{margin-top:10px;opacity:0.7;line-height:1.6;}
+.btn{margin-top:15px;padding:14px;width:200px;border-radius:14px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);color:white;cursor:pointer;font-weight:600;transition:0.3s;}
+.btn:hover{background:linear-gradient(90deg,#00e0ff,#ff00c8);}
 
 /* SECTION */
-section{
-  display:none;
-  padding:30px 20px;
-}
-
-/* CARD */
-.card{
-  background:rgba(255,255,255,0.05);
-  padding:25px;
-  border-radius:20px;
-  margin-bottom:20px;
-  backdrop-filter:blur(15px);
-  border:1px solid rgba(255,255,255,0.1);
-}
-.price{
-  color:#00e0ff;
-  margin:10px 0;
-  font-weight:bold;
-}
+section{display:none;padding:30px 20px;}
+.card{background:rgba(255,255,255,0.05);padding:25px;border-radius:20px;margin-bottom:20px;backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.1);}
+.price{color:#00e0ff;margin:10px 0;font-weight:bold;}
 
 /* PROFILE */
-.profile-card{
-  text-align:center;
-}
-.profile-card img{
-  width:120px;
-  height:120px;
-  border-radius:20px;
-  margin-bottom:15px;
-}
+.profile-card{text-align:center;}
+.profile-card img{width:120px;height:120px;border-radius:20px;margin-bottom:15px;}
 
 /* INPUT */
-input,select{
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border-radius:12px;
-  border:none;
-  background:rgba(255,255,255,0.08);
-  color:white;
-}
-
-/* KEUNGGULAN LAYANAN */
-.feature-card{margin-bottom:15px;}
-.feature-card h3{color:#00e0ff;margin-bottom:5px;}
-.feature-card p{opacity:0.8;}
-
-/* FAQ */
-.faq-card{cursor:pointer;position:relative;padding-left:25px;margin-bottom:10px;}
-.faq-card::before{content:'➤';position:absolute;left:5px;color:#00e0ff;}
+input,select{width:100%;padding:12px;margin-bottom:15px;border-radius:12px;border:none;background:rgba(255,255,255,0.08);color:white;}
 
 /* FOOTER */
 footer{
-  background:rgba(0,0,0,0.7);
-  padding:20px;
-  margin-top:30px;
-  text-align:center;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:flex-start;
+  align-items:flex-start;
+  padding:10px 20px;
+  background:rgba(0,0,0,0.8);
   border-top:2px solid #00e0ff;
-  position:relative;
+  gap:15px;
 }
-footer .footer-center{
-  margin-bottom:20px;
+.footer-left{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:5px;
 }
-footer .footer-left{
-  position:absolute;
-  bottom:10px;
-  left:20px;
-}
-footer .footer-left a{
-  color:#00e0ff;
-  text-decoration:none;
-  margin-right:15px;
-}
-footer .footer-left a:hover{text-decoration:underline;}
+.footer-left img{width:50px;height:50px;border-radius:50%;border:2px solid #00e0ff;}
+.footer-left .footer-text{font-size:12px;opacity:0.8;}
+.footer-left .footer-links{display:flex;gap:10px;font-size:12px;}
+.footer-left .footer-links a{color:#00e0ff;text-decoration:none;}
+.footer-left .footer-links a:hover{text-decoration:underline;}
 
-/* CHAT & UP */
+/* CHAT & UP BUTTONS */
 #chat-btn{
   position:fixed;
   bottom:20px;
@@ -207,7 +115,6 @@ footer .footer-left a:hover{text-decoration:underline;}
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -229,11 +136,10 @@ footer .footer-left a:hover{text-decoration:underline;}
   <div class="card profile-card">
     <img src="logo.jpg">
     <h3>Naruya Store</h3>
-    <p>Store digital terpercaya, layanan cepat, aman, harga terjangkau.</p>
+    <p>Store digital terpercaya.</p>
     <button class="btn" onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
     <button class="btn" onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
     <button class="btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
-    <button class="btn" onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
   </div>
 </section>
 
@@ -265,38 +171,32 @@ footer .footer-left a:hover{text-decoration:underline;}
   </div>
 </section>
 
-<section id="fitur">
-  <div class="feature-card">
-    <h3>Keunggulan Layanan Kami</h3>
-    <p>Aman dan cepat diproses.</p>
-    <p>Harga terjangkau, kualitas terjamin.</p>
-    <p>Layanan 24/7 dan terpercaya.</p>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="faq-card">Pertanyaan Umum: Umur minimal penggunaan layanan?</div>
-  <div class="faq-card">Pertanyaan Umum: Apakah aman melakukan pembayaran?</div>
-  <div class="faq-card">Pertanyaan Umum: Bagaimana proses pengiriman?</div>
-</section>
-
 <footer>
-  <div class="footer-center">
-    <h3>Naruya Store Official</h3>
-    <p>Platform digital terpercaya, cepat, aman, kualitas terjamin, harga terjangkau.</p>
-  </div>
   <div class="footer-left">
-    <a href="https://wa.me/6287733976909">WhatsApp</a>
-    <a href="https://t.me/Narayuizumi">Telegram</a>
-    <a href="https://instagram.com/izuku_tsuki">IG</a>
+    <img src="logo.jpg">
+    <div class="footer-text">Naruya Store</div>
+    <div class="footer-text">Platform digital terpercaya</div>
+    <div class="footer-links">
+      <a href="#hero">Beranda</a>
+      <a href="#fitur">Fitur</a>
+      <a href="#produk">Produk</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://wa.me/6287733976909">WhatsApp</a>
+      <a href="https://t.me/Narayuizumi">Telegram</a>
+      <a href="https://instagram.com/izuku_tsuki">IG</a>
+    </div>
   </div>
 </footer>
 
-<!-- CHAT & UP -->
 <button id="chat-btn" onclick="window.open('https://wa.me/6287733976909')">💬</button>
 <button id="up-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
 
 <script>
+function hideAll(){
+  document.getElementById("profile").style.display="none";
+  document.getElementById("produk").style.display="none";
+  document.getElementById("payment").style.display="none";
+}
 function toggleProfile(){
   hideAll();
   document.getElementById("profile").style.display="block";
@@ -304,11 +204,6 @@ function toggleProfile(){
 function toggleProduk(){
   hideAll();
   document.getElementById("produk").style.display="block";
-}
-function hideAll(){
-  document.getElementById("profile").style.display="none";
-  document.getElementById("produk").style.display="none";
-  document.getElementById("payment").style.display="none";
 }
 function beli(nama,harga){
   hideAll();
@@ -320,7 +215,7 @@ function kirim(){
   let kategori=document.getElementById("kategori").value;
   let nama=document.getElementById("nama").value;
   let total=document.getElementById("total").value;
-  if(!nama){ alert("Isi nama dulu!"); return; }
+  if(!nama){alert("Isi nama dulu!"); return;}
   let pesan="Halo Admin, saya sudah bayar.\n\n📦 "+kategori+"\n👤 "+nama+"\n💵 Rp "+total;
   window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
 }
