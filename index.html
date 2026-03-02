@@ -4,67 +4,324 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naruya Store</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-body{color:white;overflow-x:hidden;position:relative;scroll-behavior:smooth;background:#0b0f1a;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  color:white;
+  overflow-x:hidden;
+  background:#0b0f1a;
+  position:relative;
+  scroll-behavior:smooth;
+}
+
 /* LOADER */
-#loader{position:fixed;width:100%;height:100%;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);display:flex;justify-content:center;align-items:center;z-index:9999;}
-.loader-box{display:flex;align-items:center;gap:15px;padding:25px;border-radius:15px;border:2px solid #00ffff;box-shadow:0 0 40px #00ffff;}
-.loader-box img{width:90px;height:90px;border-radius:50%;border:3px solid #00ffff;box-shadow:0 0 25px #00ffff;object-fit:cover;}
-.loader-text{font-size:20px;font-weight:bold;color:#00ffff;text-shadow:0 0 15px #00ffff;}
+#loader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.loader-box{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:25px 35px;
+  border-radius:15px;
+  border:2px solid #00ffff;
+  box-shadow:0 0 40px #00ffff;
+}
+
+.loader-box img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:3px solid #00ffff;
+  box-shadow:0 0 25px #00ffff;
+  object-fit:cover;
+}
+
+.loader-text{
+  font-size:20px;
+  font-weight:bold;
+  color:#00ffff;
+  text-shadow:0 0 15px #00ffff;
+}
+
 /* VIDEO & OVERLAY */
-video.bg{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(1.3) contrast(1.1);}
-.overlay{position:fixed;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:-1;}
+video.bg{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  filter:brightness(1.3) contrast(1.1);
+}
+
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.35);
+  z-index:-1;
+}
+
 /* HEADER */
-header{display:flex;justify-content:space-between;align-items:center;padding:20px;}
-.logo{display:flex;align-items:center;gap:10px;}
-.logo img{width:45px;height:45px;border-radius:50%;border:2px solid #00ffff;box-shadow:0 0 20px #00ffff;}
-.logo h2{font-weight:bold;}
-.logo h2 span{color:#00ffff;text-shadow:0 0 10px #00ffff;}
-header button{padding:10px 20px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;color:white;background:linear-gradient(90deg,#8f00ff,#00ffff);box-shadow:0 0 20px #00ffff;transition:all 0.2s ease;}
-header button:hover{opacity:0.95;transform:translateY(-2px);}
-header button:active{transform:scale(0.97);}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:25px 20px 15px 20px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:2px solid #00ffff;
+  box-shadow:0 0 20px #00ffff;
+}
+
+.logo h2{
+  font-weight:bold;
+}
+
+.logo h2 span{
+  color:#00ffff;
+  text-shadow:0 0 10px #00ffff;
+}
+
+/* BUTTON HEADER */
+header button, .btn{
+  padding:14px 22px;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(90deg,#8f00ff,#00ffff);
+  box-shadow:0 0 25px #00ffff;
+  transition:all 0.2s ease;
+}
+
+header button:hover, .btn:hover{
+  transform:translateY(-2px);
+  opacity:0.95;
+}
+
+header button:active, .btn:active{
+  transform:scale(0.97);
+}
+
 /* HERO */
-.hero{text-align:center;margin-top:60px;}
-.hero h1{font-size:30px;text-shadow:0 0 15px #00ffff;}
-.hero p{margin-top:8px;opacity:0.9;line-height:1.6;}
-.hero button{margin:10px;padding:14px 22px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;color:white;background:linear-gradient(90deg,#8f00ff,#00ffff);box-shadow:0 0 25px #00ffff;transition:all 0.2s ease;}
-.hero button:hover{transform:translateY(-2px);opacity:0.95;}
-.hero button:active{transform:scale(0.97);}
-/* SECTION & CARDS */
-section{display:none;padding:30px 20px;}
-.card, .profile-card, .feature-card, .faq-card{background:rgba(0,0,0,0.6);padding:25px;border-radius:12px;margin-bottom:20px;border:1px solid rgba(0,255,255,0.4);box-shadow:0 0 25px rgba(0,255,255,0.5);}
-.profile-img{width:120px;height:120px;border-radius:50%;margin:auto;display:block;border:4px solid #00ffff;box-shadow:0 0 25px #00ffff;object-fit:cover;}
-.social-btn{width:100%;margin-top:12px;}
-.price{color:#00ffff;margin:10px 0;font-weight:bold;}
-input, select{width:100%;padding:14px;margin-bottom:15px;border-radius:10px;border:none;background:rgba(255,255,255,0.15);color:white;box-shadow:0 0 15px #00ffff;}
-.payment-buttons{display:flex;gap:10px;}
-.payment-buttons button{flex:1;}
-.timer{color:#00ffff;margin-bottom:10px;font-weight:bold;}
+.hero{
+  text-align:center;
+  margin-top:60px;
+}
+
+.hero h1{
+  font-size:30px;
+  text-shadow:0 0 15px #00ffff;
+}
+
+.hero p{
+  margin-top:8px;
+  opacity:0.9;
+  line-height:1.6;
+}
+
+.hero button{
+  margin:10px;
+}
+
+/* SECTION */
+section{
+  display:none;
+  padding:30px 20px;
+}
+
+/* CARD BOX */
+.card, .profile-card, .feature-card, .faq-card{
+  background:rgba(0,0,0,0.6);
+  padding:25px;
+  border-radius:12px;
+  margin-bottom:25px;
+  border:1px solid rgba(0,255,255,0.4);
+  box-shadow:0 0 25px rgba(0,255,255,0.5);
+}
+
+/* PROFILE */
+.profile-img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  margin:auto;
+  display:block;
+  border:4px solid #00ffff;
+  box-shadow:0 0 25px #00ffff;
+  object-fit:cover;
+}
+
+.social-btn{
+  width:100%;
+  margin-top:12px;
+}
+
+/* PAYMENT */
+.payment img{
+  width:100%;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+.timer{
+  color:#00ffff;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+input, select{
+  width:100%;
+  padding:14px;
+  margin-bottom:15px;
+  border-radius:10px;
+  border:none;
+  background:rgba(255,255,255,0.15);
+  color:white;
+  box-shadow:0 0 15px #00ffff;
+}
+
+.payment-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.payment-buttons button{
+  flex:1;
+}
+
 /* FEATURES */
-.feature-card{margin-bottom:15px;}
-.feature-card h3{color:#00ffff;margin-bottom:5px;}
-.feature-card p{opacity:0.8;}
+.feature-card{
+  margin-bottom:15px;
+}
+
+.feature-card h3{
+  color:#00ffff;
+  margin-bottom:5px;
+}
+
+.feature-card p{
+  opacity:0.8;
+}
+
 /* FAQ */
-.faq-card{cursor:pointer;position:relative;padding-left:25px;margin-bottom:12px;}
-.faq-card::before{content:'➤';position:absolute;left:5px;color:#00ffff;}
+.faq-card{
+  cursor:pointer;
+  position:relative;
+  padding-left:25px;
+  margin-bottom:15px;
+}
+
+.faq-card::before{
+  content:'➤';
+  position:absolute;
+  left:5px;
+  color:#00ffff;
+}
+
 /* FOOTER */
-footer{background:rgba(0,0,0,0.7);padding:20px;margin-top:30px;border-top:2px solid #00ffff;position:relative;}
-.footer-left{position:absolute;bottom:10px;left:20px;text-align:left;}
-.footer-left h3{margin-bottom:5px;color:#00ffff;font-weight:bold;}
-.footer-center{text-align:center;}
-.footer-center p{opacity:0.8;margin-top:5px;}
-.footer-links{text-align:center;margin-top:10px;}
-.footer-links a{color:#00ffff;text-decoration:none;margin:0 10px;}
-.footer-links a:hover{text-decoration:underline;}
-/* CHAT & UP */
-#chat-btn{position:fixed;bottom:20px;left:20px;width:60px;height:60px;background:#00ffff;color:black;border:none;border-radius:50%;box-shadow:0 0 20px #00ffff;cursor:pointer;font-size:30px;}
-#up-btn{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background:#8f00ff;color:white;border:none;border-radius:50%;cursor:pointer;box-shadow:0 0 20px #00ffff;font-size:20px;}
+footer{
+  background:rgba(0,0,0,0.7);
+  padding:20px;
+  margin-top:30px;
+  text-align:center;
+  border-top:2px solid #00ffff;
+  position:relative;
+}
+
+footer .footer-left{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  text-align:left;
+}
+
+footer .footer-left img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:3px solid #00ffff;
+  margin-bottom:5px;
+}
+
+.footer-links{
+  margin-top:15px;
+}
+
+.footer-links a{
+  color:#00ffff;
+  text-decoration:none;
+  margin:0 10px;
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+/* CHAT & UP BUTTONS */
+#chat-btn{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:60px;
+  height:60px;
+  background:#00ffff;
+  color:black;
+  border:none;
+  border-radius:50%;
+  box-shadow:0 0 20px #00ffff;
+  cursor:pointer;
+  font-size:30px;
+}
+
+#up-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:50px;
+  height:50px;
+  background:#8f00ff;
+  color:white;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 0 20px #00ffff;
+  font-size:20px;
+}
 </style>
 </head>
+
 <body>
 
-<!-- LOADER -->
 <div id="loader">
   <div class="loader-box">
     <img src="loading.jpg">
@@ -72,13 +329,11 @@ footer{background:rgba(0,0,0,0.7);padding:20px;margin-top:30px;border-top:2px so
   </div>
 </div>
 
-<!-- VIDEO BACKGROUND -->
 <video class="bg" autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
-<!-- HEADER -->
 <header>
   <div class="logo">
     <img src="logo.jpg">
@@ -87,20 +342,18 @@ footer{background:rgba(0,0,0,0.7);padding:20px;margin-top:30px;border-top:2px so
   <button onclick="togglePayment()">Buka Pesanan</button>
 </header>
 
-<!-- HERO -->
 <div class="hero">
   <h1>Naruya Store Official</h1>
   <p>Platform digital terpercaya, cepat, aman, kualitas terjamin, harga terjangkau.</p>
-  <button onclick="toggleProfile()">Profile</button>
-  <button onclick="toggleProduk()">Lihat Produk</button>
+  <button class="btn" onclick="toggleProfile()">Profile</button>
+  <button class="btn" onclick="toggleProduk()">Lihat Produk</button>
 </div>
 
-<!-- PROFILE -->
 <section id="profile">
   <div class="profile-card">
-    <img src="logo.jpg">
+    <img src="logo.jpg" class="profile-img">
     <h2>Naruya Store</h2>
-    <p>Store digital terpercaya, layanan cepat, aman, dan harga terjangkau.</p>
+    <p>Store digital terpercaya, layanan cepat, aman, harga terjangkau.</p>
     <button class="social-btn" onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
     <button class="social-btn" onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
     <button class="social-btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
@@ -109,26 +362,26 @@ footer{background:rgba(0,0,0,0.7);padding:20px;margin-top:30px;border-top:2px so
   </div>
 </section>
 
-<!-- PRODUK -->
 <section id="produk">
   <div class="card">
     <h3>Panel Pterodactyl</h3>
     <div class="price">Rp 7.000</div>
-    <button onclick="beli('Panel Pterodactyl',7000)">Beli</button>
+    <button class="btn" onclick="beli('Panel Pterodactyl',7000)">Beli</button>
   </div>
+
   <div class="card">
     <h3>Jasa Pasang Bot</h3>
     <div class="price">Rp 5.000</div>
-    <button onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
+    <button class="btn" onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
   </div>
+
   <div class="card">
     <h3>Nokos Indo</h3>
     <div class="price">Rp 4.000</div>
-    <button onclick="beli('Nokos Indo',4000)">Beli</button>
+    <button class="btn" onclick="beli('Nokos Indo',4000)">Beli</button>
   </div>
 </section>
 
-<!-- KEUNGGULAN LAYANAN -->
 <section id="fitur">
   <div class="feature-card">
     <h3>Keunggulan Layanan Kami</h3>
@@ -138,14 +391,12 @@ footer{background:rgba(0,0,0,0.7);padding:20px;margin-top:30px;border-top:2px so
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq">
   <div class="faq-card">Pertanyaan Umum: Umur minimal penggunaan layanan?</div>
   <div class="faq-card">Pertanyaan Umum: Apakah aman melakukan pembayaran?</div>
   <div class="faq-card">Pertanyaan Umum: Bagaimana proses pengiriman?</div>
 </section>
 
-<!-- PAYMENT -->
 <section id="payment" class="payment">
   <div class="card">
     <img src="roro.jpg">
@@ -158,20 +409,17 @@ footer{background:rgba(0,0,0,0.7);padding:20px;margin-top:30px;border-top:2px so
     </select>
     <input type="number" id="total" readonly>
     <div class="payment-buttons">
-      <button onclick="kirim()">Kirim Bukti</button>
-      <button onclick="cekPembayaran()">Cek Pembayaran</button>
+      <button class="btn" onclick="kirim()">Kirim Bukti</button>
+      <button class="btn" onclick="cekPembayaran()">Cek Pembayaran</button>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-left">
-    <h3>Naruya Store</h3>
-  </div>
-  <div class="footer-center">
-    <h2>Naruya Store Official</h2>
-    <p>Platform digital terpercaya, cepat, aman, kualitas terjamin, harga terjangkau.</p>
+    <img src="logo.jpg">
+    <div>Naruya Store</div>
+    <div>Platform digital terpercaya, cepat, aman, kualitas terjamin, harga terjangkau.</div>
     <div class="footer-links">
       <a href="#hero">Beranda</a>|
       <a href="#fitur">Fitur</a>|
@@ -182,27 +430,89 @@ footer{background:rgba(0,0,0,0.7);padding:20px;margin-top:30px;border-top:2px so
       <a href="https://instagram.com/izuku_tsuki">IG</a>
     </div>
   </div>
+  <div style="text-align:center;margin-top:50px;">
+    <h2>Naruya Store Official</h2>
+    <p>Platform digital terpercaya, cepat, aman, kualitas terjamin, harga terjangkau.</p>
+  </div>
 </footer>
 
-<!-- CHAT & UP BUTTONS -->
 <button id="chat-btn" onclick="window.open('https://wa.me/6287733976909')">💬</button>
 <button id="up-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
 
 <script>
-window.addEventListener("load", function(){ setTimeout(()=>{document.getElementById("loader").style.display="none";},2000); });
+window.addEventListener("load", function(){
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+  },2000);
+});
 
-function hideAll(){document.getElementById("profile").style.display="none";document.getElementById("produk").style.display="none";document.getElementById("payment").style.display="none";}
-function toggleProfile(){const x=document.getElementById("profile");if(x.style.display==="block"){x.style.display="none";}else{hideAll();x.style.display="block";}}
-function toggleProduk(){const x=document.getElementById("produk");if(x.style.display==="block"){x.style.display="none";}else{hideAll();x.style.display="block";}}
-function togglePayment(){const x=document.getElementById("payment");if(x.style.display==="block"){x.style.display="none";}else{hideAll();x.style.display="block";}}
+function hideAll(){
+  document.getElementById("profile").style.display="none";
+  document.getElementById("produk").style.display="none";
+  document.getElementById("payment").style.display="none";
+}
 
-function beli(nama,harga){hideAll();document.getElementById("payment").style.display="block";document.getElementById("kategori").value=nama;document.getElementById("total").value=harga;startTimer();}
-function cekPembayaran(){alert("Sistem sedang memverifikasi pembayaran Anda.");}
+function toggleProfile(){
+  const x=document.getElementById("profile");
+  if(x.style.display==="block"){ x.style.display="none"; }
+  else{ hideAll(); x.style.display="block"; }
+}
 
-let waktu=300,interval;
-function startTimer(){waktu=300;clearInterval(interval);interval=setInterval(()=>{waktu--;document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";if(waktu<=0){clearInterval(interval);alert("QR kadaluarsa.");}},1000);}
+function toggleProduk(){
+  const x=document.getElementById("produk");
+  if(x.style.display==="block"){ x.style.display="none"; }
+  else{ hideAll(); x.style.display="block"; }
+}
 
-function kirim(){let kategori=document.getElementById("kategori").value,nama=document.getElementById("nama").value,total=document.getElementById("total").value,currency=document.getElementById("currency").value;if(!nama){alert("Isi nama dulu!");return;}let pesan="Halo Admin, saya sudah bayar.\n\n📦 "+kategori+"\n👤 "+nama+"\n💵 "+currency+" "+total;window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);}
+function togglePayment(){
+  const x=document.getElementById("payment");
+  if(x.style.display==="block"){ x.style.display="none"; }
+  else{ hideAll(); x.style.display="block"; }
+}
+
+function beli(nama,harga){
+  hideAll();
+  document.getElementById("payment").style.display="block";
+  document.getElementById("kategori").value=nama;
+  document.getElementById("total").value=harga;
+  startTimer();
+}
+
+function cekPembayaran(){
+  alert("Sistem sedang memverifikasi pembayaran Anda.");
+}
+
+let waktu=300;
+let interval;
+
+function startTimer(){
+  waktu=300;
+  clearInterval(interval);
+  interval=setInterval(()=>{
+    waktu--;
+    document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";
+    if(waktu<=0){
+      clearInterval(interval);
+      alert("QR kadaluarsa.");
+    }
+  },1000);
+}
+
+function kirim(){
+  let kategori=document.getElementById("kategori").value;
+  let nama=document.getElementById("nama").value;
+  let total=document.getElementById("total").value;
+  let currency=document.getElementById("currency").value;
+
+  if(!nama){ alert("Isi nama dulu!"); return; }
+
+  let pesan="Halo Admin, saya sudah bayar.\n\n"+
+  "📦 "+kategori+"\n"+
+  "👤 "+nama+"\n"+
+  "💵 "+currency+" "+total;
+
+  window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
+}
 </script>
 
 </body>
