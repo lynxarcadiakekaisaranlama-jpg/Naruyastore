@@ -5,114 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naruya Store</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#0b0f1a;color:white;overflow-x:hidden;position:relative;scroll-behavior:smooth;}
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+body{color:white;overflow-x:hidden;position:relative;scroll-behavior:smooth;background:#0b0f1a;}
+/* BACKGROUND GLOW */
+body::before{content:"";position:fixed;width:600px;height:600px;background:radial-gradient(circle,#00e0ff40,transparent 70%);top:-200px;right:-200px;z-index:-1;}
+body::after{content:"";position:fixed;width:500px;height:500px;background:radial-gradient(circle,#ff00c840,transparent 70%);bottom:-200px;left:-200px;z-index:-1;}
 /* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-}
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.logo img{
-  width:45px;
-  height:45px;
-  border-radius:12px;
-}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo img{width:45px;height:45px;border-radius:12px;}
 .logo h2{font-weight:600;}
 .logo span{color:#00e0ff;}
-.order-badge{
-  background:linear-gradient(90deg,#00e0ff,#ff00c8);
-  padding:8px 15px;
-  border-radius:30px;
-  font-size:13px;
-  cursor:pointer;
-  font-weight:600;
-  transition:0.3s;
-}
+.order-badge{background:linear-gradient(90deg,#00e0ff,#ff00c8);padding:8px 15px;border-radius:30px;font-size:13px;cursor:pointer;font-weight:600;transition:0.3s;}
 .order-badge:hover{opacity:0.8;}
-
 /* HERO */
 .hero{text-align:center;margin-top:60px;padding:0 20px;}
 .hero h1{font-size:28px;font-weight:600;}
 .hero p{margin-top:10px;opacity:0.7;line-height:1.6;}
 .btn{margin-top:15px;padding:14px;width:200px;border-radius:14px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);color:white;cursor:pointer;font-weight:600;transition:0.3s;}
 .btn:hover{background:linear-gradient(90deg,#00e0ff,#ff00c8);}
-
-/* SECTION */
 section{display:none;padding:30px 20px;}
 .card{background:rgba(255,255,255,0.05);padding:25px;border-radius:20px;margin-bottom:20px;backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.1);}
 .price{color:#00e0ff;margin:10px 0;font-weight:bold;}
-
-/* PROFILE */
 .profile-card{text-align:center;}
 .profile-card img{width:120px;height:120px;border-radius:20px;margin-bottom:15px;}
-
-/* INPUT */
 input,select{width:100%;padding:12px;margin-bottom:15px;border-radius:12px;border:none;background:rgba(255,255,255,0.08);color:white;}
-
 /* FOOTER */
-footer{
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-  display:flex;
-  justify-content:flex-start;
-  align-items:flex-start;
-  padding:10px 20px;
-  background:rgba(0,0,0,0.8);
-  border-top:2px solid #00e0ff;
-  gap:15px;
-}
-.footer-left{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:5px;
-}
-.footer-left img{width:50px;height:50px;border-radius:50%;border:2px solid #00e0ff;}
-.footer-left .footer-text{font-size:12px;opacity:0.8;}
-.footer-left .footer-links{display:flex;gap:10px;font-size:12px;}
-.footer-left .footer-links a{color:#00e0ff;text-decoration:none;}
-.footer-left .footer-links a:hover{text-decoration:underline;}
-
-/* CHAT & UP BUTTONS */
-#chat-btn{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  width:60px;
-  height:60px;
-  background:#00e0ff;
-  color:black;
-  border:none;
-  border-radius:50%;
-  box-shadow:0 0 20px #00e0ff;
-  cursor:pointer;
-  font-size:30px;
-}
-#up-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:50px;
-  height:50px;
-  background:#ff00c8;
-  color:white;
-  border:none;
-  border-radius:50%;
-  cursor:pointer;
-  box-shadow:0 0 20px #00e0ff;
-  font-size:20px;
-}
+footer{background:rgba(0,0,0,0.7);padding:20px;margin-top:30px;display:flex;flex-direction:column;gap:5px;}
+.footer-top{display:flex;align-items:center;gap:10px;}
+.footer-top img{width:50px;height:50px;border-radius:50%;border:2px solid #00e0ff;}
+.footer-top div{font-weight:600;font-size:14px;}
+.footer-text{font-size:12px;opacity:0.8;}
+.footer-menu{display:flex;gap:10px;margin-top:5px;}
+.footer-menu a{color:#00e0ff;text-decoration:none;font-size:13px;}
+.footer-menu a:hover{text-decoration:underline;}
+.footer-follow{display:flex;gap:10px;margin-top:5px;}
+.footer-follow a{color:#00e0ff;text-decoration:none;font-size:13px;}
+.footer-follow a:hover{text-decoration:underline;}
+/* CHAT & UP */
+#chat-btn{position:fixed;bottom:20px;left:20px;width:60px;height:60px;background:#00e0ff;color:black;border:none;border-radius:50%;box-shadow:0 0 20px #00e0ff;cursor:pointer;font-size:30px;}
+#up-btn{position:fixed;bottom:20px;right:20px;width:50px;height:50px;background:#ff00c8;color:white;border:none;border-radius:50%;cursor:pointer;box-shadow:0 0 20px #00e0ff;font-size:20px;}
 </style>
 </head>
 <body>
@@ -140,6 +72,8 @@ footer{
     <button class="btn" onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
     <button class="btn" onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
     <button class="btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
+    <button class="btn" onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
+    <button class="btn" onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">Saluran WhatsApp</button>
   </div>
 </section>
 
@@ -172,19 +106,21 @@ footer{
 </section>
 
 <footer>
-  <div class="footer-left">
+  <div class="footer-top">
     <img src="logo.jpg">
-    <div class="footer-text">Naruya Store</div>
-    <div class="footer-text">Platform digital terpercaya</div>
-    <div class="footer-links">
-      <a href="#hero">Beranda</a>
-      <a href="#fitur">Fitur</a>
-      <a href="#produk">Produk</a>
-      <a href="#faq">FAQ</a>
-      <a href="https://wa.me/6287733976909">WhatsApp</a>
-      <a href="https://t.me/Narayuizumi">Telegram</a>
-      <a href="https://instagram.com/izuku_tsuki">IG</a>
-    </div>
+    <div>Naruya Store</div>
+  </div>
+  <div class="footer-text">Platform digital terpercaya, cepat, aman, kualitas terjamin, harga terjangkau.</div>
+  <div class="footer-menu">
+    <a href="#hero">Beranda</a>
+    <a href="#fitur">Fitur</a>
+    <a href="#produk">Produk</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="footer-follow">
+    <a href="https://wa.me/6287733976909">WhatsApp</a>
+    <a href="https://t.me/Narayuizumi">Telegram</a>
+    <a href="https://instagram.com/izuku_tsuki">IG</a>
   </div>
 </footer>
 
@@ -192,30 +128,34 @@ footer{
 <button id="up-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
 
 <script>
-function hideAll(){
+function toggleProfile(){ 
+  const x=document.getElementById("profile");
+  x.style.display=(x.style.display==="block")?"none":"block"; 
+  document.getElementById("produk").style.display="none";
+  document.getElementById("payment").style.display="none";
+}
+function toggleProduk(){ 
+  const x=document.getElementById("produk");
+  x.style.display=(x.style.display==="block")?"none":"block"; 
+  document.getElementById("profile").style.display="none";
+  document.getElementById("payment").style.display="none";
+}
+function hideAll(){ 
   document.getElementById("profile").style.display="none";
   document.getElementById("produk").style.display="none";
   document.getElementById("payment").style.display="none";
 }
-function toggleProfile(){
-  hideAll();
-  document.getElementById("profile").style.display="block";
-}
-function toggleProduk(){
-  hideAll();
-  document.getElementById("produk").style.display="block";
-}
-function beli(nama,harga){
-  hideAll();
+function beli(nama,harga){ 
+  hideAll(); 
   document.getElementById("payment").style.display="block";
   document.getElementById("kategori").value=nama;
   document.getElementById("total").value=harga;
 }
-function kirim(){
+function kirim(){ 
   let kategori=document.getElementById("kategori").value;
   let nama=document.getElementById("nama").value;
   let total=document.getElementById("total").value;
-  if(!nama){alert("Isi nama dulu!"); return;}
+  if(!nama){ alert("Isi nama dulu!"); return; }
   let pesan="Halo Admin, saya sudah bayar.\n\n📦 "+kategori+"\n👤 "+nama+"\n💵 Rp "+total;
   window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
 }
