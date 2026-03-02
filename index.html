@@ -233,13 +233,23 @@ input, select{
 .payment-buttons button{
   flex:1;
 }
+
+/* MUSIC BUTTON */
+.music-control{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:12px 18px;
+  border-radius:50px;
+  font-size:14px;
+}
 </style>
 </head>
 
 <body>
 
-<!-- Musik Background -->
-<audio id="bgMusic" autoplay loop>
+<!-- Background Music -->
+<audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -328,13 +338,24 @@ input, select{
   </div>
 </section>
 
+<button class="music-control" onclick="toggleMusic()">🔊 Music</button>
+
 <script>
 window.addEventListener("load", function(){
   setTimeout(()=>{
     document.getElementById("loader").style.display="none";
-    alert("Selamat datang di Naruya Store 🚀");
+    document.getElementById("bgMusic").play().catch(()=>{});
   },2000);
 });
+
+function toggleMusic(){
+  const music=document.getElementById("bgMusic");
+  if(music.paused){
+    music.play();
+  }else{
+    music.pause();
+  }
+}
 
 function toggleProfile(){
   const p=document.getElementById("profile");
@@ -363,7 +384,6 @@ function hideAll(){
 }
 
 function beli(nama,harga){
-  alert("Kamu memilih: " + nama);
   hideAll();
   document.getElementById("payment").style.display="block";
   document.getElementById("kategori").value=nama;
@@ -371,9 +391,7 @@ function beli(nama,harga){
   startTimer();
 }
 
-function cekPembayaran(){
-  alert("Silakan hubungi admin untuk konfirmasi pembayaran.");
-}
+function cekPembayaran(){}
 
 let waktu=300;
 let interval;
@@ -386,7 +404,6 @@ function startTimer(){
     document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";
     if(waktu<=0){
       clearInterval(interval);
-      alert("QR kadaluarsa.");
     }
   },1000);
 }
@@ -397,10 +414,7 @@ function kirim(){
   let total=document.getElementById("total").value;
   let currency=document.getElementById("currency").value;
 
-  if(!nama){
-    alert("Isi nama dulu!");
-    return;
-  }
+  if(!nama){ return; }
 
   let pesan="Halo Admin, saya sudah bayar.\n\n"+
   "📦 "+kategori+"\n"+
