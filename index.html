@@ -16,6 +16,7 @@
 body{
   color:white;
   overflow-x:hidden;
+  position:relative;
 }
 
 /* LOADER */
@@ -43,7 +44,7 @@ body{
 .loader-box img{
   width:90px;
   height:90px;
-  border-radius:50%; /* BULAT */
+  border-radius:50%;
   border:3px solid #00ffff;
   box-shadow:0 0 25px #00ffff;
   object-fit:cover;
@@ -82,6 +83,7 @@ header{
   justify-content:space-between;
   align-items:center;
   padding:25px 20px 15px 20px;
+  z-index:10;
 }
 
 .logo{
@@ -103,7 +105,7 @@ header{
 }
 
 .logo h2 span{
-  color:#00ffff; /* warna beda untuk STORE */
+  color:#00ffff;
   text-shadow:0 0 10px #00ffff;
 }
 
@@ -146,17 +148,39 @@ button:active{
   line-height:1.6;
 }
 
+/* KEUNGGULAN */
+#keunggulan{
+  display:none;
+  padding:20px;
+  margin:20px;
+  background:rgba(0,0,0,0.6);
+  border-radius:12px;
+  border:1px solid rgba(0,255,255,0.4);
+  box-shadow:0 0 25px rgba(0,255,255,0.5);
+}
+
+#keunggulan h3{
+  text-align:center;
+  margin-bottom:10px;
+  color:#00ffff;
+}
+
+#keunggulan p{
+  text-align:center;
+  opacity:0.9;
+}
+
 /* SECTION */
 section{
   display:none;
   padding:30px 20px;
 }
 
-/* CARD BOX (KOTAK) */
+/* CARD BOX */
 .card, .profile-card{
   background:rgba(0,0,0,0.6);
   padding:25px;
-  border-radius:12px; /* KOTAK */
+  border-radius:12px;
   margin-bottom:25px;
   border:1px solid rgba(0,255,255,0.4);
   box-shadow:0 0 25px rgba(0,255,255,0.5);
@@ -211,6 +235,44 @@ input, select{
 .payment-buttons button{
   flex:1;
 }
+
+/* FLOATING BUTTON PESAN */
+#btnPesan{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:linear-gradient(90deg,#8f00ff,#00ffff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:24px;
+  box-shadow:0 0 20px #00ffff;
+  cursor:pointer;
+  z-index:100;
+}
+
+/* KE ATAS */
+#btnTop{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:linear-gradient(90deg,#00ffff,#8f00ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:22px;
+  box-shadow:0 0 20px #00ffff;
+  cursor:pointer;
+  z-index:100;
+}
 </style>
 </head>
 
@@ -245,7 +307,17 @@ input, select{
   <button onclick="toggleProfile()">Profile</button>
   <br><br>
   <button onclick="toggleProduk()">Lihat Produk</button>
+  <br><br>
+  <button onclick="toggleKeunggulan()">Keunggulan Layanan Kami</button>
 </div>
+
+<section id="keunggulan">
+  <h3>Keunggulan Layanan Kami</h3>
+  <p>
+    Cepat, aman, kualitas terjamin, harga terjangkau.<br>
+    Apakah Anda berusia 18+?
+  </p>
+</section>
 
 <section id="profile">
   <div class="profile-card">
@@ -301,6 +373,9 @@ input, select{
   </div>
 </section>
 
+<div id="btnPesan" onclick="window.open('https://wa.me/6287733976909')">💬</div>
+<div id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</div>
+
 <script>
 window.addEventListener("load", function(){
   setTimeout(()=>{
@@ -312,6 +387,7 @@ function hideAll(){
   document.getElementById("profile").style.display="none";
   document.getElementById("produk").style.display="none";
   document.getElementById("payment").style.display="none";
+  document.getElementById("keunggulan").style.display="none";
 }
 
 function toggleProfile(){
@@ -328,6 +404,12 @@ function toggleProduk(){
 
 function togglePayment(){
   const x=document.getElementById("payment");
+  if(x.style.display==="block"){ x.style.display="none"; }
+  else{ hideAll(); x.style.display="block"; }
+}
+
+function toggleKeunggulan(){
+  const x=document.getElementById("keunggulan");
   if(x.style.display==="block"){ x.style.display="none"; }
   else{ hideAll(); x.style.display="block"; }
 }
