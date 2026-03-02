@@ -5,49 +5,241 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naruya Store Official</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-body{color:white;overflow-x:hidden;background:#0f0f1f;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  color:white;
+  overflow-x:hidden;
+}
+
 /* LOADER */
-#loader{position:fixed;width:100%;height:100%;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);display:flex;justify-content:center;align-items:center;z-index:9999;}
-.loader-box{padding:25px 40px;border-radius:15px;border:2px solid #00f7ff;box-shadow:0 0 30px #00f7ff;text-align:center;}
-.loader-box img{width:80px;height:80px;border-radius:50%;margin-bottom:10px;border:2px solid #00f7ff;}
-.loader-text{color:#00f7ff;font-weight:bold;}
+#loader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.loader-box{
+  padding:25px 40px;
+  border-radius:15px;
+  border:2px solid #00f7ff;
+  box-shadow:0 0 30px #00f7ff;
+  text-align:center;
+}
+
+.loader-box img{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  margin-bottom:10px;
+  border:2px solid #00f7ff;
+}
+
+.loader-text{
+  color:#00f7ff;
+  font-weight:bold;
+}
+
 /* VIDEO BG CERAH */
-video{position:fixed;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(0.95) contrast(1.1);}
-.overlay{position:fixed;width:100%;height:100%;background:rgba(0,0,0,0.2);z-index:-1;}
+video{
+  position:fixed;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  filter:brightness(0.95) contrast(1.1);
+}
+
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.2);
+  z-index:-1;
+}
+
 /* HEADER */
-header{position:fixed;top:0;left:0;width:100%;display:flex;align-items:center;padding:18px 20px;background:rgba(15,15,30,0.6);backdrop-filter:blur(6px);z-index:999;}
-.menu-btn{font-size:28px;cursor:pointer;margin-right:15px;}
-.header-title{font-size:20px;font-weight:bold;color:#00f7ff;opacity:0;transform:translateX(-20px);transition:0.5s ease;}
-.header-title.show{opacity:1;transform:translateX(0);}
-.sidebar{position:fixed;top:0;left:-250px;width:250px;height:100%;background:rgba(21,21,43,0.95);padding:20px;transition:0.3s;z-index:998;}
-.sidebar.active{left:0;}
-.close-btn{position:absolute;top:15px;right:15px;font-size:24px;cursor:pointer;color:#00f7ff;}
-.sidebar button{width:100%;padding:12px;margin:8px 0;border:none;border-radius:8px;background:linear-gradient(45deg,#6f00ff,#00f7ff);color:white;cursor:pointer;transition:0.3s;}
-.sidebar button:hover{box-shadow:0 0 15px #00f7ff;}
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  display:flex;
+  align-items:center;
+  padding:18px 20px;
+  background:rgba(15,15,30,0.6);
+  backdrop-filter:blur(6px);
+  z-index:999;
+}
+
+.menu-btn{
+  font-size:28px;
+  cursor:pointer;
+  margin-right:15px;
+}
+
+.header-title{
+  font-size:20px;
+  font-weight:bold;
+  color:#00f7ff;
+  opacity:0;
+  transform:translateX(-20px);
+  transition:0.5s ease;
+}
+
+.header-title.show{
+  opacity:1;
+  transform:translateX(0);
+}
+
+/* SIDEBAR MENU */
+#sidebar{
+  position:fixed;
+  top:0;
+  left:-250px;
+  width:250px;
+  height:100%;
+  background:rgba(21,21,43,0.95);
+  padding:20px;
+  transition:0.3s;
+  z-index:1000;
+}
+
+#sidebar.active{
+  left:0;
+}
+
+#sidebar .close-btn{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:24px;
+  cursor:pointer;
+}
+
 /* HERO */
-.hero{text-align:center;padding-top:140px;padding-bottom:40px;}
-.hero h1{font-size:2.5rem;text-shadow:0 0 20px #00f7ff;}
-.hero p{margin:10px 0 20px;font-size:1.1rem;}
-.btn{padding:10px 18px;border:none;border-radius:8px;background:linear-gradient(45deg,#6f00ff,#00f7ff);color:white;cursor:pointer;transition:0.3s;}
-.btn:hover{box-shadow:0 0 15px #00f7ff;}
+.hero{
+  text-align:center;
+  padding-top:140px;
+  padding-bottom:40px;
+}
+
+.hero h1{
+  font-size:2.5rem;
+  text-shadow:0 0 20px #00f7ff;
+}
+
+.hero p{
+  margin:10px 0 20px;
+  font-size:1.1rem;
+}
+
+/* BUTTON */
+.btn{
+  padding:10px 18px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(45deg,#6f00ff,#00f7ff);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  box-shadow:0 0 15px #00f7ff;
+}
+
 /* PROFILE */
-#profile{display:none;text-align:center;padding:20px;}
-.profile-card{max-width:400px;margin:auto;background:rgba(21,21,43,0.9);padding:25px;border-radius:15px;border:1px solid #00f7ff;box-shadow:0 0 20px rgba(0,247,255,0.3);}
-.social-btn{width:100%;margin:8px 0;padding:12px;border:none;border-radius:8px;background:linear-gradient(45deg,#6f00ff,#00f7ff);color:white;cursor:pointer;}
-.social-btn:hover{box-shadow:0 0 15px #00f7ff;}
+#profile{
+  display:none;
+  text-align:center;
+  padding:20px;
+}
+
+.profile-card{
+  max-width:400px;
+  margin:auto;
+  background:rgba(21,21,43,0.9);
+  padding:25px;
+  border-radius:15px;
+  border:1px solid #00f7ff;
+  box-shadow:0 0 20px rgba(0,247,255,0.3);
+}
+
+.social-btn{
+  width:100%;
+  margin:8px 0;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(45deg,#6f00ff,#00f7ff);
+  color:white;
+  cursor:pointer;
+}
+
 /* PRODUK */
-.products{padding:20px;}
-.card{background:rgba(21,21,43,0.9);padding:20px;margin-bottom:20px;border-radius:15px;border:1px solid #00f7ff;text-align:center;box-shadow:0 0 15px rgba(0,247,255,0.2);}
-.price{color:#00f7ff;font-size:1.2rem;margin:10px 0;}
+.products{
+  padding:20px;
+}
+
+.card{
+  background:rgba(21,21,43,0.9);
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:15px;
+  border:1px solid #00f7ff;
+  text-align:center;
+  box-shadow:0 0 15px rgba(0,247,255,0.2);
+}
+
+.price{
+  color:#00f7ff;
+  font-size:1.2rem;
+  margin:10px 0;
+}
+
 /* PAYMENT */
-#payment{display:none;text-align:center;padding:30px 20px;}
-#payment img{max-width:280px;border-radius:15px;border:2px solid #00f7ff;margin:15px 0;}
+#payment{
+  display:none;
+  text-align:center;
+  padding:30px 20px;
+}
+
+#payment img{
+  max-width:280px;
+  border-radius:15px;
+  border:2px solid #00f7ff;
+  margin:15px 0;
+}
+
 /* UP BUTTON */
-#up{position:fixed;bottom:20px;right:20px;width:50px;height:50px;border-radius:50%;border:none;background:linear-gradient(45deg,#6f00ff,#00f7ff);color:white;font-size:18px;cursor:pointer;}
+#up{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:none;
+  background:linear-gradient(45deg,#6f00ff,#00f7ff);
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+}
 </style>
 </head>
 <body>
+
 <video autoplay muted loop>
   <source src="anime.mp4" type="video/mp4">
 </video>
@@ -61,19 +253,19 @@ header{position:fixed;top:0;left:0;width:100%;display:flex;align-items:center;pa
 </div>
 
 <header>
-  <div class="menu-btn" onclick="openSidebar()">☰</div>
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
   <div class="header-title" id="headerTitle">Naruya Store</div>
 </header>
 
-<div class="sidebar" id="sidebar">
-  <div class="close-btn" onclick="closeSidebar()">✕</div>
-  <button onclick="scrollHome()">Home</button>
-  <button onclick="toggleProfile()">Profile</button>
-  <button onclick="scrollProduk()">Store</button>
-  <button onclick="scrollPayment()">Payment</button>
+<div id="sidebar">
+  <div class="close-btn" onclick="toggleSidebar()">✕</div>
+  <button class="btn" onclick="scrollToTop()">Home</button>
+  <button class="btn" onclick="toggleProfile()">Profile</button>
+  <button class="btn" onclick="scrollProduk()">Store</button>
+  <button class="btn" onclick="scrollPayment()">Payment</button>
 </div>
 
-<section class="hero" id="home">
+<section class="hero">
   <h1>Naruya Store Official</h1>
   <p>Platform digital terpercaya, cepat, aman, harga terjangkau.</p>
   <button class="btn" onclick="toggleProfile()">Profile</button>
@@ -109,32 +301,60 @@ header{position:fixed;top:0;left:0;width:100%;display:flex;align-items:center;pa
   <button class="btn" onclick="kirim()">Konfirmasi</button>
 </section>
 
-<button id="up" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
+<button id="up" onclick="scrollToTop()">⬆</button>
 
 <script>
 window.onload = function(){
-  setTimeout(()=>{document.getElementById("loader").style.display="none";},2000);
+  setTimeout(()=>{ document.getElementById("loader").style.display="none"; },2000);
   const title = document.getElementById("headerTitle");
-  setTimeout(()=>{title.classList.add("show");},2200);
-  setTimeout(()=>{title.classList.remove("show");},5200);
+  setTimeout(()=>{ title.classList.add("show"); },2200);
+  setTimeout(()=>{ title.classList.remove("show"); },5200);
 }
+
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
 function toggleProfile(){
   let p = document.getElementById("profile");
   p.style.display = p.style.display === "block" ? "none" : "block";
 }
-function openLink(url){window.open(url);}
-function openSidebar(){document.getElementById("sidebar").classList.add("active");}
-function closeSidebar(){document.getElementById("sidebar").classList.remove("active");}
-function scrollHome(){window.scrollTo({top:0,behavior:'smooth'});closeSidebar();}
-function scrollProduk(){document.getElementById("produk").scrollIntoView({behavior:'smooth'});closeSidebar();}
-function scrollPayment(){document.getElementById("payment").scrollIntoView({behavior:'smooth'});closeSidebar();}
-function beli(nama,harga){window.selected=nama;window.harga=harga;document.getElementById("payment").style.display="block";document.getElementById("payment").scrollIntoView({behavior:'smooth'});}
+
+function openLink(url){
+  window.open(url);
+}
+
+function scrollProduk(){
+  document.getElementById("produk").scrollIntoView({behavior:'smooth'});
+}
+
+function scrollPayment(){
+  document.getElementById("payment").scrollIntoView({behavior:'smooth'});
+}
+
+function scrollToTop(){
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function beli(nama, harga){
+  window.selected = nama;
+  window.harga = harga;
+  document.getElementById("payment").style.display="block";
+  scrollPayment();
+}
+
 function kirim(){
-  let nama=prompt("Masukkan Nama:");
-  if(!nama)return alert("Isi nama dulu!");
-  let pesan="Halo Admin, saya sudah bayar.\n\n📦 Produk: "+window.selected+"\n👤 Nama: "+nama+"\n💰 Mata Uang: IDR\n💵 Total: Rp "+window.harga;
-  window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
+  let nama = prompt("Masukkan Nama:");
+  if(!nama) return alert("Isi nama dulu!");
+  let pesan =
+  "Halo Admin, saya sudah bayar.\n\n" +
+  "📦 Produk: " + window.selected + "\n" +
+  "👤 Nama: " + nama + "\n" +
+  "💰 Mata Uang: IDR\n" +
+  "💵 Total: Rp " + window.harga;
+  window.location.href = "https://t.me/Narayuizumi?text=" + encodeURIComponent(pesan);
 }
 </script>
+
 </body>
 </html>
