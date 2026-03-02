@@ -68,94 +68,19 @@
             z-index: -1;
         }
 
-        /* HEADER */
+        /* HAPUS ELEMEN MENU DI ATAS SEPERTI YANG DIMINTA */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 20px;
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(6px);
-            z-index: 999;
-            /* Hapus border atas yang tidak diinginkan */
-            border: none;
-            outline: none;
+            display: none; /* Sembunyikan seluruh header agar tidak ada elemen di atas */
         }
 
-        .menu-left {
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-icon {
-            font-size: 28px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .menu-title {
-            color: #00f7ff;
-            font-weight: bold;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .menu-title.show {
-            opacity: 1;
-        }
-
-        .close-icon {
-            font-size: 28px;
-            cursor: pointer;
-            display: none;
-        }
-
-        /* SIDEBAR MENU */
         #sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background: rgba(21, 21, 43, 0.95);
-            box-shadow: 2px 0 20px rgba(0, 247, 255, 0.4);
-            padding: 20px;
-            transition: left 0.3s ease;
-            z-index: 998;
-        }
-
-        #sidebar ul {
-            list-style: none;
-            margin-top: 40px;
-        }
-
-        #sidebar ul li {
-            margin: 15px 0;
-        }
-
-        #sidebar ul li button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #6f00ff, #00f7ff);
-            color: white;
-            cursor: pointer;
-            transition: box-shadow 0.3s ease;
-        }
-
-        #sidebar ul li button:hover {
-            box-shadow: 0 0 15px #00f7ff;
+            display: none; /* Sembunyikan sidebar karena menu utama sudah dihapus */
         }
 
         /* HERO SECTION */
         .hero {
             text-align: center;
-            padding-top: 140px;
+            padding-top: 80px; /* Sesuaikan padding atas karena header dihapus */
             padding-bottom: 40px;
         }
 
@@ -280,22 +205,7 @@
         </div>
     </div>
 
-    <header>
-        <div class="menu-left">
-            <span class="menu-icon" id="openMenu">☰</span>
-            <span class="menu-title" id="menuTitle">NARUYA STORE</span>
-        </div>
-        <span class="close-icon" id="closeMenu">✕</span>
-    </header>
-
-    <div id="sidebar">
-        <ul>
-            <li><button onclick="scrollToSection('hero')">Home</button></li>
-            <li><button onclick="toggleProfile()">Profile</button></li>
-            <li><button onclick="scrollToSection('produk')">Store</button></li>
-            <li><button onclick="scrollToSection('payment')">Payment</button></li>
-        </ul>
-    </div>
+    <!-- HEADER DAN SIDEBAR DIHAPUS / DISEMBUNYIKAN SESUAI PERMINTAAN -->
 
     <section class="hero" id="hero">
         <h1>Naruya Store Official</h1>
@@ -336,41 +246,13 @@
     <button id="up" onclick="window.scrollTo({top: 0, behavior:'smooth'})">⬆</button>
 
     <script>
-        // Inisialisasi elemen
-        const openMenuBtn = document.getElementById('openMenu');
-        const closeMenuBtn = document.getElementById('closeMenu');
-        const sidebar = document.getElementById('sidebar');
-        const menuTitle = document.getElementById('menuTitle');
-
         // Inisialisasi saat halaman dimuat
         window.onload = function() {
             // Sembunyikan loader setelah 2 detik
             setTimeout(() => {
                 document.getElementById("loader").style.display = "none";
             }, 2000);
-
-            // Tampilkan nama toko setelah 2,2 detik lalu sembunyikan setelah 5,2 detik
-            setTimeout(() => {
-                menuTitle.classList.add("show");
-            }, 2200);
-            setTimeout(() => {
-                menuTitle.classList.remove("show");
-            }, 5200);
         }
-
-        // Buka sidebar - tampilkan tombol X di ujung kanan
-        openMenuBtn.addEventListener('click', function() {
-            sidebar.style.left = "0";
-            openMenuBtn.style.display = "none";
-            closeMenuBtn.style.display = "block";
-        });
-
-        // Tutup sidebar - kembali ke menu utama
-        closeMenuBtn.addEventListener('click', function() {
-            sidebar.style.left = "-250px";
-            closeMenuBtn.style.display = "none";
-            openMenuBtn.style.display = "block";
-        });
 
         // Tampilkan/sembunyikan profil
         function toggleProfile() {
@@ -383,13 +265,9 @@
             window.open(url);
         }
 
-        // Gulir ke bagian tertentu
+        // Gulir ke bagian tertentu (jika diperlukan)
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-            // Tutup sidebar otomatis setelah memilih menu
-            sidebar.style.left = "-250px";
-            closeMenuBtn.style.display = "none";
-            openMenuBtn.style.display = "block";
         }
 
         // Pilih produk dan tampilkan pembayaran
