@@ -66,7 +66,7 @@ video.bg{
   height:100%;
   object-fit:cover;
   z-index:-2;
-  filter: brightness(1) contrast(1.1); /* video lebih terang */
+  filter: brightness(1) contrast(1.1); /* video terang */
   display:block;
 }
 
@@ -74,7 +74,7 @@ video.bg{
   position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.2); /* overlay tipis supaya teks tetap terbaca */
+  background:rgba(0,0,0,0.2); /* overlay tipis */
   z-index:-1;
 }
 
@@ -230,8 +230,12 @@ header{
 }
 
 #payment h2{
-  margin-bottom:20px;
+  margin-bottom:10px;
   text-shadow:0 0 10px #00f7ff;
+}
+
+#payment p{
+  margin-bottom:20px;
 }
 
 #payment img{
@@ -331,9 +335,10 @@ header{
 
 <!-- PAYMENT -->
 <section id="payment">
-  <h2>Scan QRIS</h2>
+  <h2>Pembayaran Belum Diterima</h2>
+  <p>Silakan scan QRIS di bawah dan lakukan transfer:</p>
   <img src="roro.jpg" alt="QRIS Pembayaran">
-  <button class="main-btn" onclick="kirim()">Konfirmasi</button>
+  <button class="main-btn" onclick="kirim()">Konfirmasi TF</button>
 </section>
 
 <!-- BUTTON UP -->
@@ -359,18 +364,20 @@ function beliProduk(nama){
   window.scrollTo({top:document.getElementById("payment").offsetTop, behavior:'smooth'});
 }
 
+// Konfirmasi TF untuk user cek sendiri
 function kirim(){
-  let nama = prompt("Nama pengirim:");
-  if(!nama){ alert("Isi nama dulu!"); return; }
+  let nama = prompt("Masukkan Nama Anda:");
+  if(!nama){ 
+    alert("Isi nama dulu!"); 
+    return; 
+  }
 
   let pesan = 
-    "Halo Admin, saya sudah bayar.\n\n" +
-    "📦 Kategori: " + window.selectedProduk + "\n" +
+    "📦 Produk: " + window.selectedProduk + "\n" +
     "👤 Nama: " + nama + "\n" +
-    "💰 Mata Uang: IDR\n" +
-    "💵 Total: -";
+    "💵 Status: Belum diterima / silakan cek transfer";
 
-  window.location.href = "https://t.me/Narayuizumi?text=" + encodeURIComponent(pesan);
+  alert("Detail Pembayaran:\n\n" + pesan);
 }
 </script>
 
