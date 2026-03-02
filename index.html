@@ -5,83 +5,223 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naruya Store</title>
 <style>
-/* Reset & Font */
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif;}
-body {color:#fff; background:#15152b; overflow-x:hidden;}
+/* Reset dan font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  color: #fff;
+  background-color: #15152b;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
 
 /* Loader */
 #loader {
-  position:fixed; inset:0;
-  display:flex; justify-content:center; align-items:center;
-  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
-  z-index:9999;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  z-index: 9999;
 }
 .loader-box {
-  display:flex; gap:15px; align-items:center;
-  padding:25px; border:2px solid #00f7ff; border-radius:15px;
-  box-shadow:0 0 30px #00f7ff;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px solid #00f7ff;
+  box-shadow: 0 0 30px #00f7ff;
 }
 .loader-box img {
-  width:80px; height:80px; border-radius:50%;
-  border:2px solid #00f7ff; object-fit:cover;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #00f7ff;
+  object-fit: cover;
 }
-.loader-text {color:#00f7ff; font-weight:bold; font-size:1.1rem;}
+.loader-text {
+  color: #00f7ff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+}
 
 /* Video Background */
 video.bg {
-  position:fixed; inset:0; width:100%; height:100%;
-  object-fit:cover; filter:brightness(1) contrast(1.1); z-index:-2;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(1) contrast(1.1);
+  z-index: -2;
 }
-.overlay {position:fixed; inset:0; background:rgba(0,0,0,0.2); z-index:-1;}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: -1;
+}
 
 /* Header */
 header {
-  display:flex; justify-content:center; padding:20px;
-  background:rgba(21,21,43,0.8); z-index:10; position:relative;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(21,21,43,0.8);
+  z-index: 10;
+  position: relative;
 }
-header .logo {display:flex; align-items:center; gap:10px;}
-header .logo img {width:60px; height:60px; border-radius:50%; border:2px solid #00f7ff;}
-header .logo h2 {color:#00f7ff; font-size:1.5rem;}
-
-/* Profile Section */
-#profile {display:none; text-align:center; padding:40px 20px;}
-.profile-card {
-  background:#15152b; padding:30px; border-radius:15px; max-width:300px;
-  margin:0 auto; border:1px solid #00f7ff; box-shadow:0 0 20px rgba(0,247,255,0.2);
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
-.profile-card img {width:100px; height:100px; border-radius:50%; border:2px solid #00f7ff; margin-bottom:15px;}
-.profile-card h3 {color:#00f7ff; margin-bottom:10px; font-size:1.3rem;}
-.profile-card p {margin-bottom:15px; font-size:1rem;}
-.social-btn {
-  width:100%; padding:12px; margin:6px 0;
-  background:linear-gradient(45deg,#6f00ff,#00f7ff); color:#fff; font-size:1rem;
-  border-radius:8px; cursor:pointer; transition:all .3s ease;
+header .logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #00f7ff;
 }
-.social-btn:hover {box-shadow:0 0 15px #00f7ff;}
-
-/* Payment Section */
-#payment {display:none; text-align:center; padding:40px 20px;}
-#payment h2 {margin-bottom:10px; text-shadow:0 0 10px #00f7ff;}
-#payment p {margin-bottom:20px; font-size:1rem;}
-#payment img {max-width:200px; border-radius:15px; margin-bottom:20px; border:2px solid #00f7ff;}
-.main-btn {padding:10px 18px; background:linear-gradient(45deg,#6f00ff,#00f7ff); color:#fff; border:none; border-radius:8px; cursor:pointer; transition:all .3s ease;}
-.main-btn:hover {box-shadow:0 0 15px #00f7ff;}
+header .logo h2 {
+  color: #00f7ff;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
 
 /* Hero */
-.hero {text-align:center; padding:40px 20px; margin-top:20px;}
-.hero h1 {font-size:2rem; text-shadow:0 0 10px #00f7ff; margin-bottom:10px;}
-.hero p {margin-bottom:20px; font-size:1rem;}
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+}
+.hero h1 {
+  font-size: 2.2rem;
+  text-shadow: 0 0 10px #00f7ff;
+  margin-bottom: 15px;
+}
+.hero p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 25px;
+  text-align: center;
+  line-height: 1.8;
+}
+.hero .main-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 5px;
+  background: linear-gradient(45deg,#6f00ff,#00f7ff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.hero .main-btn:hover {
+  box-shadow: 0 0 15px #00f7ff;
+}
+
+/* Profile Section */
+#profile, #produk-section {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+.profile-card, .produk-card {
+  background: #15152b;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 0 20px rgba(0,247,255,0.2);
+  border: 1px solid #00f7ff;
+}
+.profile-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #00f7ff;
+  margin-bottom: 20px;
+}
+.profile-card h3 {
+  color: #00f7ff;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+.profile-card p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+.social-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg,#6f00ff,#00f7ff);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+.social-btn:hover {
+  box-shadow: 0 0 15px #00f7ff;
+}
+
+/* Payment */
+#payment {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+#payment h2 {
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px #00f7ff;
+  font-size: 1.5rem;
+}
+#payment p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+#payment img {
+  max-width: 250px;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #00f7ff;
+}
+#payment .main-btn {
+  padding: 12px 25px;
+  background: linear-gradient(45deg,#6f00ff,#00f7ff);
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+#payment .main-btn:hover {
+  box-shadow: 0 0 15px #00f7ff;
+}
 </style>
 </head>
 <body>
 
-<!-- Video Background -->
+<!-- VIDEO BACKGROUND -->
 <video class="bg" autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
-<!-- Loader -->
+<!-- LOADER -->
 <div id="loader">
   <div class="loader-box">
     <img src="logo.jpg" alt="Logo Naruya Store">
@@ -89,26 +229,28 @@ header .logo h2 {color:#00f7ff; font-size:1.5rem;}
   </div>
 </div>
 
-<!-- Header -->
+<!-- HEADER -->
 <header>
   <div class="logo">
-    <img src="logo.jpg" alt="Logo">
+    <img src="logo.jpg" alt="Logo PP">
     <h2>Naruya Store</h2>
   </div>
 </header>
 
-<!-- Hero -->
+<!-- HERO -->
 <section class="hero">
-  <h1>Selamat Datang di Naruya Store</h1>
-  <p>Platform digital terpercaya, cepat, aman, harga terjangkau.</p>
+  <h1>Selamat Datang di Naruya Store Official</h1>
+  <p>Platform digital terpercaya yang cepat, aman, dan harga terjangkau. Gunakan tombol di bawah untuk melihat profil atau melakukan konfirmasi pembayaran.</p>
+  <button class="main-btn" onclick="toggleProfile()">Profile</button>
+  <button class="main-btn" onclick="toggleProduk()">Lihat Produk</button>
 </section>
 
-<!-- Profile -->
+<!-- PROFILE -->
 <section id="profile">
   <div class="profile-card">
-    <img src="logo.jpg" alt="Profil PP">
+    <img src="logo.jpg" alt="Logo PP">
     <h3>Naruya Store</h3>
-    <p>Platform digital terpercaya.</p>
+    <p>Platform digital terpercaya dengan layanan cepat dan aman. Hubungi kami melalui salah satu tombol di bawah:</p>
     <button class="social-btn" onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
     <button class="social-btn" onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
     <button class="social-btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
@@ -117,12 +259,21 @@ header .logo h2 {color:#00f7ff; font-size:1.5rem;}
   </div>
 </section>
 
-<!-- Payment -->
+<!-- PRODUK -->
+<section id="produk-section">
+  <div class="produk-card">
+    <h3>Jasa Pasang Bot</h3>
+    <p>Silakan lakukan konfirmasi pembayaran jika ingin membeli layanan ini.</p>
+    <button class="main-btn" onclick="showPayment('Jasa Pasang Bot')">Konfirmasi Pembayaran</button>
+  </div>
+</section>
+
+<!-- PAYMENT -->
 <section id="payment">
   <h2>Pembayaran Belum Diterima</h2>
   <p>Silakan scan QRIS di bawah dan lakukan transfer:</p>
   <img src="roro.jpg" alt="QRIS Pembayaran">
-  <button class="main-btn" onclick="kirim()">Konfirmasi TF</button>
+  <button class="main-btn" onclick="konfirmasiTF()">Konfirmasi TF</button>
 </section>
 
 <script>
@@ -130,19 +281,31 @@ window.addEventListener("load", function(){
   setTimeout(()=>{ document.getElementById("loader").style.display="none"; },2000);
 });
 
-function toggleProfile(){
+function toggleProfile() {
   let p = document.getElementById("profile");
   p.style.display = (p.style.display === "block") ? "none" : "block";
+  // hide produk jika muncul
+  document.getElementById("produk-section").style.display = "none";
 }
 
-function kirim(){
+function toggleProduk() {
+  let prod = document.getElementById("produk-section");
+  prod.style.display = (prod.style.display === "block") ? "none" : "block";
+  // hide profile jika muncul
+  document.getElementById("profile").style.display = "none";
+}
+
+function showPayment(namaProduk) {
+  window.selectedProduk = namaProduk;
+  document.getElementById("payment").style.display = "block";
+  window.scrollTo({top:document.getElementById("payment").offsetTop, behavior:'smooth'});
+}
+
+function konfirmasiTF() {
   let nama = prompt("Masukkan Nama Anda:");
-  if(!nama){ alert("Isi nama dulu!"); return; }
-  let pesan = 
-    "📦 Produk: Jasa Pasang Bot\n" +
-    "👤 Nama: " + nama + "\n" +
-    "✅ Status: Belum diterima / silakan cek transfer";
-  alert("Detail Pembayaran:\n\n" + pesan);
+  if(!nama) { alert("Isi nama dulu!"); return; }
+  alert("Halo Admin, saya sudah melakukan pembayaran dan ingin mengkonfirmasi pesanan.\n\n📦 Produk: " 
+        + window.selectedProduk + "\n👤 Nama: " + nama + "\n✅Status: Belum diterima / silakan cek transfer");
 }
 </script>
 
