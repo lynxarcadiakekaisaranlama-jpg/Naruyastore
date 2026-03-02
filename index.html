@@ -103,7 +103,6 @@ header{
   text-shadow:0 0 10px #00ffff;
 }
 
-/* BUTTON */
 button{
   padding:14px 22px;
   border:none;
@@ -125,7 +124,6 @@ button:active{
   transform:scale(0.97);
 }
 
-/* HERO */
 .hero{
   text-align:center;
   margin-top:70px;
@@ -142,13 +140,11 @@ button:active{
   line-height:1.6;
 }
 
-/* SECTION */
 section{
   display:none;
   padding:30px 20px;
 }
 
-/* PROFILE */
 .profile-card{
   background:rgba(0,0,0,0.7);
   padding:40px 25px;
@@ -185,7 +181,6 @@ section{
   margin-bottom:15px;
 }
 
-/* PRODUCT */
 .card{
   background:rgba(0,0,0,0.6);
   padding:25px;
@@ -201,7 +196,6 @@ section{
   font-weight:bold;
 }
 
-/* PAYMENT */
 .payment img{
   width:100%;
   border-radius:15px;
@@ -238,8 +232,7 @@ input, select{
 
 <body>
 
-<!-- Background Music -->
-<audio id="bgMusic" loop>
+<audio id="bgMusic" autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -321,7 +314,7 @@ input, select{
 
     <div class="payment-buttons">
       <button onclick="kirim()">Kirim Bukti</button>
-      <button onclick="cekPembayaran()"></button>
+      <button onclick="cekPembayaran()">Cek Pembayaran</button>
     </div>
   </div>
 </section>
@@ -332,17 +325,19 @@ const music = document.getElementById("bgMusic");
 window.addEventListener("load", function(){
   setTimeout(()=>{
     document.getElementById("loader").style.display="none";
-    playMusic();
+
+    music.muted = false;
+    music.volume = 1.0;
+
+    let playPromise = music.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(()=>{
+        setTimeout(()=>{ music.play(); },500);
+      });
+    }
+
   },2000);
 });
-
-function playMusic(){
-  music.play().catch(()=>{
-    document.body.addEventListener("click", ()=>{
-      music.play();
-    }, { once:true });
-  });
-}
 
 function toggleProfile(){
   const p=document.getElementById("profile");
@@ -378,8 +373,6 @@ function beli(nama,harga){
   startTimer();
 }
 
-function cekPembayaran(){}
-
 let waktu=300;
 let interval;
 
@@ -389,9 +382,7 @@ function startTimer(){
   interval=setInterval(()=>{
     waktu--;
     document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";
-    if(waktu<=0){
-      clearInterval(interval);
-    }
+    if(waktu<=0){ clearInterval(interval); }
   },1000);
 }
 
@@ -400,7 +391,6 @@ function kirim(){
   let nama=document.getElementById("nama").value;
   let total=document.getElementById("total").value;
   let currency=document.getElementById("currency").value;
-
   if(!nama){ return; }
 
   let pesan="Halo Admin, saya sudah bayar.\n\n"+
