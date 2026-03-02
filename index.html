@@ -14,9 +14,63 @@
 }
 
 body{
-  background:#0b0f1a;
   color:white;
   overflow-x:hidden;
+}
+
+/* LOADING */
+#loader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.loader-box{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:25px;
+  border-radius:15px;
+  border:2px solid #00f7ff;
+  box-shadow:0 0 30px #00f7ff;
+}
+
+.loader-box img{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  border:3px solid #00f7ff;
+  object-fit:cover;
+}
+
+.loader-text{
+  color:#00f7ff;
+  font-weight:bold;
+}
+
+/* VIDEO BACKGROUND */
+video.bg{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  filter:brightness(1.25) contrast(1.1);
+}
+
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.35);
+  z-index:-1;
 }
 
 /* HEADER */
@@ -37,7 +91,7 @@ header{
   width:45px;
   height:45px;
   border-radius:50%;
-  border:2px solid #00ffff;
+  border:2px solid #00f7ff;
 }
 
 .order-btn{
@@ -46,11 +100,6 @@ header{
   border-radius:8px;
   background:linear-gradient(45deg,#6f00ff,#00f7ff);
   color:white;
-  cursor:pointer;
-}
-
-.order-btn:hover{
-  box-shadow:0 0 15px #00f7ff;
 }
 
 /* HERO */
@@ -66,7 +115,6 @@ header{
 
 .hero p{
   color:#ccc;
-  margin-top:8px;
 }
 
 .main-btn{
@@ -76,11 +124,6 @@ header{
   border-radius:10px;
   background:linear-gradient(45deg,#6f00ff,#00f7ff);
   color:white;
-  cursor:pointer;
-}
-
-.main-btn:hover{
-  box-shadow:0 0 20px #00f7ff;
 }
 
 /* PROFILE */
@@ -103,10 +146,7 @@ header{
   border:2px solid #00f7ff;
 }
 
-.profile-card h3{
-  margin-top:10px;
-}
-
+/* 5 BUTTON PROFILE */
 .social-btn{
   margin-top:10px;
   width:100%;
@@ -115,6 +155,10 @@ header{
   border-radius:8px;
   background:linear-gradient(45deg,#6f00ff,#00f7ff);
   color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
 }
 
 /* PRODUK */
@@ -148,11 +192,6 @@ header{
   padding:40px 20px;
 }
 
-#payment img{
-  width:220px;
-  border-radius:15px;
-}
-
 /* KEUNGGULAN */
 .features{
   padding:20px;
@@ -183,36 +222,6 @@ footer{
   text-align:center;
 }
 
-.footer-left{
-  text-align:left;
-}
-
-.footer-left img{
-  width:50px;
-  height:50px;
-  border-radius:50%;
-}
-
-/* LOGO APK PALING BAWAH */
-.apk-logo{
-  text-align:center;
-  padding:20px;
-}
-
-.apk-logo img{
-  width:70px;
-  height:70px;
-  border-radius:15px;
-  border:2px solid #00f7ff;
-  box-shadow:0 0 15px #00f7ff;
-}
-
-.apk-logo div{
-  margin-top:6px;
-  color:#00f7ff;
-  font-weight:bold;
-}
-
 /* CHAT & UP */
 #chat-btn{
   position:fixed;
@@ -224,7 +233,6 @@ footer{
   background:#00f7ff;
   border:none;
   font-size:30px;
-  cursor:pointer;
 }
 
 #up-btn{
@@ -234,15 +242,28 @@ footer{
   width:50px;
   height:50px;
   border-radius:50%;
-  background:#00f7ff;
+  background:linear-gradient(45deg,#6f00ff,#00f7ff);
   border:none;
-  color:black;
-  cursor:pointer;
+  color:white;
 }
 </style>
 </head>
 
 <body>
+
+<!-- LOADING -->
+<div id="loader">
+  <div class="loader-box">
+    <img src="logo.jpg">
+    <div class="loader-text">Loading Naruya Store...</div>
+  </div>
+</div>
+
+<!-- VIDEO BACKGROUND -->
+<video class="bg" autoplay muted loop playsinline>
+  <source src="anime.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
 
 <header>
   <div class="logo">
@@ -263,10 +284,33 @@ footer{
   <div class="profile-card">
     <img src="logo.jpg">
     <h3>Naruya Store</h3>
-    <p>Store digital terpercaya.</p>
-    <button class="social-btn" onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
-    <button class="social-btn" onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
-    <button class="social-btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
+    <p>Platform digital terpercaya.</p>
+
+    <!-- 5 BUTTON PROFILE -->
+    <button class="social-btn" onclick="window.open('https://wa.me/6287733976909')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:22px;">
+      WhatsApp
+    </button>
+
+    <button class="social-btn" onclick="window.open('https://t.me/Narayuizumi')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" style="width:22px;">
+      Telegram
+    </button>
+
+    <button class="social-btn" onclick="window.open('https://instagram.com/izuku_tsuki')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" style="width:22px;">
+      Instagram
+    </button>
+
+    <button class="social-btn" onclick="window.open('https://tiktok.com/@narayu.kiyora')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Tiktok_icon.svg" style="width:22px;">
+      TikTok
+    </button>
+
+    <button class="social-btn" onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:22px;">
+      Saluran WhatsApp
+    </button>
   </div>
 </section>
 
@@ -309,28 +353,17 @@ footer{
 </section>
 
 <footer>
-  <div class="footer-left">
-    <img src="logo.jpg">
-    <div>Naruya Store</div>
-    <div>Platform digital terpercaya.</div>
-    <div>
-      <a href="https://wa.me/6287733976909">WhatsApp</a> |
-      <a href="https://t.me/Narayuizumi">Telegram</a> |
-      <a href="https://instagram.com/izuku_tsuki">IG</a>
-    </div>
-  </div>
+  <div>Naruya Store © 2026</div>
 </footer>
-
-<!-- LOGO APK PALING BAWAH -->
-<div class="apk-logo">
-  <img src="logo.jpg">
-  <div>Download APK</div>
-</div>
 
 <button id="chat-btn" onclick="window.open('https://wa.me/6287733976909')">💬</button>
 <button id="up-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
 
 <script>
+window.addEventListener("load", function(){
+  setTimeout(()=>{ document.getElementById("loader").style.display="none"; },2000);
+});
+
 function scrollToProduk(){
   document.getElementById("produk").scrollIntoView({behavior:"smooth"});
 }
@@ -347,10 +380,7 @@ function beliProduk(nama){
 
 function kirim(){
   let nama = prompt("Nama pengirim:");
-  if(!nama){
-    alert("Isi dulu!");
-    return;
-  }
+  if(!nama){ alert("Isi dulu!"); return; }
 
   let pesan =
   "Halo Admin, saya sudah bayar.\n\n" +
