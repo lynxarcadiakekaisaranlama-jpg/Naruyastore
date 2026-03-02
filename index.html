@@ -103,6 +103,7 @@ header{
   text-shadow:0 0 10px #00ffff;
 }
 
+/* BUTTON */
 button{
   padding:14px 22px;
   border:none;
@@ -124,6 +125,7 @@ button:active{
   transform:scale(0.97);
 }
 
+/* HERO */
 .hero{
   text-align:center;
   margin-top:70px;
@@ -140,11 +142,13 @@ button:active{
   line-height:1.6;
 }
 
+/* SECTION */
 section{
   display:none;
   padding:30px 20px;
 }
 
+/* PROFILE */
 .profile-card{
   background:rgba(0,0,0,0.7);
   padding:40px 25px;
@@ -181,6 +185,7 @@ section{
   margin-bottom:15px;
 }
 
+/* PRODUCT */
 .card{
   background:rgba(0,0,0,0.6);
   padding:25px;
@@ -196,6 +201,7 @@ section{
   font-weight:bold;
 }
 
+/* PAYMENT */
 .payment img{
   width:100%;
   border-radius:15px;
@@ -231,10 +237,6 @@ input, select{
 </head>
 
 <body>
-
-<audio id="bgMusic" autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
 
 <div id="loader">
   <div class="loader-box">
@@ -306,10 +308,6 @@ input, select{
 
     <input type="text" id="kategori" readonly>
     <input type="text" id="nama" placeholder="Nama Pengirim">
-    <select id="currency">
-      <option value="IDR">IDR (Rupiah)</option>
-      <option value="USD">USD (Dollar)</option>
-    </select>
     <input type="number" id="total" readonly>
 
     <div class="payment-buttons">
@@ -320,54 +318,30 @@ input, select{
 </section>
 
 <script>
-const music = document.getElementById("bgMusic");
-
 window.addEventListener("load", function(){
   setTimeout(()=>{
     document.getElementById("loader").style.display="none";
-
-    music.muted = false;
-    music.volume = 1.0;
-
-    let playPromise = music.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(()=>{
-        setTimeout(()=>{ music.play(); },500);
-      });
-    }
-
   },2000);
 });
 
 function toggleProfile(){
   const p=document.getElementById("profile");
-  if(p.style.display==="block"){
-    p.style.display="none";
-  }else{
-    hideAll();
-    p.style.display="block";
-  }
-}
-
-function toggleProduk(){
-  const pr=document.getElementById("produk");
-  if(pr.style.display==="block"){
-    pr.style.display="none";
-  }else{
-    hideAll();
-    pr.style.display="block";
-  }
-}
-
-function hideAll(){
-  document.getElementById("profile").style.display="none";
+  p.style.display = p.style.display==="block"?"none":"block";
   document.getElementById("produk").style.display="none";
   document.getElementById("payment").style.display="none";
 }
 
+function toggleProduk(){
+  const pr=document.getElementById("produk");
+  pr.style.display = pr.style.display==="block"?"none":"block";
+  document.getElementById("profile").style.display="none";
+  document.getElementById("payment").style.display="none";
+}
+
 function beli(nama,harga){
-  hideAll();
   document.getElementById("payment").style.display="block";
+  document.getElementById("produk").style.display="none";
+  document.getElementById("profile").style.display="none";
   document.getElementById("kategori").value=nama;
   document.getElementById("total").value=harga;
   startTimer();
@@ -390,13 +364,13 @@ function kirim(){
   let kategori=document.getElementById("kategori").value;
   let nama=document.getElementById("nama").value;
   let total=document.getElementById("total").value;
-  let currency=document.getElementById("currency").value;
+
   if(!nama){ return; }
 
   let pesan="Halo Admin, saya sudah bayar.\n\n"+
   "📦 "+kategori+"\n"+
   "👤 "+nama+"\n"+
-  "💵 "+currency+" "+total;
+  "💵 Rp "+total;
 
   window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
 }
