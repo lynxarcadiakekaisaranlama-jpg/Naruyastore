@@ -83,6 +83,40 @@ header{
   box-shadow:0 0 20px #00f7ff;
 }
 
+/* PROFILE */
+#profile{
+  display:none;
+  padding:20px;
+}
+
+.profile-card{
+  background:#15152b;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+}
+
+.profile-card img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:2px solid #00f7ff;
+}
+
+.profile-card h3{
+  margin-top:10px;
+}
+
+.social-btn{
+  margin-top:10px;
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(45deg,#6f00ff,#00f7ff);
+  color:white;
+}
+
 /* PRODUK */
 .products{
   padding:40px 20px;
@@ -97,7 +131,6 @@ header{
 
 .price{
   color:#00f7ff;
-  margin:10px 0;
 }
 
 .buy-btn{
@@ -106,7 +139,6 @@ header{
   border-radius:8px;
   background:#6f00ff;
   color:white;
-  cursor:pointer;
 }
 
 /* PAYMENT */
@@ -119,7 +151,6 @@ header{
 #payment img{
   width:220px;
   border-radius:15px;
-  margin-bottom:15px;
 }
 
 /* KEUNGGULAN */
@@ -131,11 +162,6 @@ header{
   background:#15152b;
   padding:20px;
   border-radius:15px;
-  margin-bottom:15px;
-}
-
-.feature-card h3{
-  color:#00f7ff;
 }
 
 /* FAQ */
@@ -150,16 +176,11 @@ header{
   margin-bottom:10px;
 }
 
-.faq-item:before{
-  content:"➤ ";
-  color:#00f7ff;
-}
-
 /* FOOTER */
 footer{
   background:#111122;
   padding:20px;
-  margin-top:20px;
+  text-align:center;
 }
 
 .footer-left{
@@ -170,6 +191,26 @@ footer{
   width:50px;
   height:50px;
   border-radius:50%;
+}
+
+/* LOGO APK PALING BAWAH */
+.apk-logo{
+  text-align:center;
+  padding:20px;
+}
+
+.apk-logo img{
+  width:70px;
+  height:70px;
+  border-radius:15px;
+  border:2px solid #00f7ff;
+  box-shadow:0 0 15px #00f7ff;
+}
+
+.apk-logo div{
+  margin-top:6px;
+  color:#00f7ff;
+  font-weight:bold;
 }
 
 /* CHAT & UP */
@@ -193,9 +234,9 @@ footer{
   width:50px;
   height:50px;
   border-radius:50%;
-  background:#6f00ff;
+  background:#00f7ff;
   border:none;
-  color:white;
+  color:black;
   cursor:pointer;
 }
 </style>
@@ -215,10 +256,21 @@ footer{
   <h1>Naruya Store Official</h1>
   <p>Platform digital terpercaya, cepat, aman, harga terjangkau.</p>
   <button class="main-btn" onclick="scrollToProduk()">Lihat Produk</button>
+  <button class="main-btn" onclick="toggleProfile()">Profile</button>
+</section>
+
+<section id="profile">
+  <div class="profile-card">
+    <img src="logo.jpg">
+    <h3>Naruya Store</h3>
+    <p>Store digital terpercaya.</p>
+    <button class="social-btn" onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
+    <button class="social-btn" onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
+    <button class="social-btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
+  </div>
 </section>
 
 <section class="products" id="produk">
-
   <div class="card">
     <h3>Jasa Pasang Bot</h3>
     <div class="price">Rp 5.000</div>
@@ -236,36 +288,31 @@ footer{
     <div class="price">Rp 7.000</div>
     <button class="buy-btn" onclick="beliProduk('Panel Pterodactyl')">Beli</button>
   </div>
-
 </section>
 
 <section id="payment">
-  <h2>Scan QRIS untuk Bayar</h2>
+  <h2>Scan QRIS</h2>
   <img src="roro.jpg">
-  <p>Setelah transfer klik konfirmasi</p>
-  <button class="main-btn" onclick="kirim()">Konfirmasi Pembayaran</button>
+  <button class="main-btn" onclick="kirim()">Konfirmasi</button>
 </section>
 
 <section class="features">
   <div class="feature-card">
-    <h3>Keunggulan Layanan Kami</h3>
-    <p>Aman dan cepat diproses.</p>
-    <p>Harga terjangkau, kualitas terjamin.</p>
-    <p>Layanan 24/7 dan terpercaya.</p>
+    <h3>Keunggulan</h3>
+    <p>Aman, cepat, harga terjangkau.</p>
   </div>
 </section>
 
 <section class="faq">
-  <div class="faq-item">Umur minimal penggunaan layanan?</div>
-  <div class="faq-item">Apakah pembayaran aman?</div>
-  <div class="faq-item">Bagaimana proses pengiriman?</div>
+  <div class="faq-item">Umur minimal?</div>
+  <div class="faq-item">Pembayaran aman?</div>
 </section>
 
 <footer>
   <div class="footer-left">
     <img src="logo.jpg">
     <div>Naruya Store</div>
-    <div>Platform digital terpercaya, cepat, aman, harga terjangkau.</div>
+    <div>Platform digital terpercaya.</div>
     <div>
       <a href="https://wa.me/6287733976909">WhatsApp</a> |
       <a href="https://t.me/Narayuizumi">Telegram</a> |
@@ -273,6 +320,12 @@ footer{
     </div>
   </div>
 </footer>
+
+<!-- LOGO APK PALING BAWAH -->
+<div class="apk-logo">
+  <img src="logo.jpg">
+  <div>Download APK</div>
+</div>
 
 <button id="chat-btn" onclick="window.open('https://wa.me/6287733976909')">💬</button>
 <button id="up-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
@@ -282,16 +335,20 @@ function scrollToProduk(){
   document.getElementById("produk").scrollIntoView({behavior:"smooth"});
 }
 
+function toggleProfile(){
+  let p = document.getElementById("profile");
+  p.style.display = (p.style.display === "block") ? "none" : "block";
+}
+
 function beliProduk(nama){
   document.getElementById("payment").style.display="block";
   window.selectedProduk = nama;
-  document.getElementById("payment").scrollIntoView({behavior:"smooth"});
 }
 
 function kirim(){
-  let nama = prompt("Masukkan nama pengirim:");
+  let nama = prompt("Nama pengirim:");
   if(!nama){
-    alert("Isi dulu ya.");
+    alert("Isi dulu!");
     return;
   }
 
