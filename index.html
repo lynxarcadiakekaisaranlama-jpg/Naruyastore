@@ -238,6 +238,11 @@ input, select{
 
 <body>
 
+<!-- Musik Background -->
+<audio id="bgMusic" autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <div id="loader">
   <div class="loader-box">
     <img src="loading.jpg">
@@ -327,6 +332,7 @@ input, select{
 window.addEventListener("load", function(){
   setTimeout(()=>{
     document.getElementById("loader").style.display="none";
+    alert("Selamat datang di Naruya Store 🚀");
   },2000);
 });
 
@@ -357,6 +363,7 @@ function hideAll(){
 }
 
 function beli(nama,harga){
+  alert("Kamu memilih: " + nama);
   hideAll();
   document.getElementById("payment").style.display="block";
   document.getElementById("kategori").value=nama;
