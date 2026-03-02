@@ -43,6 +43,14 @@ body{
   box-shadow:0 0 30px #00f7ff;
 }
 
+.loader-box img{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  border:2px solid #00f7ff;
+  object-fit:cover;
+}
+
 .loader-text{
   color:#00f7ff;
   font-weight:bold;
@@ -58,15 +66,15 @@ video.bg{
   height:100%;
   object-fit:cover;
   z-index:-2;
-  filter:brightness(1.25) contrast(1.1);
-  display:none;
+  filter:brightness(0.4) contrast(1.1);
+  display:block; /* Background aktif */
 }
 
 .overlay{
   position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.35);
+  background:rgba(0,0,0,0.6);
   z-index:-1;
 }
 
@@ -77,6 +85,21 @@ header{
   align-items:center;
   padding:20px;
   background-color: rgba(21,21,43,0.8);
+  position:relative;
+  z-index:10;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:2px solid #00f7ff;
 }
 
 .logo h2{
@@ -103,10 +126,12 @@ header{
   text-align:center;
   padding:40px 20px;
   margin-top:20px;
+  position:relative;
+  z-index:5;
 }
 
 .hero h1{
-  font-size:2rem;
+  font-size:2.2rem;
   text-shadow:0 0 10px #00f7ff;
   margin-bottom:10px;
 }
@@ -117,6 +142,8 @@ header{
   text-align:center;
   padding:20px;
   margin-top:20px;
+  position:relative;
+  z-index:5;
 }
 
 .profile-card{
@@ -126,6 +153,7 @@ header{
   max-width:400px;
   margin:0 auto;
   box-shadow:0 0 20px rgba(0,247,255,0.2);
+  border:1px solid #00f7ff;
 }
 
 .profile-card h3{
@@ -153,6 +181,8 @@ header{
 .products{
   padding:20px;
   margin-top:20px;
+  position:relative;
+  z-index:5;
 }
 
 .card{
@@ -161,6 +191,8 @@ header{
   border-radius:15px;
   margin-bottom:20px;
   box-shadow:0 0 20px rgba(0,247,255,0.1);
+  text-align:center;
+  border:1px solid #00f7ff;
 }
 
 .card h3{
@@ -193,10 +225,13 @@ header{
   text-align:center;
   padding:40px 20px;
   margin-top:20px;
+  position:relative;
+  z-index:5;
 }
 
 #payment h2{
   margin-bottom:20px;
+  text-shadow:0 0 10px #00f7ff;
 }
 
 #payment img{
@@ -221,6 +256,7 @@ header{
   font-size:1.2rem;
   cursor:pointer;
   transition:all 0.3s ease;
+  z-index:20;
 }
 
 #up-btn:hover{
@@ -230,21 +266,23 @@ header{
 </head>
 <body>
 
-<!-- LOADING -->
-<div id="loader">
-  <div class="loader-box">
-    <div class="loader-text">Loading Naruya Store...</div>
-  </div>
-</div>
-
 <!-- VIDEO BACKGROUND -->
 <video class="bg" autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
+<!-- LOADING -->
+<div id="loader">
+  <div class="loader-box">
+    <img src="logo.jpg" alt="Logo Naruya Store">
+    <div class="loader-text">Loading Naruya Store...</div>
+  </div>
+</div>
+
 <header>
   <div class="logo">
+    <img src="logo.jpg" alt="Logo">
     <h2>Naruya Store</h2>
   </div>
   <button class="order-btn" onclick="scrollToProduk()">Buka Pesanan</button>
@@ -290,7 +328,7 @@ header{
 <section id="payment">
   <h2>Scan QRIS</h2>
   <img src="roro.jpg" alt="QRIS Pembayaran">
-  <button class="main-btn" onclick="kirim()">Konfirmasi Pembayaran</button>
+  <button class="main-btn" onclick="kirim()">Konfirmasi</button>
 </section>
 
 <button id="up-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
