@@ -74,8 +74,6 @@
             top: 0;
             left: 0;
             width: 100%;
-            display: flex;
-            align-items: center;
             padding: 18px 20px;
             background: rgba(15, 15, 30, 0.6);
             backdrop-filter: blur(6px);
@@ -156,8 +154,7 @@
         /* HERO SECTION */
         .hero {
             text-align: center;
-            padding-top: 140px;
-            padding-bottom: 40px;
+            padding: 140px 20px 40px;
         }
 
         .hero h1 {
@@ -166,8 +163,8 @@
         }
 
         .hero p {
-            margin: 10px 0 20px;
             font-size: 1.1rem;
+            margin: 10px 0 20px;
         }
 
         .btn {
@@ -184,7 +181,7 @@
             box-shadow: 0 0 15px #00f7ff;
         }
 
-        /* PROFILE SECTION - TIDAK KE POJOK */
+        /* PROFILE SECTION */
         #profile {
             display: none;
             text-align: center;
@@ -203,8 +200,8 @@
 
         .social-btn {
             width: 100%;
-            margin: 8px 0;
             padding: 12px;
+            margin: 8px 0;
             border: none;
             border-radius: 8px;
             background: linear-gradient(45deg, #6f00ff, #00f7ff);
@@ -240,7 +237,7 @@
             margin: 10px 0;
         }
 
-        /* PAYMENT SECTION */
+        /* PAYMENT SECTION - FOTO QRIS KITA */
         #payment {
             display: none;
             text-align: center;
@@ -263,8 +260,8 @@
             right: 20px;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
             border: none;
+            border-radius: 50%;
             background: linear-gradient(45deg, #6f00ff, #00f7ff);
             color: white;
             font-size: 18px;
@@ -322,17 +319,17 @@
         <div class="card">
             <h3>Jasa Pasang Bot</h3>
             <div class="price">Rp 5.000</div>
-            <button class="btn" onclick="beli('Jasa Pasang Bot','5.000')">Beli</button>
+            <button class="btn" onclick="beli('Jasa Pasang Bot', '5.000')">Beli</button>
         </div>
         <div class="card">
             <h3>Nokos Indo</h3>
             <div class="price">Rp 5.000</div>
-            <button class="btn" onclick="beli('Nokos Indo','5.000')">Beli</button>
+            <button class="btn" onclick="beli('Nokos Indo', '5.000')">Beli</button>
         </div>
     </section>
 
     <section id="payment">
-        <h2>Scan QRIS</h2>
+        <h2>Scan QRIS Kita</h2>
         <img src="roro.jpg" alt="Kode QRIS Pembayaran">
         <button class="btn" onclick="kirim()">Konfirmasi</button>
     </section>
@@ -341,20 +338,20 @@
 
     <script>
         // Inisialisasi elemen
-        const openMenuBtn = document.getElementById('openMenu');
-        const closeMenuBtn = document.getElementById('closeMenu');
+        const loader = document.getElementById('loader');
+        const openMenu = document.getElementById('openMenu');
+        const closeMenu = document.getElementById('closeMenu');
         const sidebar = document.getElementById('sidebar');
         const menuTitle = document.getElementById('menuTitle');
-        const loader = document.getElementById('loader');
 
         // Inisialisasi saat halaman dimuat
         window.onload = function() {
             // Sembunyikan loader setelah 2 detik
             setTimeout(() => {
-                loader.style.display = "none";
+                loader.style.display = 'none';
             }, 2000);
 
-            // Tampilkan nama toko setelah 2,2 detik lalu sembunyikan setelah 5,2 detik
+            // Tampilkan nama toko setelah 2,2 detik, sembunyikan setelah 5,2 detik
             setTimeout(() => {
                 menuTitle.classList.add('show');
             }, 2200);
@@ -364,31 +361,27 @@
         }
 
         // Buka sidebar
-        openMenuBtn.addEventListener('click', function() {
-            sidebar.style.left = "0";
-            openMenuBtn.style.display = "none";
-            closeMenuBtn.style.display = "block";
+        openMenu.addEventListener('click', function() {
+            sidebar.style.left = '0';
+            openMenu.style.display = 'none';
+            closeMenu.style.display = 'block';
         });
 
         // Tutup sidebar
-        closeMenuBtn.addEventListener('click', function() {
-            sidebar.style.left = "-250px";
-            closeMenuBtn.style.display = "none";
-            openMenuBtn.style.display = "block";
+        closeMenu.addEventListener('click', function() {
+            sidebar.style.left = '-250px';
+            closeMenu.style.display = 'none';
+            openMenu.style.display = 'flex';
         });
 
-        // Tampilkan/sembunyikan Profile (TIDAK KE POJOK)
+        // Tampilkan/sembunyikan Profile
         function toggleProfile() {
-            const profileSection = document.getElementById('profile');
-            if (profileSection.style.display === "block") {
-                profileSection.style.display = "none";
+            const profile = document.getElementById('profile');
+            if (profile.style.display === 'block') {
+                profile.style.display = 'none';
             } else {
-                profileSection.style.display = "block";
-                // Gulir ke bagian Profile tanpa ke pojok
-                profileSection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center' // Posisi di tengah layar
-                });
+                profile.style.display = 'block';
+                profile.scrollIntoView({ behavior:'smooth', block: 'center' });
             }
         }
 
@@ -400,34 +393,25 @@
         // Gulir ke bagian tertentu
         function scrollToSection(id) {
             const section = document.getElementById(id);
-            section.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'center' // Jaga posisi tidak ke pojok
-            });
-            // Tutup sidebar otomatis
-            sidebar.style.left = "-250px";
-            closeMenuBtn.style.display = "none";
-            openMenuBtn.style.display = "block";
+            section.scrollIntoView({ behavior:'smooth', block: 'center' });
+            sidebar.style.left = '-250px';
+            closeMenu.style.display = 'none';
+            openMenu.style.display = 'flex';
         }
 
         // Pilih produk dan tampilkan pembayaran
         function beli(nama, harga) {
             window.selectedProduct = nama;
             window.productPrice = harga;
-            const paymentSection = document.getElementById('payment');
-            paymentSection.style.display = "block";
-            paymentSection.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'center'
-            });
+            const payment = document.getElementById('payment');
+            payment.style.display = 'block';
+            payment.scrollIntoView({ behavior:'smooth', block: 'center' });
         }
 
         // Kirim konfirmasi pembayaran
         function kirim() {
-            const namaPembeli = prompt("Masukkan Nama:");
-            if (!namaPembeli) {
-                return alert("Isi nama dulu!");
-            }
+            const namaPembeli = prompt('Masukkan Nama:');
+            if (!namaPembeli) return alert('Isi nama dulu!');
             const pesan = `Halo Admin, saya sudah bayar.\n\n📦 Produk: ${window.selectedProduct}\n👤 Nama: ${namaPembeli}\n💰 Mata Uang: IDR\n💵 Total: Rp ${window.productPrice}`;
             window.location.href = `https://t.me/Narayuizumi?text=${encodeURIComponent(pesan)}`;
         }
