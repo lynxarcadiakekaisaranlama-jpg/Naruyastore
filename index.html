@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naruya Store</title>
 <style>
-/* Reset dan font */
+/* Reset & Font */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
 }
-
 body {
   color: #fff;
   background-color: #15152b;
@@ -73,7 +72,7 @@ video.bg {
 /* Header */
 header {
   display: flex;
-  justify-content: center;
+  align-items: center;
   padding: 20px;
   background: rgba(21,21,43,0.8);
   z-index: 10;
@@ -113,19 +112,25 @@ header .logo h2 {
   text-align: center;
   line-height: 1.8;
 }
-.hero .main-btn {
-  display: inline-block;
+
+/* Buttons bawah hero */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.hero-buttons .main-btn {
   padding: 12px 25px;
-  margin: 5px;
   background: linear-gradient(45deg,#6f00ff,#00f7ff);
-  color: #fff;
   border: none;
   border-radius: 8px;
+  color: #fff;
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
-.hero .main-btn:hover {
+.hero-buttons .main-btn:hover {
   box-shadow: 0 0 15px #00f7ff;
 }
 
@@ -241,8 +246,12 @@ header .logo h2 {
 <section class="hero">
   <h1>Selamat Datang di Naruya Store Official</h1>
   <p>Platform digital terpercaya yang cepat, aman, dan harga terjangkau. Gunakan tombol di bawah untuk melihat profil atau melakukan konfirmasi pembayaran.</p>
-  <button class="main-btn" onclick="toggleProfile()">Profile</button>
-  <button class="main-btn" onclick="toggleProduk()">Lihat Produk</button>
+
+  <!-- Tombol di bawah hero -->
+  <div class="hero-buttons">
+    <button class="main-btn" onclick="toggleProfile()">Profile</button>
+    <button class="main-btn" onclick="toggleProduk()">Lihat Produk</button>
+  </div>
 </section>
 
 <!-- PROFILE -->
@@ -284,14 +293,12 @@ window.addEventListener("load", function(){
 function toggleProfile() {
   let p = document.getElementById("profile");
   p.style.display = (p.style.display === "block") ? "none" : "block";
-  // hide produk jika muncul
   document.getElementById("produk-section").style.display = "none";
 }
 
 function toggleProduk() {
   let prod = document.getElementById("produk-section");
   prod.style.display = (prod.style.display === "block") ? "none" : "block";
-  // hide profile jika muncul
   document.getElementById("profile").style.display = "none";
 }
 
