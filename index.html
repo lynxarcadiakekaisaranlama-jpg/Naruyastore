@@ -313,28 +313,36 @@ input, select{
 
     <input type="text" id="kategori" readonly>
     <input type="text" id="nama" placeholder="Nama Pengirim">
-
     <select id="currency">
       <option value="IDR">IDR (Rupiah)</option>
       <option value="USD">USD (Dollar)</option>
     </select>
-
     <input type="number" id="total" readonly>
 
     <div class="payment-buttons">
       <button onclick="kirim()">Kirim Bukti</button>
-      <button onclick="cekPembayaran()">Cek Pembayaran</button>
+      <button onclick="cekPembayaran()"></button>
     </div>
   </div>
 </section>
 
 <script>
+const music = document.getElementById("bgMusic");
+
 window.addEventListener("load", function(){
   setTimeout(()=>{
     document.getElementById("loader").style.display="none";
-    document.getElementById("bgMusic").play().catch(()=>{});
+    playMusic();
   },2000);
 });
+
+function playMusic(){
+  music.play().catch(()=>{
+    document.body.addEventListener("click", ()=>{
+      music.play();
+    }, { once:true });
+  });
+}
 
 function toggleProfile(){
   const p=document.getElementById("profile");
