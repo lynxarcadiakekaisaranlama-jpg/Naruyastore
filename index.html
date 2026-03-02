@@ -67,7 +67,7 @@ video.bg{
   object-fit:cover;
   z-index:-2;
   filter:brightness(0.4) contrast(1.1);
-  display:block; /* Background aktif */
+  display:block;
 }
 
 .overlay{
@@ -280,6 +280,7 @@ header{
   </div>
 </div>
 
+<!-- HEADER -->
 <header>
   <div class="logo">
     <img src="logo.jpg" alt="Logo">
@@ -288,6 +289,7 @@ header{
   <button class="order-btn" onclick="scrollToProduk()">Buka Pesanan</button>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <h1>Naruya Store Official</h1>
   <p>Platform digital terpercaya, cepat, aman, harga terjangkau.</p>
@@ -295,6 +297,7 @@ header{
   <button class="main-btn" onclick="scrollToProduk()">Lihat Produk</button>
 </section>
 
+<!-- PROFILE -->
 <section id="profile">
   <div class="profile-card">
     <h3>Naruya Store</h3>
@@ -307,6 +310,7 @@ header{
   </div>
 </section>
 
+<!-- PRODUK -->
 <section class="products" id="produk">
   <div class="card">
     <h3>Jasa Pasang Bot</h3>
@@ -325,12 +329,14 @@ header{
   </div>
 </section>
 
+<!-- PAYMENT -->
 <section id="payment">
   <h2>Scan QRIS</h2>
   <img src="roro.jpg" alt="QRIS Pembayaran">
   <button class="main-btn" onclick="kirim()">Konfirmasi</button>
 </section>
 
+<!-- BUTTON UP -->
 <button id="up-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
 
 <script>
