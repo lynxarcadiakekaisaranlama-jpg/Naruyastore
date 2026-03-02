@@ -68,7 +68,7 @@
             z-index: -1;
         }
 
-        /* HEADER - TAMPILKAN GARIS TIGA DAN NAMA TOKO */
+        /* HEADER */
         header {
             position: fixed;
             top: 0;
@@ -184,16 +184,16 @@
             box-shadow: 0 0 15px #00f7ff;
         }
 
-        /* PROFILE SECTION */
+        /* PROFILE SECTION - TIDAK KE POJOK */
         #profile {
             display: none;
             text-align: center;
             padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .profile-card {
-            max-width: 400px;
-            margin: auto;
             background: rgba(21, 21, 43, 0.9);
             padding: 25px;
             border-radius: 15px;
@@ -220,6 +220,8 @@
         /* PRODUCTS SECTION */
         .products {
             padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .card {
@@ -228,8 +230,8 @@
             margin-bottom: 20px;
             border-radius: 15px;
             border: 1px solid #00f7ff;
-            text-align: center;
             box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+            text-align: center;
         }
 
         .price {
@@ -243,6 +245,8 @@
             display: none;
             text-align: center;
             padding: 30px 20px;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         #payment img {
@@ -281,7 +285,6 @@
         </div>
     </div>
 
-    <!-- TAMPILKAN GARIS TIGA DAN NAMA TOKO -->
     <header>
         <div class="menu-btn" id="openMenu">
             <span class="menu-icon">☰</span>
@@ -331,7 +334,6 @@
     <section id="payment">
         <h2>Scan QRIS</h2>
         <img src="roro.jpg" alt="Kode QRIS Pembayaran">
-        <br>
         <button class="btn" onclick="kirim()">Konfirmasi</button>
     </section>
 
@@ -343,20 +345,21 @@
         const closeMenuBtn = document.getElementById('closeMenu');
         const sidebar = document.getElementById('sidebar');
         const menuTitle = document.getElementById('menuTitle');
+        const loader = document.getElementById('loader');
 
         // Inisialisasi saat halaman dimuat
         window.onload = function() {
             // Sembunyikan loader setelah 2 detik
             setTimeout(() => {
-                document.getElementById("loader").style.display = "none";
+                loader.style.display = "none";
             }, 2000);
 
             // Tampilkan nama toko setelah 2,2 detik lalu sembunyikan setelah 5,2 detik
             setTimeout(() => {
-                menuTitle.classList.add("show");
+                menuTitle.classList.add('show');
             }, 2200);
             setTimeout(() => {
-                menuTitle.classList.remove("show");
+                menuTitle.classList.remove('show');
             }, 5200);
         }
 
@@ -374,10 +377,19 @@
             openMenuBtn.style.display = "block";
         });
 
-        // Tampilkan/sembunyikan profil
+        // Tampilkan/sembunyikan Profile (TIDAK KE POJOK)
         function toggleProfile() {
-            let profileSection = document.getElementById("profile");
-            profileSection.style.display = profileSection.style.display === "block" ? "none" : "block";
+            const profileSection = document.getElementById('profile');
+            if (profileSection.style.display === "block") {
+                profileSection.style.display = "none";
+            } else {
+                profileSection.style.display = "block";
+                // Gulir ke bagian Profile tanpa ke pojok
+                profileSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center' // Posisi di tengah layar
+                });
+            }
         }
 
         // Buka tautan sosial media
@@ -387,7 +399,11 @@
 
         // Gulir ke bagian tertentu
         function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            const section = document.getElementById(id);
+            section.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center' // Jaga posisi tidak ke pojok
+            });
             // Tutup sidebar otomatis
             sidebar.style.left = "-250px";
             closeMenuBtn.style.display = "none";
@@ -398,22 +414,22 @@
         function beli(nama, harga) {
             window.selectedProduct = nama;
             window.productPrice = harga;
-            document.getElementById("payment").style.display = "block";
-            document.getElementById("payment").scrollIntoView({ behavior: 'smooth' });
+            const paymentSection = document.getElementById('payment');
+            paymentSection.style.display = "block";
+            paymentSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+            });
         }
 
         // Kirim konfirmasi pembayaran
         function kirim() {
-            let namaPembeli = prompt("Masukkan Nama:");
+            const namaPembeli = prompt("Masukkan Nama:");
             if (!namaPembeli) {
                 return alert("Isi nama dulu!");
             }
-            let pesan = "Halo Admin, saya sudah bayar.\n\n" +
-                        "📦 Produk: " + window.selectedProduct + "\n" +
-                        "👤 Nama: " + namaPembeli + "\n" +
-                        "💰 Mata Uang: IDR\n" +
-                        "💵 Total: Rp " + window.productPrice;
-            window.location.href = "https://t.me/Narayuizumi?text=" + encodeURIComponent(pesan);
+            const pesan = `Halo Admin, saya sudah bayar.\n\n📦 Produk: ${window.selectedProduct}\n👤 Nama: ${namaPembeli}\n💰 Mata Uang: IDR\n💵 Total: Rp ${window.productPrice}`;
+            window.location.href = `https://t.me/Narayuizumi?text=${encodeURIComponent(pesan)}`;
         }
     </script>
 </body>
