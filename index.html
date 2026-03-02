@@ -331,8 +331,10 @@
 
     <section id="payment" style="display: none;">
         <h2>Scan QRIS Kita</h2>
+        <p>Sudah melakukan pembayaran? Silakan konfirmasi dengan mengisi data di bawah ini.</p>
         <img src="roro.jpg" alt="QRIS Pembayaran">
-        <button class="btn" onclick="kirim()">Konfirmasi</button>
+        <p>*Setelah scan silakan klik tombol konfirmasi untuk melanjutkan*</p>
+        <button class="btn" onclick="kirim()">Konfirmasi Pembayaran</button>
     </section>
 
     <button id="up" onclick="window.scrollTo({top: 0, behavior:'smooth'})">⬆</button>
@@ -413,7 +415,7 @@
             const namaPembeli = prompt('Masukkan Nama:');
             if (!namaPembeli) return alert('Isi nama dulu!');
             
-            const pesan = `Halo Admin, saya sudah bayar.\n\n📦 Produk: ${window.selectedProduct}\n👤 Nama: ${namaPembeli}\n💰 Mata Uang: IDR\n💵 Total: Rp ${window.productPrice}`;
+            const pesan = `Halo Admin, saya sudah melakukan pembayaran dan ingin mengkonfirmasi pesanan.\n\n📦 Produk: ${window.selectedProduct}\n👤 Nama: ${namaPembeli}\n💰 Mata Uang: IDR\n💵 Total: Rp ${window.productPrice}\n\nMohon segera diproses ya, terima kasih!`;
             window.location.href = `https://t.me/Narayuizumi?text=${encodeURIComponent(pesan)}`;
         }
     </script>
