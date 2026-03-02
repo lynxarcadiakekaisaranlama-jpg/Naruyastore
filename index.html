@@ -4,137 +4,406 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naruya Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
 }
 
-body {
-  background: #0f0f0f;
-  color: white;
+body{
+  color:white;
+  overflow-x:hidden;
 }
 
-.container {
-  max-width: 420px;
-  margin: auto;
-  padding: 20px;
-  text-align: center;
+/* LOADER */
+#loader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
 }
 
-.profile-img {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  margin-top: 20px;
-  object-fit: cover;
+.loader-box{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:25px 35px;
+  border-radius:20px;
+  border:2px solid #00ffff;
+  box-shadow:0 0 40px #00ffff;
 }
 
-h1 {
-  margin-top: 15px;
-  font-size: 22px;
+.loader-box img{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  border:3px solid #00ffff;
+  box-shadow:0 0 25px #00ffff;
+  object-fit:cover;
 }
 
-.desc {
-  font-size: 14px;
-  opacity: 0.8;
-  margin-top: 8px;
-  margin-bottom: 25px;
+.loader-text{
+  font-size:20px;
+  font-weight:bold;
+  color:#00ffff;
+  text-shadow:0 0 15px #00ffff;
 }
 
-.button {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-  border-radius: 12px;
-  border: none;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
+/* VIDEO BACKGROUND */
+video.bg{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  filter:brightness(1.4) contrast(1.1);
 }
 
-.primary {
-  background: #5865F2;
-  color: white;
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.35);
+  z-index:-1;
 }
 
-.primary:hover {
-  background: #4752c4;
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:25px 20px 15px 20px;
 }
 
-.secondary {
-  background: #1f1f1f;
-  color: white;
-  border: 1px solid #333;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.secondary:hover {
-  background: #2a2a2a;
+.logo img{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:2px solid #00ffff;
+  box-shadow:0 0 20px #00ffff;
+  margin-top:6px;
 }
 
-.footer {
-  margin-top: 30px;
-  font-size: 12px;
-  opacity: 0.6;
+.logo h2{
+  text-shadow:0 0 10px #00ffff;
+}
+
+/* BUTTON */
+button{
+  padding:14px 22px;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(90deg,#8f00ff,#00ffff);
+  box-shadow:0 0 25px #00ffff;
+  transition:all 0.2s ease;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  opacity:0.95;
+}
+
+button:active{
+  transform:scale(0.97);
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  margin-top:70px;
+}
+
+.hero h1{
+  font-size:30px;
+  text-shadow:0 0 15px #00ffff;
+}
+
+.hero p{
+  margin-top:8px;
+  opacity:0.9;
+  line-height:1.6;
+}
+
+/* SECTION */
+section{
+  display:none;
+  padding:30px 20px;
+}
+
+/* PROFILE */
+.profile-card{
+  background:rgba(0,0,0,0.7);
+  padding:40px 25px;
+  border-radius:25px;
+  margin:20px;
+  text-align:center;
+  border:2px solid #00ffff;
+  box-shadow:0 0 50px rgba(0,255,255,0.7);
+  backdrop-filter:blur(15px);
+}
+
+.profile-img{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  margin:auto;
+  border:5px solid #00ffff;
+  box-shadow:0 0 40px #00ffff;
+  object-fit:cover;
+}
+
+.profile-card h2{
+  margin-top:20px;
+  font-size:26px;
+}
+
+.profile-card p{
+  margin:10px 0 25px;
+  opacity:0.8;
+}
+
+.social-btn{
+  width:100%;
+  margin-bottom:15px;
+}
+
+/* PRODUCT */
+.card{
+  background:rgba(0,0,0,0.6);
+  padding:25px;
+  border-radius:20px;
+  margin-bottom:25px;
+  border:1px solid rgba(0,255,255,0.4);
+  box-shadow:0 0 25px rgba(0,255,255,0.3);
+}
+
+.price{
+  color:#00ffff;
+  margin:10px 0;
+  font-weight:bold;
+}
+
+/* PAYMENT */
+.payment img{
+  width:100%;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+
+.timer{
+  color:#00ffff;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+input, select{
+  width:100%;
+  padding:14px;
+  margin-bottom:15px;
+  border-radius:10px;
+  border:none;
+  background:rgba(255,255,255,0.15);
+  color:white;
+  box-shadow:0 0 15px #00ffff;
+}
+
+.payment-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.payment-buttons button{
+  flex:1;
 }
 </style>
 </head>
+
 <body>
 
-<div class="container">
-
-<img src="logo.jpg" class="profile-img">
-<h1>Naruya Store</h1>
-<p class="desc">
-Platform digital terpercaya untuk kebutuhan Anda.<br>
-Cepat diproses, aman digunakan, kualitas terjamin.
-</p>
-
-<button class="button primary" onclick="window.location.href='#produk'">
-Lihat Produk
-</button>
-
-<button class="button secondary" onclick="window.location.href='#profile'">
-Profile
-</button>
-
-<button class="button secondary" onclick="alert('Silakan kirim bukti transfer ke admin untuk verifikasi.')">
-Cek Pembayaran Sekarang
-</button>
-
-<section id="produk" style="margin-top:40px;">
-<h2 style="margin-bottom:15px;">Produk Digital</h2>
-<button class="button secondary">Panel Pterodactyl</button>
-<button class="button secondary">Script Bot Telegram</button>
-<button class="button secondary">Nokos All Negara</button>
-</section>
-
-<section id="profile" style="margin-top:40px;">
-<h2 style="margin-bottom:15px;">Profile</h2>
-<button class="button secondary" onclick="window.open('https://t.me/username')">
-Telegram
-</button>
-<button class="button secondary" onclick="window.open('https://wa.me/6287733976909')">
-WhatsApp
-</button>
-<button class="button secondary" onclick="window.open('https://tiktok.com/@username')">
-TikTok
-</button>
-<button class="button secondary" onclick="window.open('https://whatsapp.com/channel/yourchannel')">
-Saluran WhatsApp
-</button>
-</section>
-
-<div class="footer">
-© 2026 Naruya Store
+<div id="loader">
+  <div class="loader-box">
+    <img src="loading.jpg">
+    <div class="loader-text">Loading Naruya Store...</div>
+  </div>
 </div>
 
+<video class="bg" autoplay muted loop playsinline>
+  <source src="anime.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<header>
+  <div class="logo">
+    <img src="logo.jpg">
+    <h2>Naruya Store</h2>
+  </div>
+  <button onclick="toggleProduk()">Lihat Produk</button>
+</header>
+
+<div class="hero">
+  <h1>Naruya Store Official</h1>
+  <p>
+    Platform digital terpercaya untuk kebutuhan Anda.<br>
+    Cepat diproses, aman digunakan, kualitas terjamin.
+  </p>
+  <button onclick="toggleProfile()">Profile</button>
 </div>
+
+<section id="profile">
+  <div class="profile-card">
+    <img src="logo.jpg" class="profile-img">
+    <h2>Naruya Store</h2>
+    <p>Store digital terpercaya.</p>
+
+    <button class="social-btn" onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
+    <button class="social-btn" onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
+    <button class="social-btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
+    <button class="social-btn" onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
+    <button class="social-btn" onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">Saluran WhatsApp</button>
+  </div>
+</section>
+
+<section id="produk">
+  <div class="card">
+    <h3>Panel Pterodactyl</h3>
+    <div class="price">Rp 7.000</div>
+    <button onclick="beli('Panel Pterodactyl',7000)">Beli</button>
+  </div>
+
+  <div class="card">
+    <h3>Jasa Pasang Bot</h3>
+    <div class="price">Rp 5.000</div>
+    <button onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
+  </div>
+
+  <div class="card">
+    <h3>Nokos Indo</h3>
+    <div class="price">Rp 4.000</div>
+    <button onclick="beli('Nokos Indo',4000)">Beli</button>
+  </div>
+</section>
+
+<section id="payment" class="payment">
+  <div class="card">
+    <img src="roro.jpg">
+    <div class="timer" id="timer">QR berlaku: 300 detik</div>
+
+    <input type="text" id="kategori" readonly>
+    <input type="text" id="nama" placeholder="Nama Pengirim">
+    <select id="currency">
+      <option value="IDR">IDR (Rupiah)</option>
+      <option value="USD">USD (Dollar)</option>
+    </select>
+    <input type="number" id="total" readonly>
+
+    <div class="payment-buttons">
+      <button onclick="kirim()">Kirim Bukti</button>
+      <button onclick="cekPembayaran()">Cek Pembayaran</button>
+    </div>
+  </div>
+</section>
+
+<script>
+window.addEventListener("load", function(){
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+  },2000);
+});
+
+function toggleProfile(){
+  const p=document.getElementById("profile");
+  if(p.style.display==="block"){
+    p.style.display="none";
+  }else{
+    hideAll();
+    p.style.display="block";
+  }
+}
+
+function toggleProduk(){
+  const pr=document.getElementById("produk");
+  if(pr.style.display==="block"){
+    pr.style.display="none";
+  }else{
+    hideAll();
+    pr.style.display="block";
+  }
+}
+
+function hideAll(){
+  document.getElementById("profile").style.display="none";
+  document.getElementById("produk").style.display="none";
+  document.getElementById("payment").style.display="none";
+}
+
+function beli(nama,harga){
+  hideAll();
+  document.getElementById("payment").style.display="block";
+  document.getElementById("kategori").value=nama;
+  document.getElementById("total").value=harga;
+  startTimer();
+}
+
+function cekPembayaran(){
+  alert("Sistem sedang memverifikasi pembayaran Anda. Mohon tunggu beberapa saat.");
+  setTimeout(()=>{
+    alert("Pembayaran belum terdeteksi atau masih dalam proses pengecekan.");
+  },2000);
+}
+
+let waktu=300;
+let interval;
+
+function startTimer(){
+  waktu=300;
+  clearInterval(interval);
+  interval=setInterval(()=>{
+    waktu--;
+    document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";
+    if(waktu<=0){
+      clearInterval(interval);
+      alert("QR kadaluarsa.");
+    }
+  },1000);
+}
+
+function kirim(){
+  let kategori=document.getElementById("kategori").value;
+  let nama=document.getElementById("nama").value;
+  let total=document.getElementById("total").value;
+  let currency=document.getElementById("currency").value;
+
+  if(!nama){
+    alert("Isi nama dulu!");
+    return;
+  }
+
+  let pesan="Halo Admin, saya sudah bayar.\n\n"+
+  "📦 "+kategori+"\n"+
+  "👤 "+nama+"\n"+
+  "💵 "+currency+" "+total;
+
+  window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
+}
+</script>
 
 </body>
 </html>
