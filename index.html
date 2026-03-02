@@ -259,6 +259,28 @@
             margin: 10px 0;
         }
 
+        .success {
+            color: #00ff9d;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(0, 247, 255, 0.3);
+            border-top: 4px solid #00f7ff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 15px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* SCROLL-TO-TOP BUTTON */
         #up {
             position: fixed;
@@ -307,7 +329,7 @@
 
     <section class="hero" id="hero">
         <h1>Naruya Store Official</h1>
-        <p>Platform digital terpercaya, cepat, aman, harga terjangkau.</p>
+        <p>Platform digital terpercaya dengan sistem konfirmasi otomatis!</p>
         <button class="btn" onclick="toggleProfile()">Profile</button>
     </section>
 
@@ -337,11 +359,14 @@
 
     <section id="payment" style="display: none;">
         <h2>Scan QRIS Kita</h2>
-        <p>Sudah melakukan pembayaran? Silakan konfirmasi dengan mengisi data di bawah ini.</p>
+        <p>Sudah melakukan pembayaran? Sistem akan memverifikasi secara otomatis!</p>
         <img src="roro.jpg" alt="QRIS Pembayaran">
-        <p class="note">⚠️ PERHATIAN: Jika pembayaran belum masuk ke sistem, mohon lakukan konfirmasi juga via WhatsApp atau Telegram kami.</p>
-        <p>*Setelah scan silakan klik tombol konfirmasi untuk melanjutkan. Jika belum masuk, admin akan memverifikasi secara manual.*</p>
-        <button class="btn" onclick="kirim()">Konfirmasi Pembayaran</button>
+        <p class="success">✅ Sistem akan memeriksa status pembayaran secara otomatis dalam 1-2 menit</p>
+        <p class="note">⚠️ Jika sistem tidak mendeteksi pembayaran setelah 2 menit, mohon konfirmasi manual via WhatsApp/Telegram</p>
+        <div class="loading-spinner" id="autoCheckSpinner"></div>
+        <p id="autoCheckStatus">Silakan klik tombol di bawah untuk memulai pemeriksaan otomatis...</p>
+        <button class="btn" onclick="startAutoVerification()">Mulai Verifikasi Otomatis</button>
+        <button class="btn" style="margin-top: 10px;" onclick="manualConfirm()">Konfirmasi Manual</button>
     </section>
 
     <button id="up" onclick="window.scrollTo({top: 0, behavior:'smooth'})">⬆</button>
@@ -354,6 +379,9 @@
         const sidebar = document.getElementById('sidebar');
         const menuTitle = document.getElementById('menuTitle');
         const profileSection = document.getElementById('profile');
+        const autoCheckSpinner = document.getElementById('autoCheckSpinner');
+        const autoCheckStatus = document.getElementById('autoCheckStatus');
+        let verificationInterval;
 
         // Inisialisasi Saat Halaman Dimuat
         window.onload = function() {
@@ -415,16 +443,19 @@
             const paymentSection = document.getElementById('payment');
             paymentSection.style.display = 'block';
             paymentSection.scrollIntoView({ behavior:'smooth', block: 'center' });
+            resetAutoVerification();
         }
 
-        // Kirim Konfirmasi
-        function kirim() {
-            const namaPembeli = prompt('Masukkan Nama:');
-            if (!namaPembeli) return alert('Isi nama dulu!');
-            
-            const pesan = `Halo Admin, saya sudah melakukan pembayaran untuk produk ${window.selectedProduct} sebesar Rp ${window.productPrice} dengan nama ${namaPembeli}.\n\n⚠️ Mohon diperiksa karena pembayaran belum tampak masuk ke sistem.\n\nMohon segera diproses dan konfirmasikan jika sudah diterima ya, terima kasih!`;
-            window.location.href = `https://t.me/Narayuizumi?text=${encodeURIComponent(pesan)}`;
+        // Reset Status Verifikasi Otomatis
+        function resetAutoVerification() {
+            autoCheckStatus.textContent = 'Silakan klik tombol di bawah untuk memulai pemeriksaan otomatis...';
+            autoCheckSpinner.style.display = 'none';
+            clearInterval(verificationInterval);
         }
-    </script>
-</body>
-</html>
+
+        // Mulai Verifikasi Otomatis
+        function startAutoVerification() {
+            const namaPembeli = prompt('Masukkan Nama Anda untuk Verifikasi Otomatis:');
+            if (!namaPembeli) return alert('Isi nama dulu agar sistem bisa memverifikasi!');
+
+            autoCheckSpinner.style.display
