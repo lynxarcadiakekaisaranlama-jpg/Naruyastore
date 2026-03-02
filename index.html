@@ -76,20 +76,21 @@
             width: 100%;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             padding: 18px 20px;
             background: rgba(15, 15, 30, 0.6);
             backdrop-filter: blur(6px);
             z-index: 999;
         }
 
-        .menu-btn {
-            font-size: 28px;
-            cursor: pointer;
+        .menu-left {
             display: flex;
             align-items: center;
         }
 
         .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
             margin-right: 10px;
         }
 
@@ -104,6 +105,12 @@
             opacity: 1;
         }
 
+        .close-icon {
+            font-size: 28px;
+            cursor: pointer;
+            display: none;
+        }
+
         /* SIDEBAR MENU */
         #sidebar {
             position: fixed;
@@ -116,14 +123,6 @@
             padding: 20px;
             transition: left 0.3s ease;
             z-index: 998;
-        }
-
-        #sidebar .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
-            cursor: pointer;
         }
 
         #sidebar ul {
@@ -279,14 +278,14 @@
     </div>
 
     <header>
-        <div class="menu-btn" onclick="openMenu()">
-            <span class="menu-icon">☰</span>
+        <div class="menu-left">
+            <span class="menu-icon" id="openMenu">☰</span>
             <span class="menu-title" id="menuTitle">NARUYA STORE</span>
         </div>
+        <span class="close-icon" id="closeMenu">✕</span>
     </header>
 
     <div id="sidebar">
-        <div class="close-btn" onclick="closeMenu()">✕</div>
         <ul>
             <li><button onclick="scrollToSection('hero')">Home</button></li>
             <li><button onclick="toggleProfile()">Profile</button></li>
@@ -334,6 +333,12 @@
     <button id="up" onclick="window.scrollTo({top: 0, behavior:'smooth'})">⬆</button>
 
     <script>
+        // Inisialisasi elemen
+        const openMenuBtn = document.getElementById('openMenu');
+        const closeMenuBtn = document.getElementById('closeMenu');
+        const sidebar = document.getElementById('sidebar');
+        const menuTitle = document.getElementById('menuTitle');
+
         // Inisialisasi saat halaman dimuat
         window.onload = function() {
             // Sembunyikan loader setelah 2 detik
@@ -342,7 +347,6 @@
             }, 2000);
 
             // Tampilkan nama toko setelah 2,2 detik lalu sembunyikan setelah 5,2 detik
-            const menuTitle = document.getElementById("menuTitle");
             setTimeout(() => {
                 menuTitle.classList.add("show");
             }, 2200);
@@ -351,17 +355,19 @@
             }, 5200);
         }
 
-        // Buka sidebar
-        function openMenu() {
-            document.getElementById("sidebar").style.left = "0";
-            document.querySelector(".menu-icon").textContent = "✕";
-        }
+        // Buka sidebar - tampilkan tombol X di ujung kanan
+        openMenuBtn.addEventListener('click', function() {
+            sidebar.style.left = "0";
+            openMenuBtn.style.display = "none";
+            closeMenuBtn.style.display = "block";
+        });
 
-        // Tutup sidebar
-        function closeMenu() {
-            document.getElementById("sidebar").style.left = "-250px";
-            document.querySelector(".menu-icon").textContent = "☰";
-        }
+        // Tutup sidebar - kembali ke menu utama
+        closeMenuBtn.addEventListener('click', function() {
+            sidebar.style.left = "-250px";
+            closeMenuBtn.style.display = "none";
+            openMenuBtn.style.display = "block";
+        });
 
         // Tampilkan/sembunyikan profil
         function toggleProfile() {
@@ -377,6 +383,10 @@
         // Gulir ke bagian tertentu
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            // Tutup sidebar otomatis setelah memilih menu
+            sidebar.style.left = "-250px";
+            closeMenuBtn.style.display = "none";
+            openMenuBtn.style.display = "block";
         }
 
         // Pilih produk dan tampilkan pembayaran
