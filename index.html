@@ -253,6 +253,12 @@
             margin: 15px 0;
         }
 
+        .note {
+            color: #ffdd57;
+            font-weight: 500;
+            margin: 10px 0;
+        }
+
         /* SCROLL-TO-TOP BUTTON */
         #up {
             position: fixed;
@@ -333,7 +339,8 @@
         <h2>Scan QRIS Kita</h2>
         <p>Sudah melakukan pembayaran? Silakan konfirmasi dengan mengisi data di bawah ini.</p>
         <img src="roro.jpg" alt="QRIS Pembayaran">
-        <p>*Setelah scan silakan klik tombol konfirmasi untuk melanjutkan*</p>
+        <p class="note">⚠️ PERHATIAN: Jika pembayaran belum masuk ke sistem, mohon lakukan konfirmasi juga via WhatsApp atau Telegram kami.</p>
+        <p>*Setelah scan silakan klik tombol konfirmasi untuk melanjutkan. Jika belum masuk, admin akan memverifikasi secara manual.*</p>
         <button class="btn" onclick="kirim()">Konfirmasi Pembayaran</button>
     </section>
 
@@ -415,7 +422,7 @@
             const namaPembeli = prompt('Masukkan Nama:');
             if (!namaPembeli) return alert('Isi nama dulu!');
             
-            const pesan = `Halo Admin, saya sudah melakukan pembayaran dan ingin mengkonfirmasi pesanan.\n\n📦 Produk: ${window.selectedProduct}\n👤 Nama: ${namaPembeli}\n💰 Mata Uang: IDR\n💵 Total: Rp ${window.productPrice}\n\nMohon segera diproses ya, terima kasih!`;
+            const pesan = `Halo Admin, saya sudah melakukan pembayaran untuk produk ${window.selectedProduct} sebesar Rp ${window.productPrice} dengan nama ${namaPembeli}.\n\n⚠️ Mohon diperiksa karena pembayaran belum tampak masuk ke sistem.\n\nMohon segera diproses dan konfirmasikan jika sudah diterima ya, terima kasih!`;
             window.location.href = `https://t.me/Narayuizumi?text=${encodeURIComponent(pesan)}`;
         }
     </script>
