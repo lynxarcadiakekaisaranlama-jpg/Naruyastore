@@ -5,286 +5,94 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naruya Store</title>
 <meta name="description" content="Platform digital terpercaya, cepat, aman, harga terjangkau.">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="robots" content="index, follow">
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI', sans-serif;
-}
+/* Reset & Font */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif;}
+body {color:#fff; background:#15152b; overflow-x:hidden;}
 
-body{
-  color:white;
-  overflow-x:hidden;
-  background-color: #15152b;
+/* Loader */
+#loader {
+  position:fixed; inset:0; display:flex; justify-content:center; align-items:center;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e); z-index:9999;
 }
+.loader-box {
+  display:flex; gap:15px; align-items:center; padding:25px;
+  border:2px solid #00f7ff; border-radius:15px; box-shadow:0 0 30px #00f7ff;
+}
+.loader-box img {width:80px; height:80px; border-radius:50%; border:2px solid #00f7ff; object-fit:cover;}
+.loader-text {color:#00f7ff; font-weight:bold; font-size:1.1rem;}
 
-/* LOADING */
-#loader{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-.loader-box{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  padding:25px;
-  border-radius:15px;
-  border:2px solid #00f7ff;
-  box-shadow:0 0 30px #00f7ff;
-}
-
-.loader-box img{
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  border:2px solid #00f7ff;
-  object-fit:cover;
-}
-
-.loader-text{
-  color:#00f7ff;
-  font-weight:bold;
-  font-size:1.1rem;
-}
-
-/* VIDEO BACKGROUND */
-video.bg{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
-  filter: brightness(1) contrast(1.1); /* video terang */
-  display:block;
-}
-
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.2); /* overlay tipis */
-  z-index:-1;
-}
+/* Video Background */
+video.bg {position:fixed; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(1) contrast(1.1); z-index:-2;}
+.overlay {position:fixed; inset:0; background:rgba(0,0,0,0.2); z-index:-1;}
 
 /* Header */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px;
-  background-color: rgba(21,21,43,0.8);
-  position:relative;
-  z-index:10;
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px; background:rgba(21,21,43,0.8); position:relative; z-index:10;
 }
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.logo img{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  border:2px solid #00f7ff;
-}
-
-.logo h2{
-  color:#00f7ff;
-  font-size:1.5rem;
-}
-
-.order-btn, .main-btn{
-  padding:10px 18px;
-  border:none;
-  border-radius:8px;
-  background:linear-gradient(45deg,#6f00ff,#00f7ff);
-  color:white;
-  cursor:pointer;
-  transition:all 0.3s ease;
-}
-
-.order-btn:hover, .main-btn:hover{
-  box-shadow:0 0 15px #00f7ff;
-}
+header .logo {display:flex; align-items:center; gap:10px;}
+header .logo img {width:45px; height:45px; border-radius:50%; border:2px solid #00f7ff;}
+header .logo h2 {color:#00f7ff; font-size:1.5rem;}
+button {cursor:pointer; border:none; border-radius:8px; transition:all .3s ease;}
+.order-btn, .main-btn {padding:10px 18px; background:linear-gradient(45deg,#6f00ff,#00f7ff); color:#fff;}
+.order-btn:hover, .main-btn:hover {box-shadow:0 0 15px #00f7ff;}
 
 /* Hero */
-.hero{
-  text-align:center;
-  padding:40px 20px;
-  margin-top:20px;
-  position:relative;
-  z-index:5;
-}
-
-.hero h1{
-  font-size:2.2rem;
-  text-shadow:0 0 10px #00f7ff;
-  margin-bottom:10px;
-}
+.hero {text-align:center; padding:40px 20px; margin-top:20px; position:relative; z-index:5;}
+.hero h1 {font-size:2.2rem; text-shadow:0 0 10px #00f7ff; margin-bottom:10px;}
 
 /* Profile */
-#profile{
-  display:none;
-  text-align:center;
-  padding:20px;
-  margin-top:20px;
-  position:relative;
-  z-index:5;
+#profile {display:none; text-align:center; padding:20px; margin-top:20px; position:relative; z-index:5;}
+.profile-card {
+  background:#15152b; padding:25px; border-radius:15px; max-width:400px; margin:0 auto;
+  border:1px solid #00f7ff; box-shadow:0 0 20px rgba(0,247,255,0.2);
 }
-
-.profile-card{
-  background:#15152b;
-  padding:25px;
-  border-radius:15px;
-  max-width:400px;
-  margin:0 auto;
-  box-shadow:0 0 20px rgba(0,247,255,0.2);
-  border:1px solid #00f7ff;
-}
-
-.profile-card h3{
-  color:#00f7ff;
-  margin-bottom:10px;
-}
-
-.social-btn{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border:none;
-  border-radius:8px;
-  background:linear-gradient(45deg,#6f00ff,#00f7ff);
-  color:white;
-  cursor:pointer;
-  transition:all 0.3s ease;
-}
-
-.social-btn:hover{
-  box-shadow:0 0 15px #00f7ff;
-}
+.profile-card h3 {color:#00f7ff; margin-bottom:10px;}
+.profile-card p {margin-bottom:15px;}
+.social-btn {width:100%; padding:12px; margin:8px 0; background:linear-gradient(45deg,#6f00ff,#00f7ff); color:#fff;}
+.social-btn:hover {box-shadow:0 0 15px #00f7ff;}
 
 /* Produk */
-.products{
-  padding:20px;
-  margin-top:20px;
-  position:relative;
-  z-index:5;
+.products {padding:20px; margin-top:20px; position:relative; z-index:5;}
+.card {
+  background:#15152b; padding:20px; border-radius:15px; margin-bottom:20px;
+  border:1px solid #00f7ff; box-shadow:0 0 20px rgba(0,247,255,0.1); text-align:center;
 }
+.card h3 {margin-bottom:10px;}
+.price {color:#00f7ff; font-size:1.2rem; margin-bottom:10px;}
+.buy-btn {padding:8px 15px; background:#6f00ff; color:#fff;}
+.buy-btn:hover {background:#8a2be2;}
 
-.card{
-  background:#15152b;
-  padding:20px;
-  border-radius:15px;
-  margin-bottom:20px;
-  box-shadow:0 0 20px rgba(0,247,255,0.1);
-  text-align:center;
-  border:1px solid #00f7ff;
-}
+/* Payment */
+#payment {display:none; text-align:center; padding:40px 20px; margin-top:20px; position:relative; z-index:5;}
+#payment h2 {margin-bottom:10px; text-shadow:0 0 10px #00f7ff;}
+#payment p {margin-bottom:20px;}
+#payment img {max-width:100%; border-radius:15px; margin-bottom:20px; border:2px solid #00f7ff;}
 
-.card h3{
-  margin-bottom:10px;
-}
-
-.price{
-  color:#00f7ff;
-  font-size:1.2rem;
-  margin-bottom:10px;
-}
-
-.buy-btn{
-  padding:8px 15px;
-  border:none;
-  border-radius:8px;
-  background:#6f00ff;
-  color:white;
-  cursor:pointer;
-  transition:all 0.3s ease;
-}
-
-.buy-btn:hover{
-  background:#8a2be2;
-}
-
-/* Pembayaran */
-#payment{
-  display:none;
-  text-align:center;
-  padding:40px 20px;
-  margin-top:20px;
-  position:relative;
-  z-index:5;
-}
-
-#payment h2{
-  margin-bottom:10px;
-  text-shadow:0 0 10px #00f7ff;
-}
-
-#payment p{
-  margin-bottom:20px;
-}
-
-#payment img{
-  max-width:100%;
-  height:auto;
-  border-radius:15px;
-  margin-bottom:20px;
-  border:2px solid #00f7ff;
-}
-
-/* Tombol Kembali Atas */
-#up-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:50px;
-  height:50px;
-  border:none;
-  border-radius:50%;
-  background:linear-gradient(45deg,#6f00ff,#00f7ff);
-  color:white;
-  font-size:1.2rem;
-  cursor:pointer;
-  transition:all 0.3s ease;
-  z-index:20;
-}
-
-#up-btn:hover{
-  box-shadow:0 0 15px #00f7ff;
-}
+/* Button Up */
+#up-btn {position:fixed; bottom:20px; right:20px; width:50px; height:50px;
+  border-radius:50%; background:linear-gradient(45deg,#6f00ff,#00f7ff); color:#fff; font-size:1.2rem; z-index:20;}
+#up-btn:hover {box-shadow:0 0 15px #00f7ff;}
 </style>
 </head>
 <body>
 
-<!-- VIDEO BACKGROUND -->
+<!-- Video & Overlay -->
 <video class="bg" autoplay muted loop playsinline>
   <source src="anime.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
-<!-- LOADING -->
+<!-- Loader -->
 <div id="loader">
   <div class="loader-box">
-    <img src="logo.jpg" alt="Logo Naruya Store">
+    <img src="logo.jpg" alt="Logo">
     <div class="loader-text">Loading Naruya Store...</div>
   </div>
 </div>
 
-<!-- HEADER -->
+<!-- Header -->
 <header>
   <div class="logo">
     <img src="logo.jpg" alt="Logo">
@@ -293,7 +101,7 @@ header{
   <button class="order-btn" onclick="scrollToProduk()">Buka Pesanan</button>
 </header>
 
-<!-- HERO -->
+<!-- Hero -->
 <section class="hero">
   <h1>Naruya Store Official</h1>
   <p>Platform digital terpercaya, cepat, aman, harga terjangkau.</p>
@@ -301,7 +109,7 @@ header{
   <button class="main-btn" onclick="scrollToProduk()">Lihat Produk</button>
 </section>
 
-<!-- PROFILE -->
+<!-- Profile -->
 <section id="profile">
   <div class="profile-card">
     <h3>Naruya Store</h3>
@@ -314,7 +122,7 @@ header{
   </div>
 </section>
 
-<!-- PRODUK -->
+<!-- Produk -->
 <section class="products" id="produk">
   <div class="card">
     <h3>Jasa Pasang Bot</h3>
@@ -333,7 +141,7 @@ header{
   </div>
 </section>
 
-<!-- PAYMENT -->
+<!-- Payment -->
 <section id="payment">
   <h2>Pembayaran Belum Diterima</h2>
   <p>Silakan scan QRIS di bawah dan lakukan transfer:</p>
@@ -341,43 +149,27 @@ header{
   <button class="main-btn" onclick="kirim()">Konfirmasi TF</button>
 </section>
 
-<!-- BUTTON UP -->
+<!-- Button Up -->
 <button id="up-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆</button>
 
 <script>
-window.addEventListener("load", function(){
-  setTimeout(()=>{ document.getElementById("loader").style.display="none"; },2000);
-});
+window.addEventListener("load",()=>setTimeout(()=>{document.getElementById("loader").style.display="none"},2000));
 
-function toggleProfile(){
-  let p = document.getElementById("profile");
-  p.style.display = (p.style.display === "block") ? "none" : "block";
+function toggleProfile() {
+  const p = document.getElementById("profile");
+  p.style.display = (p.style.display==="block")?"none":"block";
 }
-
-function scrollToProduk(){
-  document.getElementById("produk").scrollIntoView({behavior:"smooth"});
-}
-
-function beliProduk(nama){
-  window.selectedProduk = nama;
+function scrollToProduk() {document.getElementById("produk").scrollIntoView({behavior:"smooth"});}
+function beliProduk(n) {
+  window.selectedProduk=n;
   document.getElementById("payment").style.display="block";
-  window.scrollTo({top:document.getElementById("payment").offsetTop, behavior:'smooth'});
+  window.scrollTo({top:document.getElementById("payment").offsetTop, behavior:"smooth"});
 }
-
-// Konfirmasi TF untuk user cek sendiri
-function kirim(){
-  let nama = prompt("Masukkan Nama Anda:");
-  if(!nama){ 
-    alert("Isi nama dulu!"); 
-    return; 
-  }
-
-  let pesan = 
-    "📦 Produk: " + window.selectedProduk + "\n" +
-    "👤 Nama: " + nama + "\n" +
-    "💵 Status: Belum diterima / silakan cek transfer";
-
-  alert("Detail Pembayaran:\n\n" + pesan);
+function kirim() {
+  const nama = prompt("Masukkan Nama Anda:");
+  if(!nama){alert("Isi nama dulu!"); return;}
+  const pesan = "📦 Produk: "+window.selectedProduk+"\n👤 Nama: "+nama+"\n✅Status: Belum diterima / silakan cek transfer";
+  alert("Detail Pembayaran:\n\n"+pesan);
 }
 </script>
 
