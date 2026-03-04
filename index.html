@@ -18,57 +18,61 @@ a{cursor:pointer;text-decoration:none;}
 .loader-text{font-size:20px;font-weight:bold;color:#00ffff;text-shadow:0 0 15px #00ffff;}
 @keyframes loaderAnim{0%{transform:scale(1);}100%{transform:scale(1.05);}}
 
-/* Video Background */
-video.bg{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(1.4) contrast(1.1);}
-.overlay{position:fixed;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:-1;transition:0.3s;}
+/* Video Background & overlay */
+video.bg{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(1.4) contrast(1.1);transition:0.5s;}
+.overlay{position:fixed;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:-1;transition:0.5s;}
 body.light .overlay{background:rgba(255,255,255,0.1);}
 
 /* Header */
-header{display:flex;justify-content:space-between;align-items:center;padding:20px;background:linear-gradient(90deg,#8f00ff,#00ffff);position:sticky;top:0;z-index:1000;border-radius:0 0 15px 15px;}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px;background:linear-gradient(90deg,#8f00ff,#00ffff);position:sticky;top:0;z-index:1000;border-radius:0 0 15px 15px;box-shadow:0 0 15px rgba(0,0,0,0.5);}
 .logo{display:flex;align-items:center;gap:10px;}
 .logo img{width:45px;height:45px;border-radius:50%;border:2px solid #00ffff;}
 .logo h2{text-shadow:0 0 10px #00ffff;}
 .menu-btn{font-size:1.5rem;cursor:pointer;background:none;border:none;color:white;transition:0.2s;}
 .menu-btn:hover{opacity:0.85;}
 
-/* Side Menu */
-nav{position:fixed;top:0;right:-260px;width:260px;height:100%;background:#222;padding:60px 20px;display:flex;flex-direction:column;gap:20px;transition:right 0.3s;z-index:999;}
+/* Side Menu Multi-level */
+nav{position:fixed;top:0;right:-280px;width:280px;height:100%;background:#222;padding:60px 20px;display:flex;flex-direction:column;gap:15px;transition:right 0.3s;z-index:999;}
 nav a{color:white;font-size:1.2rem;transition:0.2s;}
 nav a:hover{color:#ffeb3b;}
+nav .submenu{display:none;flex-direction:column;margin-left:15px;gap:10px;}
+nav a.activeSub{display:flex;flex-direction:column;}
 nav.active{right:0;}
 
-/* Hero */
-.hero{text-align:center;margin-top:80px;opacity:0;transform:translateY(20px);transition:0.5s;}
+/* Hero cinematic */
+.hero{text-align:center;margin-top:80px;opacity:0;transform:translateY(30px);transition:0.6s;}
 .hero.visible{opacity:1;transform:translateY(0);}
-.hero h1{font-size:2rem;text-shadow:0 0 15px #00ffff;}
-.hero p{margin-top:8px;opacity:0.9;line-height:1.6;}
-.hero button{margin-top:15px;padding:12px 25px;border:none;border-radius:10px;background:linear-gradient(90deg,#8f00ff,#00ffff);color:white;font-weight:bold;cursor:pointer;transition:0.2s;}
-.hero button:hover{opacity:0.9;transform:translateY(-2px);}
+.hero h1{font-size:2.2rem;text-shadow:0 0 15px #00ffff;}
+.hero p{margin-top:12px;opacity:0.9;line-height:1.6;}
+.hero button{margin-top:20px;padding:14px 28px;border:none;border-radius:10px;background:linear-gradient(90deg,#8f00ff,#00ffff);color:white;font-weight:bold;cursor:pointer;transition:0.3s;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
 
-/* Sections */
+/* Sections & scroll animations */
 section{display:none;padding:30px 20px;opacity:0;transform:translateY(20px);transition:0.5s;}
 section.active{display:block;opacity:1;transform:translateY(0);}
 
-/* Profile Card */
-.profile-card{background:rgba(0,0,0,0.7);padding:40px 25px;border-radius:25px;margin:20px;text-align:center;border:2px solid #00ffff;box-shadow:0 0 50px rgba(0,255,255,0.7);backdrop-filter:blur(15px);}
+/* Profile Card 3D Hover */
+.profile-card{background:rgba(0,0,0,0.7);padding:40px 25px;border-radius:25px;margin:20px;text-align:center;border:2px solid #00ffff;box-shadow:0 0 50px rgba(0,255,255,0.7);backdrop-filter:blur(15px);transition:transform 0.3s,box-shadow 0.3s;}
+.profile-card:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 0 60px rgba(0,255,255,0.9);}
 .profile-img{width:150px;height:150px;border-radius:50%;margin:auto;border:5px solid #00ffff;object-fit:cover;}
 .profile-card h2{margin-top:20px;font-size:26px;}
 .profile-card p{margin:10px 0 25px;opacity:0.8;}
 .social-btn{width:100%;margin-bottom:15px;padding:12px;background:#00ffff;color:#111;font-weight:bold;border:none;border-radius:10px;cursor:pointer;transition:0.2s;}
 .social-btn:hover{opacity:0.9;transform:scale(1.05);}
 
-/* Product Card */
-.card{background:rgba(0,0,0,0.6);padding:25px;border-radius:20px;margin-bottom:25px;border:1px solid rgba(0,255,255,0.4);box-shadow:0 0 25px rgba(0,255,255,0.3);opacity:0;transform:translateY(20px);transition:0.5s;}
+/* Product Card 3D Hover */
+.card{background:rgba(0,0,0,0.6);padding:25px;border-radius:20px;margin-bottom:25px;border:1px solid rgba(0,255,255,0.4);box-shadow:0 0 25px rgba(0,255,255,0.3);opacity:0;transform:translateY(20px);transition:0.5s,transform 0.3s;}
 .card.visible{opacity:1;transform:translateY(0);}
+.card:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 0 40px rgba(0,255,255,0.5);}
 .price{color:#00ffff;margin:10px 0;font-weight:bold;}
 .card button{padding:12px 20px;background:#00ffff;color:#111;border:none;border-radius:10px;font-weight:bold;cursor:pointer;transition:0.2s;}
 .card button:hover{opacity:0.9;transform:scale(1.05);}
 
-/* Payment */
+/* Payment Section */
 .payment img{width:100%;border-radius:15px;margin-bottom:15px;}
 .timer{color:#00ffff;margin-bottom:10px;font-weight:bold;}
-.progress-bar{width:100%;height:10px;background:rgba(255,255,255,0.2);border-radius:5px;margin-bottom:15px;overflow:hidden;}
-.progress-bar-inner{width:100%;height:100%;background:#00ffff;transition:width 1s linear;border-radius:5px;}
+.progress-bar{width:100%;height:12px;background:rgba(255,255,255,0.2);border-radius:6px;margin-bottom:15px;overflow:hidden;}
+.progress-bar-inner{width:100%;height:100%;background:linear-gradient(90deg,#8f00ff,#00ffff);transition:width 1s linear;border-radius:6px;}
 input,select{width:100%;padding:14px;margin-bottom:15px;border-radius:10px;border:none;background:rgba(255,255,255,0.15);color:white;box-shadow:0 0 15px #00ffff;}
 .payment-buttons{display:flex;gap:10px;}
 .payment-buttons button{flex:1;padding:12px;background:#00ffff;color:#111;border:none;border-radius:10px;font-weight:bold;cursor:pointer;transition:0.2s;}
@@ -189,12 +193,18 @@ function showSection(id){
   document.getElementById(id).classList.add('active');
   document.getElementById('sideMenu').classList.remove('active');
   animateCards();
+  smoothScrollTo(document.getElementById(id));
 }
 
 // Animate Cards
 function animateCards(){
   const cards = document.querySelectorAll('.card');
   cards.forEach((c,i)=>setTimeout(()=>{c.classList.add('visible');},i*200));
+}
+
+// Smooth Scroll
+function smoothScrollTo(el){
+  window.scrollTo({top:el.offsetTop-70,behavior:'smooth'});
 }
 
 // Dark Mode
