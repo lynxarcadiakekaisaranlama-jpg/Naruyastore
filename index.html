@@ -6,404 +6,250 @@
 <title>Naruya Store</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0f0c29;color:#fff;overflow-x:hidden;transition:.3s}
+.light{background:#f4f4f4;color:#111}
 
-body{
-  color:white;
-  overflow-x:hidden;
-}
-
-/* LOADER */
-#loader{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-.loader-box{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  padding:25px 35px;
-  border-radius:20px;
-  border:2px solid #00ffff;
-  box-shadow:0 0 40px #00ffff;
-}
-
-.loader-box img{
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  border:3px solid #00ffff;
-  box-shadow:0 0 25px #00ffff;
-  object-fit:cover;
-}
-
-.loader-text{
-  font-size:20px;
-  font-weight:bold;
-  color:#00ffff;
-  text-shadow:0 0 15px #00ffff;
-}
-
-/* VIDEO BACKGROUND */
-video.bg{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
-  filter:brightness(1.4) contrast(1.1);
-}
-
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.35);
-  z-index:-1;
-}
-
-/* HEADER */
 header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:25px 20px 15px 20px;
+display:flex;justify-content:space-between;align-items:center;
+padding:20px
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{width:40px;height:40px;border-radius:50%;box-shadow:0 0 15px cyan}
 
-.logo img{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  border:2px solid #00ffff;
-  box-shadow:0 0 20px #00ffff;
-  margin-top:6px;
-}
-
-.logo h2{
-  text-shadow:0 0 10px #00ffff;
-}
-
-/* BUTTON */
 button{
-  padding:14px 22px;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-  color:white;
-  background:linear-gradient(90deg,#8f00ff,#00ffff);
-  box-shadow:0 0 25px #00ffff;
-  transition:all 0.2s ease;
+padding:10px 16px;border:none;border-radius:10px;
+cursor:pointer;font-weight:bold;
+background:linear-gradient(90deg,#8f00ff,#00ffff);
+color:white;transition:.2s
+}
+button:hover{transform:translateY(-3px)}
+
+.hero{text-align:center;margin-top:50px}
+.hero h1{text-shadow:0 0 20px cyan}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;padding:30px
 }
 
-button:hover{
-  transform:translateY(-2px);
-  opacity:0.95;
-}
-
-button:active{
-  transform:scale(0.97);
-}
-
-/* HERO */
-.hero{
-  text-align:center;
-  margin-top:70px;
-}
-
-.hero h1{
-  font-size:30px;
-  text-shadow:0 0 15px #00ffff;
-}
-
-.hero p{
-  margin-top:8px;
-  opacity:0.9;
-  line-height:1.6;
-}
-
-/* SECTION */
-section{
-  display:none;
-  padding:30px 20px;
-}
-
-/* PROFILE */
-.profile-card{
-  background:rgba(0,0,0,0.7);
-  padding:40px 25px;
-  border-radius:25px;
-  margin:20px;
-  text-align:center;
-  border:2px solid #00ffff;
-  box-shadow:0 0 50px rgba(0,255,255,0.7);
-  backdrop-filter:blur(15px);
-}
-
-.profile-img{
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  margin:auto;
-  border:5px solid #00ffff;
-  box-shadow:0 0 40px #00ffff;
-  object-fit:cover;
-}
-
-.profile-card h2{
-  margin-top:20px;
-  font-size:26px;
-}
-
-.profile-card p{
-  margin:10px 0 25px;
-  opacity:0.8;
-}
-
-.social-btn{
-  width:100%;
-  margin-bottom:15px;
-}
-
-/* PRODUCT */
 .card{
-  background:rgba(0,0,0,0.6);
-  padding:25px;
-  border-radius:20px;
-  margin-bottom:25px;
-  border:1px solid rgba(0,255,255,0.4);
-  box-shadow:0 0 25px rgba(0,255,255,0.3);
+background:rgba(255,255,255,.08);
+padding:20px;border-radius:15px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 20px rgba(0,255,255,.3);
+transition:.2s
+}
+.card:hover{transform:translateY(-5px)}
+
+.price{color:cyan;margin:10px 0}
+
+.modal{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.6);
+display:none;justify-content:center;align-items:center
 }
 
-.price{
-  color:#00ffff;
-  margin:10px 0;
-  font-weight:bold;
+.modal-box{
+background:#111;padding:25px;border-radius:15px;
+width:90%;max-width:400px
 }
 
-/* PAYMENT */
-.payment img{
-  width:100%;
-  border-radius:15px;
-  margin-bottom:15px;
+input,select{
+width:100%;padding:10px;margin-bottom:10px;
+border-radius:8px;border:none
 }
 
-.timer{
-  color:#00ffff;
-  margin-bottom:10px;
-  font-weight:bold;
+.progress{
+height:8px;background:#333;border-radius:10px;
+overflow:hidden;margin-bottom:10px
+}
+.bar{height:100%;background:cyan;width:100%}
+
+.toast{
+position:fixed;bottom:20px;right:20px;
+background:#111;padding:15px 20px;
+border-radius:10px;display:none;
+box-shadow:0 0 20px cyan
 }
 
-input, select{
-  width:100%;
-  padding:14px;
-  margin-bottom:15px;
-  border-radius:10px;
-  border:none;
-  background:rgba(255,255,255,0.15);
-  color:white;
-  box-shadow:0 0 15px #00ffff;
+.admin{
+display:none;padding:20px
 }
 
-.payment-buttons{
-  display:flex;
-  gap:10px;
+.order{
+background:#222;padding:10px;margin-bottom:10px;border-radius:8px
 }
 
-.payment-buttons button{
-  flex:1;
+.toggle-theme{
+background:#222
 }
 </style>
 </head>
 
 <body>
 
-<div id="loader">
-  <div class="loader-box">
-    <img src="loading.jpg">
-    <div class="loader-text">Loading Naruya Store...</div>
-  </div>
-</div>
-
-<video class="bg" autoplay muted loop playsinline>
-  <source src="anime.mp4" type="video/mp4">
-</video>
-<div class="overlay"></div>
-
 <header>
-  <div class="logo">
-    <img src="logo.jpg">
-    <h2>Naruya Store</h2>
-  </div>
-  <button onclick="toggleProduk()">Lihat Produk</button>
+<div class="logo">
+<img src="logo.jpg">
+<h2>Naruya Store</h2>
+</div>
+<div>
+<button onclick="openAdmin()">Admin</button>
+<button class="toggle-theme" onclick="toggleTheme()">Mode</button>
+</div>
 </header>
 
 <div class="hero">
-  <h1>Naruya Store Official</h1>
-  <p>
-    Platform digital terpercaya untuk kebutuhan Anda.<br>
-    Cepat diproses, aman digunakan, kualitas terjamin.
-  </p>
-  <button onclick="toggleProfile()">Profile</button>
+<h1>Naruya Store Ultimate</h1>
+<p>Premium Digital Service</p>
 </div>
 
-<section id="profile">
-  <div class="profile-card">
-    <img src="logo.jpg" class="profile-img">
-    <h2>Naruya Store</h2>
-    <p>Store digital terpercaya.</p>
+<div class="products">
+<div class="card">
+<h3>Panel Pterodactyl</h3>
+<div class="price">Rp 7.000</div>
+<button onclick="openModal('Panel Pterodactyl',7000)">Beli</button>
+</div>
 
-    <button class="social-btn" onclick="window.open('https://wa.me/6287733976909')">WhatsApp</button>
-    <button class="social-btn" onclick="window.open('https://t.me/Narayuizumi')">Telegram</button>
-    <button class="social-btn" onclick="window.open('https://instagram.com/izuku_tsuki')">Instagram</button>
-    <button class="social-btn" onclick="window.open('https://tiktok.com/@narayu.kiyora')">TikTok</button>
-    <button class="social-btn" onclick="window.open('https://whatsapp.com/channel/0029Vb7DTylE50UbVmTs9q1R')">Saluran WhatsApp</button>
-  </div>
-</section>
+<div class="card">
+<h3>Jasa Pasang Bot</h3>
+<div class="price">Rp 5.000</div>
+<button onclick="openModal('Jasa Pasang Bot',5000)">Beli</button>
+</div>
 
-<section id="produk">
-  <div class="card">
-    <h3>Panel Pterodactyl</h3>
-    <div class="price">Rp 7.000</div>
-    <button onclick="beli('Panel Pterodactyl',7000)">Beli</button>
-  </div>
+<div class="card">
+<h3>Nokos Indo</h3>
+<div class="price">Rp 4.000</div>
+<button onclick="openModal('Nokos Indo',4000)">Beli</button>
+</div>
+</div>
 
-  <div class="card">
-    <h3>Jasa Pasang Bot</h3>
-    <div class="price">Rp 5.000</div>
-    <button onclick="beli('Jasa Pasang Bot',5000)">Beli</button>
-  </div>
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box">
+<h3 id="mKategori"></h3>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div id="timer">300</div>
 
-  <div class="card">
-    <h3>Nokos Indo</h3>
-    <div class="price">Rp 4.000</div>
-    <button onclick="beli('Nokos Indo',4000)">Beli</button>
-  </div>
-</section>
+<input type="text" id="nama" placeholder="Nama Pengirim">
+<select id="currency">
+<option value="IDR">IDR</option>
+<option value="USD">USD</option>
+</select>
+<input type="text" id="total" readonly>
+<input type="file" id="bukti">
 
-<section id="payment" class="payment">
-  <div class="card">
-    <img src="roro.jpg">
-    <div class="timer" id="timer">QR berlaku: 300 detik</div>
+<button onclick="kirim()">Kirim Bukti</button>
+<button onclick="closeModal()">Batal</button>
+</div>
+</div>
 
-    <input type="text" id="kategori" readonly>
-    <input type="text" id="nama" placeholder="Nama Pengirim">
-    <select id="currency">
-      <option value="IDR">IDR (Rupiah)</option>
-      <option value="USD">USD (Dollar)</option>
-    </select>
-    <input type="number" id="total" readonly>
+<!-- ADMIN -->
+<div class="admin" id="adminPanel">
+<h2>Dashboard Admin</h2>
+<p>Total Order: <span id="totalOrder">0</span></p>
+<p>Total Pendapatan: Rp <span id="totalIncome">0</span></p>
+<hr style="margin:15px 0">
+<div id="orderList"></div>
+<button onclick="logout()">Logout</button>
+</div>
 
-    <div class="payment-buttons">
-      <button onclick="kirim()">Kirim Bukti</button>
-      <button onclick="cekPembayaran()">Cek Pembayaran</button>
-    </div>
-  </div>
-</section>
+<div class="toast" id="toast"></div>
 
 <script>
-window.addEventListener("load", function(){
-  setTimeout(()=>{
-    document.getElementById("loader").style.display="none";
-  },2000);
-});
 
-function toggleProfile(){
-  const p=document.getElementById("profile");
-  if(p.style.display==="block"){
-    p.style.display="none";
-  }else{
-    hideAll();
-    p.style.display="block";
-  }
+let selectedPrice=0;
+let waktu=300,interval;
+
+function openModal(nama,harga){
+selectedPrice=harga;
+document.getElementById("modal").style.display="flex";
+document.getElementById("mKategori").innerText=nama;
+document.getElementById("total").value=new Intl.NumberFormat('id-ID').format(harga);
+startTimer();
 }
 
-function toggleProduk(){
-  const pr=document.getElementById("produk");
-  if(pr.style.display==="block"){
-    pr.style.display="none";
-  }else{
-    hideAll();
-    pr.style.display="block";
-  }
+function closeModal(){
+document.getElementById("modal").style.display="none";
+clearInterval(interval);
 }
-
-function hideAll(){
-  document.getElementById("profile").style.display="none";
-  document.getElementById("produk").style.display="none";
-  document.getElementById("payment").style.display="none";
-}
-
-function beli(nama,harga){
-  hideAll();
-  document.getElementById("payment").style.display="block";
-  document.getElementById("kategori").value=nama;
-  document.getElementById("total").value=harga;
-  startTimer();
-}
-
-function cekPembayaran(){
-  alert("Sistem sedang memverifikasi pembayaran Anda. Mohon tunggu beberapa saat.");
-  setTimeout(()=>{
-    alert("Pembayaran belum terdeteksi atau masih dalam proses pengecekan.");
-  },2000);
-}
-
-let waktu=300;
-let interval;
 
 function startTimer(){
-  waktu=300;
-  clearInterval(interval);
-  interval=setInterval(()=>{
-    waktu--;
-    document.getElementById("timer").innerText="QR berlaku: "+waktu+" detik";
-    if(waktu<=0){
-      clearInterval(interval);
-      alert("QR kadaluarsa.");
-    }
-  },1000);
+waktu=300;
+clearInterval(interval);
+interval=setInterval(()=>{
+waktu--;
+document.getElementById("timer").innerText="QR: "+waktu+" detik";
+document.getElementById("bar").style.width=(waktu/300*100)+"%";
+if(waktu<=0){
+clearInterval(interval);
+showToast("QR Kadaluarsa");
 }
+},1000);
+}
+
+document.getElementById("currency").addEventListener("change",function(){
+if(this.value==="USD"){
+document.getElementById("total").value=(selectedPrice/15000).toFixed(2);
+}else{
+document.getElementById("total").value=new Intl.NumberFormat('id-ID').format(selectedPrice);
+}
+});
 
 function kirim(){
-  let kategori=document.getElementById("kategori").value;
-  let nama=document.getElementById("nama").value;
-  let total=document.getElementById("total").value;
-  let currency=document.getElementById("currency").value;
+let nama=document.getElementById("nama").value;
+if(!nama){showToast("Isi nama dulu!");return;}
 
-  if(!nama){
-    alert("Isi nama dulu!");
-    return;
-  }
+let orders=JSON.parse(localStorage.getItem("orders")||"[]");
+orders.push({nama:nama,produk:document.getElementById("mKategori").innerText,harga:selectedPrice});
+localStorage.setItem("orders",JSON.stringify(orders));
 
-  let pesan="Halo Admin, saya sudah bayar.\n\n"+
-  "📦 "+kategori+"\n"+
-  "👤 "+nama+"\n"+
-  "💵 "+currency+" "+total;
-
-  window.location.href="https://t.me/Narayuizumi?text="+encodeURIComponent(pesan);
+showToast("Order tersimpan!");
+closeModal();
 }
-</script>
 
+function showToast(text){
+let t=document.getElementById("toast");
+t.innerText=text;
+t.style.display="block";
+setTimeout(()=>{t.style.display="none"},2500);
+}
+
+function openAdmin(){
+let pass=prompt("Masukkan password admin:");
+if(pass==="admin123"){
+document.getElementById("adminPanel").style.display="block";
+loadOrders();
+}else{
+showToast("Password salah!");
+}
+}
+
+function logout(){
+document.getElementById("adminPanel").style.display="none";
+}
+
+function loadOrders(){
+let orders=JSON.parse(localStorage.getItem("orders")||"[]");
+document.getElementById("totalOrder").innerText=orders.length;
+
+let total=0;
+let html="";
+orders.forEach(o=>{
+total+=o.harga;
+html+=`<div class="order">${o.nama} - ${o.produk} - Rp ${o.harga}</div>`;
+});
+document.getElementById("orderList").innerHTML=html;
+document.getElementById("totalIncome").innerText=new Intl.NumberFormat('id-ID').format(total);
+}
+
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+
+</script>
 </body>
 </html>
