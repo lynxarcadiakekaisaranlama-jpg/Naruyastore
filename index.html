@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Naruya Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg,#0f172a,#020617);
+      color:white;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      padding:15px 30px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size:20px;
+    }
+
+    nav a {
+      margin-left:15px;
+      text-decoration:none;
+      color:white;
+      opacity:0.7;
+    }
+
+    nav a:hover {
+      opacity:1;
+    }
+
+    .hero {
+      text-align:center;
+      padding:80px 20px;
+    }
+
+    .hero h2 {
+      font-size:35px;
+      margin-bottom:10px;
+    }
+
+    .hero p {
+      opacity:0.6;
+      margin-bottom:20px;
+    }
+
+    .hero button {
+      padding:12px 20px;
+      border:none;
+      border-radius:10px;
+      background: linear-gradient(135deg,#38bdf8,#6366f1);
+      color:white;
+      cursor:pointer;
+    }
+
+    .products {
+      padding:40px 20px;
+    }
+
+    .products h2 {
+      text-align:center;
+      margin-bottom:20px;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding:20px;
+      border-radius:15px;
+      transition:0.3s;
+    }
+
+    .card:hover {
+      transform:translateY(-10px);
+    }
+
+    .price {
+      color:#38bdf8;
+      margin:10px 0;
+    }
+
+    .card button {
+      width:100%;
+      padding:10px;
+      border:none;
+      border-radius:10px;
+      background: linear-gradient(135deg,#38bdf8,#6366f1);
+      color:white;
+      cursor:pointer;
+    }
+
+    .features {
+      padding:40px 20px;
+      text-align:center;
+    }
+
+    .features h2 {
+      margin-bottom:20px;
+    }
+
+    .feature-box {
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
+    }
+
+    .feature {
+      background: rgba(255,255,255,0.05);
+      padding:20px;
+      border-radius:15px;
+    }
+
+    footer {
+      text-align:center;
+      padding:20px;
+      opacity:0.6;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚀 Naruya Store</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Produk</a>
+    <a href="#">Kontak</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Welcome to Naruya Store</h2>
+  <p>All stock tersedia & siap kirim ⚡</p>
+  <button onclick="scrollProduk()">Lihat Produk</button>
+</section>
+
+<section class="products" id="produk">
+  <h2>Produk Kami</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Panel Bot 1GB</h3>
+      <p class="price">Rp5.000</p>
+      <button onclick="beli('Panel 1GB')">Beli</button>
+    </div>
+
+    <div class="card">
+      <h3>Panel Bot 2GB</h3>
+      <p class="price">Rp8.000</p>
+      <button onclick="beli('Panel 2GB')">Beli</button>
+    </div>
+
+    <div class="card">
+      <h3>Script Premium</h3>
+      <p class="price">Rp15.000</p>
+      <button onclick="beli('Script')">Beli</button>
+    </div>
+
+    <div class="card">
+      <h3>Jasa Setup Bot</h3>
+      <p class="price">Rp10.000</p>
+      <button onclick="beli('Setup')">Beli</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="features">
+  <h2>Kenapa Pilih Kami?</h2>
+
+  <div class="feature-box">
+    <div class="feature">⚡ Proses Cepat</div>
+    <div class="feature">🔒 Aman & Terpercaya</div>
+    <div class="feature">📦 Auto Delivery</div>
+    <div class="feature">💬 Support 24 Jam</div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Naruya Market
+</footer>
+
+<script>
+function beli(nama){
+  alert("Kamu pilih: " + nama + "\\n\\nPembayaran segera aktif 🚀");
+}
+
+function scrollProduk(){
+  document.getElementById("produk").scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
